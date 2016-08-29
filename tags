@@ -1,0 +1,63 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Meetup_Rsvp_Publisher	includes/class-meetup-rsvp-publisher.php	/^class Meetup_Rsvp_Publisher {$/;"	c
+Meetup_Rsvp_Publisher_Activator	includes/class-meetup-rsvp-publisher-activator.php	/^class Meetup_Rsvp_Publisher_Activator {$/;"	c
+Meetup_Rsvp_Publisher_Admin	admin/class-meetup-rsvp-publisher-admin.php	/^class Meetup_Rsvp_Publisher_Admin {$/;"	c
+Meetup_Rsvp_Publisher_Deactivator	includes/class-meetup-rsvp-publisher-deactivator.php	/^class Meetup_Rsvp_Publisher_Deactivator {$/;"	c
+Meetup_Rsvp_Publisher_Loader	includes/class-meetup-rsvp-publisher-loader.php	/^class Meetup_Rsvp_Publisher_Loader {$/;"	c
+Meetup_Rsvp_Publisher_Public	public/class-meetup-rsvp-publisher-public.php	/^class Meetup_Rsvp_Publisher_Public {$/;"	c
+Meetup_Rsvp_Publisher_i18n	includes/class-meetup-rsvp-publisher-i18n.php	/^class Meetup_Rsvp_Publisher_i18n {$/;"	c
+__construct	admin/class-meetup-rsvp-publisher-admin.php	/^	public function __construct( $plugin_name, $version ) {$/;"	f
+__construct	includes/class-meetup-rsvp-publisher-loader.php	/^	public function __construct() {$/;"	f
+__construct	includes/class-meetup-rsvp-publisher.php	/^	public function __construct() {$/;"	f
+__construct	public/class-meetup-rsvp-publisher-public.php	/^	public function __construct( $plugin_name, $version ) {$/;"	f
+actions	includes/class-meetup-rsvp-publisher-loader.php	/^		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );$/;"	v
+actions	includes/class-meetup-rsvp-publisher-loader.php	/^		$this->actions = array();$/;"	v
+actions	includes/class-meetup-rsvp-publisher-loader.php	/^	protected $actions;$/;"	v
+activate	includes/class-meetup-rsvp-publisher-activator.php	/^	public static function activate() {$/;"	f
+activate_meetup_rsvp_publisher	meetup-rsvp-publisher.php	/^function activate_meetup_rsvp_publisher() {$/;"	f
+add	includes/class-meetup-rsvp-publisher-loader.php	/^	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {$/;"	f
+add_action	includes/class-meetup-rsvp-publisher-loader.php	/^	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {$/;"	f
+add_filter	includes/class-meetup-rsvp-publisher-loader.php	/^	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {$/;"	f
+deactivate	includes/class-meetup-rsvp-publisher-deactivator.php	/^	public static function deactivate() {$/;"	f
+deactivate_meetup_rsvp_publisher	meetup-rsvp-publisher.php	/^function deactivate_meetup_rsvp_publisher() {$/;"	f
+define_admin_hooks	includes/class-meetup-rsvp-publisher.php	/^	private function define_admin_hooks() {$/;"	f
+define_public_hooks	includes/class-meetup-rsvp-publisher.php	/^	private function define_public_hooks() {$/;"	f
+enqueue_scripts	admin/class-meetup-rsvp-publisher-admin.php	/^	public function enqueue_scripts() {$/;"	f
+enqueue_scripts	public/class-meetup-rsvp-publisher-public.php	/^	public function enqueue_scripts() {$/;"	f
+enqueue_styles	admin/class-meetup-rsvp-publisher-admin.php	/^	public function enqueue_styles() {$/;"	f
+enqueue_styles	public/class-meetup-rsvp-publisher-public.php	/^	public function enqueue_styles() {$/;"	f
+filters	includes/class-meetup-rsvp-publisher-loader.php	/^		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );$/;"	v
+filters	includes/class-meetup-rsvp-publisher-loader.php	/^		$this->filters = array();$/;"	v
+filters	includes/class-meetup-rsvp-publisher-loader.php	/^	protected $filters;$/;"	v
+get_loader	includes/class-meetup-rsvp-publisher.php	/^	public function get_loader() {$/;"	f
+get_plugin_name	includes/class-meetup-rsvp-publisher.php	/^	public function get_plugin_name() {$/;"	f
+get_version	includes/class-meetup-rsvp-publisher.php	/^	public function get_version() {$/;"	f
+load_dependencies	includes/class-meetup-rsvp-publisher.php	/^	private function load_dependencies() {$/;"	f
+load_plugin_textdomain	includes/class-meetup-rsvp-publisher-i18n.php	/^	public function load_plugin_textdomain() {$/;"	f
+loader	includes/class-meetup-rsvp-publisher.php	/^		$this->loader = new Meetup_Rsvp_Publisher_Loader();$/;"	v
+loader	includes/class-meetup-rsvp-publisher.php	/^	protected $loader;$/;"	v
+plugin	meetup-rsvp-publisher.php	/^	$plugin = new Meetup_Rsvp_Publisher();$/;"	v
+plugin_admin	includes/class-meetup-rsvp-publisher.php	/^		$plugin_admin = new Meetup_Rsvp_Publisher_Admin( $this->get_plugin_name(), $this->get_version() );$/;"	v
+plugin_i18n	includes/class-meetup-rsvp-publisher.php	/^		$plugin_i18n = new Meetup_Rsvp_Publisher_i18n();$/;"	v
+plugin_name	admin/class-meetup-rsvp-publisher-admin.php	/^		$this->plugin_name = $plugin_name;$/;"	v
+plugin_name	admin/class-meetup-rsvp-publisher-admin.php	/^	private $plugin_name;$/;"	v
+plugin_name	includes/class-meetup-rsvp-publisher.php	/^		$this->plugin_name = 'meetup-rsvp-publisher';$/;"	v
+plugin_name	includes/class-meetup-rsvp-publisher.php	/^	protected $plugin_name;$/;"	v
+plugin_name	public/class-meetup-rsvp-publisher-public.php	/^		$this->plugin_name = $plugin_name;$/;"	v
+plugin_name	public/class-meetup-rsvp-publisher-public.php	/^	private $plugin_name;$/;"	v
+plugin_public	includes/class-meetup-rsvp-publisher.php	/^		$plugin_public = new Meetup_Rsvp_Publisher_Public( $this->get_plugin_name(), $this->get_version() );$/;"	v
+run	includes/class-meetup-rsvp-publisher-loader.php	/^	public function run() {$/;"	f
+run	includes/class-meetup-rsvp-publisher.php	/^	public function run() {$/;"	f
+run_meetup_rsvp_publisher	meetup-rsvp-publisher.php	/^function run_meetup_rsvp_publisher() {$/;"	f
+set_locale	includes/class-meetup-rsvp-publisher.php	/^	private function set_locale() {$/;"	f
+version	admin/class-meetup-rsvp-publisher-admin.php	/^		$this->version = $version;$/;"	v
+version	admin/class-meetup-rsvp-publisher-admin.php	/^	private $version;$/;"	v
+version	includes/class-meetup-rsvp-publisher.php	/^		$this->version = '1.0.0';$/;"	v
+version	includes/class-meetup-rsvp-publisher.php	/^	protected $version;$/;"	v
+version	public/class-meetup-rsvp-publisher-public.php	/^		$this->version = $version;$/;"	v
+version	public/class-meetup-rsvp-publisher-public.php	/^	private $version;$/;"	v
