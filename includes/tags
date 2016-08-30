@@ -1,0 +1,117 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Meetup	Meetup-master/meetup.php	/^class Meetup $/;"	c
+Meetup_RSVPS	Meetup_RSVPS.php	/^class Meetup_RSVPS {$/;"	c
+Meetup_Rsvp_Publisher	class-meetup-rsvp-publisher.php	/^class Meetup_Rsvp_Publisher {$/;"	c
+Meetup_Rsvp_Publisher_Activator	class-meetup-rsvp-publisher-activator.php	/^class Meetup_Rsvp_Publisher_Activator {$/;"	c
+Meetup_Rsvp_Publisher_Deactivator	class-meetup-rsvp-publisher-deactivator.php	/^class Meetup_Rsvp_Publisher_Deactivator {$/;"	c
+Meetup_Rsvp_Publisher_Loader	class-meetup-rsvp-publisher-loader.php	/^class Meetup_Rsvp_Publisher_Loader {$/;"	c
+Meetup_Rsvp_Publisher_i18n	class-meetup-rsvp-publisher-i18n.php	/^class Meetup_Rsvp_Publisher_i18n {$/;"	c
+__construct	Meetup-master/meetup.php	/^    public function __construct(array $parameters = array())$/;"	f
+__construct	Meetup_RSVPS.php	/^	function __construct() {$/;"	f
+__construct	class-meetup-rsvp-publisher-loader.php	/^	public function __construct() {$/;"	f
+__construct	class-meetup-rsvp-publisher.php	/^	public function __construct() {$/;"	f
+_next	Meetup-master/meetup.php	/^        $this->_next = $this->_response = null;$/;"	v
+_parameters	Meetup-master/meetup.php	/^        $this->_parameters = array_merge($this->_parameters, $parameters);$/;"	v
+_parameters	Meetup-master/meetup.php	/^    protected $_parameters = array();$/;"	v
+_response	Meetup-master/meetup.php	/^    	$this->_response = json_decode($content);$/;"	v
+_response	Meetup-master/meetup.php	/^    protected $_response = null;$/;"	v
+access	Meetup-master/meetup.php	/^    public function access(array $parameters = array())$/;"	f
+actions	class-meetup-rsvp-publisher-loader.php	/^		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );$/;"	v
+actions	class-meetup-rsvp-publisher-loader.php	/^		$this->actions = array();$/;"	v
+actions	class-meetup-rsvp-publisher-loader.php	/^	protected $actions;$/;"	v
+activate	class-meetup-rsvp-publisher-activator.php	/^	public static function activate() {$/;"	f
+add	class-meetup-rsvp-publisher-loader.php	/^	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {$/;"	f
+add_action	class-meetup-rsvp-publisher-loader.php	/^	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {$/;"	f
+add_filter	class-meetup-rsvp-publisher-loader.php	/^	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {$/;"	f
+api	Meetup-master/meetup.php	/^    protected function api($url, $parameters, $action=self::GET)$/;"	f
+authorize	Meetup-master/meetup.php	/^    public function authorize(array $parameters = array())$/;"	f
+ch	Meetup-master/meetup.php	/^    	$ch = curl_init();$/;"	v
+content	Meetup-master/meetup.php	/^    	$content = curl_exec($ch);$/;"	v
+credentials	Meetup_RSVPS.php	/^		$this->credentials = array($/;"	v
+credentials	Meetup_RSVPS.php	/^	private $credentials = [];	$/;"	v
+deactivate	class-meetup-rsvp-publisher-deactivator.php	/^	public static function deactivate() {$/;"	f
+define_admin_hooks	class-meetup-rsvp-publisher.php	/^	private function define_admin_hooks() {$/;"	f
+define_public_hooks	class-meetup-rsvp-publisher.php	/^	private function define_public_hooks() {$/;"	f
+delete	Meetup-master/meetup.php	/^    public function delete($path, array $parameters = array())$/;"	f
+deleteEvent	Meetup-master/meetup.php	/^    public function deleteEvent(array $parameters = array())$/;"	f
+epoch	list.php	/^				$epoch = substr( ($item->time+$item->utc_offset), 0, 10);$/;"	v
+epoch	slider.php	/^					$epoch = substr( ($item->time+$item->utc_offset), 0, 10);$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = ' Underflow or the modes mismatch';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'Malformed UTF-8 characters, possibly incorrectly encoded';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'Maximum stack depth exceeded';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'No errors';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'Syntax error, malformed JSON';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'Unexpected control character found';$/;"	v
+error	Meetup-master/meetup.php	/^    				$error = 'Unknown error';$/;"	v
+error	Meetup-master/meetup.php	/^    			$error = $this->_response->code . ' - ' . $this->_response->problem . ' - ' . $this->_response->details;$/;"	v
+error	Meetup-master/meetup.php	/^    			$error = $this->_response->error . ' - ' . $this->_response->error_description;$/;"	v
+error	Meetup-master/meetup.php	/^    			$error = 'Status ' . $status;$/;"	v
+error	Meetup-master/meetup.php	/^    		$error = curl_error($ch);$/;"	v
+error	Meetup_RSVPS.php	/^			$this->error=true;$/;"	v
+error	Meetup_RSVPS.php	/^	public $error = false; \/\/error flag$/;"	v
+filter_RSVPs	Meetup_RSVPS.php	/^	public function filter_RSVPs( $data ) {$/;"	f
+filters	Meetup_RSVPS.php	/^		$this->filters = $shortcode_Filters;$/;"	v
+filters	Meetup_RSVPS.php	/^	private $filters = [];$/;"	v
+filters	class-meetup-rsvp-publisher-loader.php	/^		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );$/;"	v
+filters	class-meetup-rsvp-publisher-loader.php	/^		$this->filters = array();$/;"	v
+filters	class-meetup-rsvp-publisher-loader.php	/^	protected $filters;$/;"	v
+get	Meetup-master/meetup.php	/^    public function get($path, array $parameters = array())$/;"	f
+getCachedRSVPs	Meetup_RSVPS.php	/^	public function getCachedRSVPs() {$/;"	f
+getDiscussionBoards	Meetup-master/meetup.php	/^    public function getDiscussionBoards(array $parameters = array()) $/;"	f
+getDiscussions	Meetup-master/meetup.php	/^    public function getDiscussions(array $parameters = array()) $/;"	f
+getEvents	Meetup-master/meetup.php	/^    public function getEvents(array $parameters = array()) $/;"	f
+getGroups	Meetup-master/meetup.php	/^    public function getGroups(array $parameters = array()) $/;"	f
+getLiveRSVPs	Meetup_RSVPS.php	/^	public function getLiveRSVPs() {$/;"	f
+getMembers	Meetup-master/meetup.php	/^    public function getMembers(array $parameters = array()) $/;"	f
+getNext	Meetup-master/meetup.php	/^    public function getNext()$/;"	f
+getPhotos	Meetup-master/meetup.php	/^    public function getPhotos(array $parameters = array())$/;"	f
+get_loader	class-meetup-rsvp-publisher.php	/^	public function get_loader() {$/;"	f
+get_plugin_name	class-meetup-rsvp-publisher.php	/^	public function get_plugin_name() {$/;"	f
+get_version	class-meetup-rsvp-publisher.php	/^	public function get_version() {$/;"	f
+hasNext	Meetup-master/meetup.php	/^    public function hasNext()$/;"	f
+headers	Meetup-master/meetup.php	/^    	$headers = array("Accept-Charset: utf-8");$/;"	v
+hide_groups	Meetup_RSVPS.php	/^						$hide_groups = explode( " ", $this->filters['hidegroups'] );$/;"	v
+load_dependencies	class-meetup-rsvp-publisher.php	/^	private function load_dependencies() {$/;"	f
+load_plugin_textdomain	class-meetup-rsvp-publisher-i18n.php	/^	public function load_plugin_textdomain() {$/;"	f
+loader	class-meetup-rsvp-publisher.php	/^		$this->loader = new Meetup_Rsvp_Publisher_Loader();$/;"	v
+loader	class-meetup-rsvp-publisher.php	/^	protected $loader;$/;"	v
+location	Meetup-master/meetup.php	/^    	$location = self::AUTHORIZE . '?' . http_build_query(array_merge($this->_parameters,$parameters, array('response_type'=>'code')));$/;"	v
+new_time	list.php	/^				$new_time = new DateTime("@$epoch"); ?>$/;"	v
+new_time	slider.php	/^					$new_time = new DateTime("@$epoch");$/;"	v
+next	Meetup-master/meetup.php	/^    		$next = $this->_response->meta->next;$/;"	v
+next	Meetup-master/meetup.php	/^    	$next = null;$/;"	v
+options	Meetup_RSVPS.php	/^		$options = get_option( 'webilect_meetup_stalker_options' );$/;"	v
+params	Meetup-master/meetup.php	/^    		$params = array_merge( array('sign', 'true'), $params );$/;"	v
+params	Meetup-master/meetup.php	/^    	$params = $parameters;$/;"	v
+params	Meetup-master/meetup.php	/^    	$params = array_merge($parameters, $this->_parameters);$/;"	v
+params	Meetup-master/meetup.php	/^    protected function params($path, array $parameters = array())$/;"	f
+plugin_admin	class-meetup-rsvp-publisher.php	/^		$plugin_admin = new Meetup_Rsvp_Publisher_Admin( $this->get_plugin_name(), $this->get_version() );$/;"	v
+plugin_i18n	class-meetup-rsvp-publisher.php	/^		$plugin_i18n = new Meetup_Rsvp_Publisher_i18n();$/;"	v
+plugin_name	class-meetup-rsvp-publisher.php	/^		$this->plugin_name = 'meetup-rsvp-publisher';$/;"	v
+plugin_name	class-meetup-rsvp-publisher.php	/^	protected $plugin_name;$/;"	v
+plugin_public	class-meetup-rsvp-publisher.php	/^		$plugin_public = new Meetup_Rsvp_Publisher_Public( $this->get_plugin_name(), $this->get_version() );$/;"	v
+post	Meetup-master/meetup.php	/^    public function post($path, array $parameters = array())$/;"	f
+postEvent	Meetup-master/meetup.php	/^    public function postEvent(array $parameters = array())$/;"	f
+put	Meetup-master/meetup.php	/^    public function put($path, array $parameters = array())$/;"	f
+refresh	Meetup-master/meetup.php	/^    public function refresh(array $parameters = array())$/;"	f
+rsvps	Meetup_RSVPS.php	/^			$rsvps = $this->getLiveRSVPs();$/;"	v
+rsvps	Meetup_RSVPS.php	/^			$rsvps = ( new Meetup($this->credentials) )->getEvents(); 	$/;"	v
+rsvps	Meetup_RSVPS.php	/^		$rsvps = get_transient( 'webilect_meetup_rsvps' );$/;"	v
+run	class-meetup-rsvp-publisher-loader.php	/^	public function run() {$/;"	f
+run	class-meetup-rsvp-publisher.php	/^	public function run() {$/;"	f
+setFilters	Meetup_RSVPS.php	/^	public function setFilters( $shortcode_Filters ) {$/;"	f
+set_locale	class-meetup-rsvp-publisher.php	/^	private function set_locale() {$/;"	f
+show_groups	Meetup_RSVPS.php	/^						$show_groups = explode( " ", $this->filters['showgroups'] );$/;"	v
+slidersCounter	Meetup_RSVPS.php	/^		$slidersCounter = 1;$/;"	v
+slidersCounter	Meetup_RSVPS.php	/^	public static $slidersCounter = 1; \/\/for multiple sliders$/;"	v
+status	Meetup-master/meetup.php	/^    	$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);$/;"	v
+temp	Meetup_RSVPS.php	/^		$temp = [];$/;"	v
+url	Meetup-master/meetup.php	/^    	$url    = $path;$/;"	v
+url	Meetup-master/meetup.php	/^                    $url = str_replace($match, $params[$matches[1][$i]], $url);$/;"	v
+version	class-meetup-rsvp-publisher.php	/^		$this->version = '1.0.0';$/;"	v
+version	class-meetup-rsvp-publisher.php	/^	protected $version;$/;"	v
