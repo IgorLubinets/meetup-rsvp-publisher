@@ -139,39 +139,37 @@ class Meetup_Rsvp_Publisher_Admin {
 	
 		add_settings_section(
 	      $this->options_name . '_key_settings',
-   	   __( 'Main', 'meetup-rsvp-publisher' ),
-      	array( $this, $this->options_name . '_api_key' ),
+   	   'Meetup.com Credentials', 
+      	array( $this, $this->options_name . '_api_key_text' ),
       	$this->plugin_name
    	);
-		
 		add_settings_field(
-			$this->options_name . '_api_key',
+			$this->options_name . '_api_key_value',
 			__( 'Enter your meetup.com API key into this field', 'meetup-rsvp-publisher' ),
 			array( $this, $this->options_name . '_api_key_tab' ),
-			$this->options_name . '_key_settings'
+			$this->plugin_name,
+			$this->options_name . '_key_settings',
+			array( 'label_for' => $this->options_name . '_api_key_value' )
 		);
-		register_setting( $this->plugin_name, $this->options_name . '_api_key', 'intval');
-
+		register_setting( $this->plugin_name, $this->options_name . '_api_key_value', 'strval' /* array($this, $this->options_name . '_validate_api_key_value') */ );
 	}
 
-	public function webilect_meetup_rsvp_publisher_options_api_key() {
-		echo '<h2>' . __( 'Please enter your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
+	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
+		echo '<h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
 	}
-	
-	public function webilect_meetup_rsvp_publisher_options_api_key_tab() {
-	?>
-		<div class="wrap">
-			<h2>Meetup RSVP Publisher</h2>
-			<form action="options.php" method="post">
-			<?php
-				settings_fields('meetup_rsvp_publisher_api_key');
-				do_settings_sections('meetup_rsvp_publisher_key_settings');
-			?>
-				<input name="Submit" class="button button-primary"
-					type="submit" value="Save Changes" />
-			</form>
-		</div>
-		<?php
+
+	public function webilect_meetup_rsvp_publisher_options_api_key_tab() { 
+		$api_key = get_option( $this->options_name . '_api_key_value' ); 
+		var_dump( $api_key );
+		?>
+		<input type="text" name="<?php echo $this->options_name . '_api_key_value';?>" 
+				id="<?php echo $this->options_name . '_api_key_value'; ?>" value="<?php echo $api_key; ?>"
+				style="width: 300px; height: 50px;" />
+	<?php
+	}
+
+	public function webilect_meeetup_rsvp_publisher_options_validate_api_key_value( $input ) {
+		return $input;
 	}
 	
 }
