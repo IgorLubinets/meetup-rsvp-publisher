@@ -151,7 +151,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			$this->options_name . '_key_settings',
 			array( 'label_for' => $this->options_name . '_api_key_value' )
 		);
-		register_setting( $this->plugin_name, $this->options_name . '_api_key_value', 'strval' /* array($this, $this->options_name . '_validate_api_key_value') */ );
+		register_setting( $this->plugin_name, $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
@@ -168,8 +168,8 @@ class Meetup_Rsvp_Publisher_Admin {
 	<?php
 	}
 
-	public function webilect_meeetup_rsvp_publisher_options_validate_api_key_value( $input ) {
-		return $input;
+	public function api_key_value_sanitation( $input ) {
+		return $input; //does nothing right now
 	}
 	
 }
