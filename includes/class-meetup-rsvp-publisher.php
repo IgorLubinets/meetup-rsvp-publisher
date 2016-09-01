@@ -58,6 +58,13 @@ class Meetup_Rsvp_Publisher {
 	protected $version;
 
 	/**
+	 * The object that hooks up to the Meetup.com API
+	 * We can run queries against it
+	 */
+	public $rsvps;
+
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -73,6 +80,11 @@ class Meetup_Rsvp_Publisher {
 
 		$this->load_dependencies();
 		$this->set_locale();
+			
+		//Create a global object instance to hook up to the Meetup.com API
+		//$this->rsvps = new Meetup_RSVPS();
+		//NO NEED
+
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -118,6 +130,13 @@ class Meetup_Rsvp_Publisher {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-meetup-rsvp-publisher-public.php';
+
+		/**
+		 * The Meetup_RSVPs class that communicates with Meetup.com API
+		 * The "meat" of the plugin's functionality here
+ 		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS.php';
+
 
 		$this->loader = new Meetup_Rsvp_Publisher_Loader();
 
@@ -171,6 +190,8 @@ class Meetup_Rsvp_Publisher {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'init', $plugin_public, 'webilect_meetup_rsvp_publisher_register_shortcodes' );
 
 	}
 

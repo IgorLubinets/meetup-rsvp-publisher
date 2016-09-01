@@ -128,6 +128,9 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function display_options_page() {
+
+//		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS.php';
+
 		include_once 'partials/meetup-rsvp-publisher-admin-display.php';
 	}
 
@@ -155,12 +158,12 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
-		echo '<h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
+		echo '<hr><h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_tab() { 
 		$api_key = get_option( $this->options_name . '_api_key_value' ); 
-		var_dump( $api_key );
+		//		var_dump( $api_key );
 		?>
 		<input type="text" name="<?php echo $this->options_name . '_api_key_value';?>" 
 				id="<?php echo $this->options_name . '_api_key_value'; ?>" value="<?php echo $api_key; ?>"

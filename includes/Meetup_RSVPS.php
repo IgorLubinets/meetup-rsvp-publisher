@@ -19,15 +19,15 @@ class Meetup_RSVPS {
 		$options = get_option( 'webilect_meetup_stalker_options' );
 		
 		$this->credentials = array(
-			'key'					=> $options['text_string'],
-			//'key' 				=> '311d81d391d3b58441e28eaaa7f',
+			'key'					=> get_option('webilect_meetup_rsvp_publisher_options_api_key_value'),
 			'rsvp'				=> 'yes',
 			'member_id'			=> 'self' );
 		$slidersCounter = 1;
 
+		echo 'Constructor done';
 		
 	 	//Define Filter
-		add_filter( 'meetup_RSVP_filter', array( &$this, 'filter_RSVPs') );
+		add_filter( 'meetup_RSVP_filter', array( $this, 'filter_RSVPs') );
 	}
 	
 	/** 
@@ -73,6 +73,8 @@ class Meetup_RSVPS {
 	*/
 	public function filter_RSVPs( $data ) {
 		echo '<h1>Filtering...</h1>';	
+		var_dump( $this->filters );
+
 		$temp = [];
 
 		if( $this->filters ) {
@@ -116,6 +118,9 @@ class Meetup_RSVPS {
 		} else {
 			return $data;
 		}
+		
+		echo 'Dumping from inside filter function...';
+		var_dump ($temp);
 		return $temp;
 	}
 	
@@ -125,7 +130,7 @@ class Meetup_RSVPS {
 	*/
 	public function setFilters( $shortcode_Filters ) {
 		$this->filters = $shortcode_Filters;
-		var_dump( $this->filters );
+		//var_dump( $this->filters );
 	}
 
 }

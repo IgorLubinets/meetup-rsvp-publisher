@@ -57,6 +57,7 @@ register_deactivation_hook( __FILE__, 'deactivate_meetup_rsvp_publisher' );
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-meetup-rsvp-publisher.php';
 
+
 /**
  * Begins execution of the plugin.
  *

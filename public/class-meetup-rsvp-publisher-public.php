@@ -100,4 +100,51 @@ class Meetup_Rsvp_Publisher_Public {
 
 	}
 
+	public function webilect_meetup_rsvp_publisher_register_shortcodes() {
+		add_shortcode( 'meetup-rsvps-publish', array( $this, 'webilect_meetup_rsvp_publisher_the_shortcode' ) );
+	}
+	
+	public function webilect_meetup_rsvp_publisher_the_shortcode( $shortcode_Filters ) {
+
+		wp_enqueue_style('slick-slider-css', plugin_dir_url( __FILE__ ) . 'css/slick.css');
+		wp_enqueue_style('slick-slider-default-theme', plugin_dir_url( __FILE__ ) . 'css/slick-theme.css');
+		wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
+		wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
+
+ 		$rsvps = new Meetup_RSVPS();
+		$rsvps->setFilters('');
+
+		$rsvps->setFilters( $shortcode_Filters );
+		var_dump( $shortcode_Filters );
+
+		$results = $rsvps->getCachedRSVPs();  
+		var_dump($results);
+
+		$plugin_base_path = WP_PLUGIN_DIR . '/' . $this->plugin_name;
+	
+		if( false === $rsvps->error ) {
+			ob_start();
+			if( isset( $shortcode_Filters['display'] ) ) {
+				if( $shortcode_Filters['display'] === 'list' ) {
+					include( $plugin_base_path . '/includes/list.php' );
+				}
+				if( $shortcode_Filters['display'] === 'slider' ) {
+				//	include( 'slider.php' );
+					include( $plugin_base_path . '/includes/slider.php' );
+				}
+			} else {
+				//include( 'list.php' );	
+				include( $plugin_base_path . '/includes/list.php' );
+
+			}	
+
+			//	return ob_get_clean(); //without creating an extra variable
+			$output = ob_get_contents();
+			ob_end_clean();
+			return $output;
+		} else {
+			return '<p>An Error Has Occurred :-(</p>';	
+		}	
+	}
+
 }
