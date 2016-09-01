@@ -61,7 +61,7 @@ class Meetup_Rsvp_Publisher {
 	 * The object that hooks up to the Meetup.com API
 	 * We can run queries against it
 	 */
-	public $rsvps;
+	public static $rsvps;
 
 
 	/**
@@ -87,6 +87,8 @@ class Meetup_Rsvp_Publisher {
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+
+		self::$rsvps = new Meetup_RSVPS();
 
 	}
 

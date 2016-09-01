@@ -25,8 +25,10 @@ class Meetup_RSVPS {
 		$slidersCounter = 1;
 
 		echo 'Constructor done';
-		
-	 	//Define Filter
+		//echo 'Dumping filters from constructor->';
+		//var_dump( $this->filters );		
+	 	
+		//Define Filter
 		add_filter( 'meetup_RSVP_filter', array( $this, 'filter_RSVPs') );
 	}
 	
@@ -73,7 +75,8 @@ class Meetup_RSVPS {
 	*/
 	public function filter_RSVPs( $data ) {
 		echo '<h1>Filtering...</h1>';	
-		var_dump( $this->filters );
+		//echo '<br>Dumping filters from the filter_RSVPs function';
+		//var_dump( $this->filters );
 
 		$temp = [];
 
@@ -119,8 +122,8 @@ class Meetup_RSVPS {
 			return $data;
 		}
 		
-		echo 'Dumping from inside filter function...';
-		var_dump ($temp);
+		//echo 'Dumping from inside filter function...';
+		//var_dump ($temp);
 		return $temp;
 	}
 	

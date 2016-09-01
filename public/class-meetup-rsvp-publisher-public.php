@@ -39,7 +39,7 @@ class Meetup_Rsvp_Publisher_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
-
+	
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -111,18 +111,17 @@ class Meetup_Rsvp_Publisher_Public {
 		wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
 		wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
 
- 		$rsvps = new Meetup_RSVPS();
-		$rsvps->setFilters('');
+		Meetup_Rsvp_Publisher::$rsvps->setFilters( $shortcode_Filters );
 
-		$rsvps->setFilters( $shortcode_Filters );
-		var_dump( $shortcode_Filters );
+		//echo 'Dumping filters from the shortcode function';
+		//var_dump( $shortcode_Filters );
 
-		$results = $rsvps->getCachedRSVPs();  
-		var_dump($results);
+		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();  
+		//var_dump($results);
 
 		$plugin_base_path = WP_PLUGIN_DIR . '/' . $this->plugin_name;
 	
-		if( false === $rsvps->error ) {
+		if( false === Meetup_Rsvp_Publisher::$rsvps->error ) {
 			ob_start();
 			if( isset( $shortcode_Filters['display'] ) ) {
 				if( $shortcode_Filters['display'] === 'list' ) {
