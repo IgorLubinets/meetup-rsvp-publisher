@@ -58,8 +58,10 @@ class Meetup_Rsvp_Publisher {
 	protected $version;
 
 	/**
+	 * "The Meat" of this plugin:
 	 * The object that hooks up to the Meetup.com API
 	 * We can run queries against it
+	 * Made it a static property, so that you can reference it anywhere.
 	 */
 	public static $rsvps;
 
