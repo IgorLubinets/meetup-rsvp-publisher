@@ -140,7 +140,12 @@ class Meetup_Rsvp_Publisher {
 		 * The "meat" of the plugin's functionality here
  		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS.php';
-
+		
+		/** 
+		 * Handle Javascript requests here
+		 *
+		 */
+//		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS_ajax.php';
 
 		$this->loader = new Meetup_Rsvp_Publisher_Loader();
 
@@ -179,6 +184,11 @@ class Meetup_Rsvp_Publisher {
 		
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );	
+		
+		//handle both public and private javascript calls to display the RSVPs
+		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_ajax', $plugin_admin, 'webilect_rsvp_publish_ajax' );
+		$this->loader->add_action( 'wp_ajax_nopriv_webilect_rsvp_publish_ajax', $plugin_admin, 'webilect_rsvp_publish_ajax' );
+
 	}
 
 	/**
@@ -196,7 +206,8 @@ class Meetup_Rsvp_Publisher {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'init', $plugin_public, 'webilect_meetup_rsvp_publisher_register_shortcodes' );
-
+		
+	
 	}
 
 	/**
@@ -238,5 +249,4 @@ class Meetup_Rsvp_Publisher {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

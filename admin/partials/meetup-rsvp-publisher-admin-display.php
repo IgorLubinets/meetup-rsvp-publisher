@@ -31,7 +31,8 @@
 		//	date_default_timezone_set('America/Los_Angeles');	
 		?>
 
-		<div style="width: 95%; margin: 0 auto" class="meetup-slides">
+		<hr>
+		<div style="width: 100%; margin: 0 auto" class="meetup-slides">
 			<?php
 			foreach( $results as $item ) {
 			?>

@@ -19,12 +19,13 @@ class Meetup_RSVPS {
 		$options = get_option( 'webilect_meetup_stalker_options' );
 		
 		$this->credentials = array(
-			'key'					=> get_option('webilect_meetup_rsvp_publisher_options_api_key_value'),
-			'rsvp'				=> 'yes',
+			'key'					=>	get_option('webilect_meetup_rsvp_publisher_options_api_key_value'),
+			'rsvp'				=>	'yes',
 			'member_id'			=> 'self' );
 		$slidersCounter = 1;
 
-		echo 'Constructor done';
+//		echo 'Constructor done';
+
 		//echo 'Dumping filters from constructor->';
 		//var_dump( $this->filters );		
 	 	
@@ -74,7 +75,7 @@ class Meetup_RSVPS {
 	 * @return array json object containing the list of "filtered" RSVPs
 	*/
 	public function filter_RSVPs( $data ) {
-		echo '<h1>Filtering...</h1>';	
+	//	echo '<h1>Filtering...</h1>';	
 		//echo '<br>Dumping filters from the filter_RSVPs function';
 		//var_dump( $this->filters );
 
@@ -83,9 +84,9 @@ class Meetup_RSVPS {
 		if( $this->filters ) {
 			foreach( $data as $rsvp ) {
 				if( isset( $this->filters['show'] ) && strtolower($this->filters['show']) === 'all' ) {
-					echo "showing: " . $this->filters['show'] . "<br>";
+					//echo "showing: " . $this->filters['show'] . "<br>";
 					if( isset( $this->filters['hidegroups'] ) ) {
-						echo "hide groups: " . $this->filters['hidegroups'];
+						//echo "hide groups: " . $this->filters['hidegroups'];
 						$hide_groups = explode( " ", $this->filters['hidegroups'] );
 						if( 1 < count($hide_groups) ) {
 							if( !in_array( $rsvp->group->id, $hide_groups ) ) {
@@ -93,7 +94,7 @@ class Meetup_RSVPS {
 							}
 						}
 						else {
-							echo "one group to hide";
+							//echo "one group to hide";
 							if( $rsvp->group->id !== (int)( $this->filters['hidegroups'] ) ) {
 								$temp[] = $rsvp;
 							} 

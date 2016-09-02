@@ -174,5 +174,25 @@ class Meetup_Rsvp_Publisher_Admin {
 	public function api_key_value_sanitation( $input ) {
 		return $input; //does nothing right now
 	}
+
+	/*
+	 * Function for AJAX requests for JS enabled components
+	 *
+	 */
+	public function webilect_rsvp_publish_ajax() {
+		$dummy = array( 'what' => 'menuXML', 'junk' => 'stuff' );		
+		//	echo 'SEnding from admin-ajax.php script...';
+  		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();	
+		wp_send_json( $results );
+	
+		/*
+		$response = WP_Ajax_Response( $dummy );
+		$response->send();
+		exit();
+		*/
+	 	
+		die();
+	}
+
 	
 }

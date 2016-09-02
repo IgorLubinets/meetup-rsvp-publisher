@@ -35,8 +35,7 @@ class Meetup_Rsvp_Publisher_Public {
 	 * The version of this plugin.
 	 *
 	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @access   private * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
 	
@@ -110,6 +109,7 @@ class Meetup_Rsvp_Publisher_Public {
 		wp_enqueue_style('slick-slider-default-theme', plugin_dir_url( __FILE__ ) . 'css/slick-theme.css');
 		wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
 		wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
+
 
 		Meetup_Rsvp_Publisher::$rsvps->setFilters( $shortcode_Filters );
 
