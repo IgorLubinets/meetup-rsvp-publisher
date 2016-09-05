@@ -32,14 +32,27 @@
 		?>
 
 		<hr>
-		<div style="width: 100%; margin: 0 auto" class="meetup-slides">
+		<div style="margin-bottom: 40px;">
+			<span id="prevSlide" class="dashicons dashicons-arrow-left" style="font-size: 70px; color: #f20017;"></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
+		</div>
+
+		<div class="meetup-slides" style="width: 100%; margin: 0 auto">
 			<?php
 			foreach( $results as $item ) {
 			?>
 				<div id="<?php echo $item->id; ?>" class="meetup-item"
 					 style="font-size: .8em; background-color: #f20017; padding: 0; 
 						margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; margin-bottom: 25px">
-					<!--<span class="dashicons dashicons-plus-alt"></span>-->
+						
+					<div class="visibility-buttons-deck" style="padding: 5px">
+						<span id="make-visible-<?php echo $item->id;?>" class="dashicons dashicons-visibility" 
+							style="font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
+						<span id="make-invisible-<?php echo $item->id;?>" class="dashicons dashicons-hidden" 
+							style="display: none; font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
+					</div>
+
 					<div class="meetup-text" style="background-color: white; min-height: 230px; margin-right: 0; margin-left: 0; 
 						margin-top: 50px; margin-bottom: 30px; padding: 7px;">
 						<h2> <?php echo $item->name ?></h2>

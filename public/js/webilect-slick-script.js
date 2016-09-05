@@ -28,14 +28,13 @@
   			]
 		});
 
-
+		//testing admin-ajax.php 
 		var data = {
 			action: 'webilect_rsvp_publish_ajax'
 		};	
 		$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
 			console.log( response );
 		});
-
 
 	});
 })(jQuery);

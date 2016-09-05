@@ -82,7 +82,10 @@ class Meetup_Rsvp_Publisher_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
-
+	
+	//buggy css file
+	//	wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
+	
 	}
 
 	/**
@@ -103,9 +106,8 @@ class Meetup_Rsvp_Publisher_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone' ), $this->version, false );
+		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', false );		
 	}
 
 	/**
@@ -180,8 +182,6 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function webilect_rsvp_publish_ajax() {
-		$dummy = array( 'what' => 'menuXML', 'junk' => 'stuff' );		
-		//	echo 'SEnding from admin-ajax.php script...';
   		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();	
 		wp_send_json( $results );
 	
@@ -190,9 +190,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		$response->send();
 		exit();
 		*/
-	 	
 		die();
 	}
-
 	
 }

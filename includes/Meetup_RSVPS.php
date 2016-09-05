@@ -40,7 +40,7 @@ class Meetup_RSVPS {
 	public function getLiveRSVPs() {
 		try {
 			$rsvps = ( new Meetup($this->credentials) )->getEvents(); 	
-			echo '<h2>Querying Live Server...</h2>';
+//			echo '<h2>Querying Live Server...</h2>';
 		} 
 		catch ( \Exception $exception ) {
 			echo 'Exception caught!!!';
@@ -56,15 +56,16 @@ class Meetup_RSVPS {
 	 * @return array json object containing a list of cached RSVPs
 	*/
 	public function getCachedRSVPs() {
-		
+		// HACK:		
 		//	delete_transient( 'webilect_meetup_rsvps' );
 		// had to do it, because once I set the transient to 0 ( to never expire )
-		// it got stuck, never updating! BUG
+		// it got stuck, never updating! BUG?
+
 		$rsvps = get_transient( 'webilect_meetup_rsvps' );
 		if( false === $rsvps ) {
-			echo '<h2>No Transient, going live...</h2>';
+//			echo '<h2>No Transient, going live...</h2>';
 			$rsvps = $this->getLiveRSVPs();
-			set_transient( 'webilect_meetup_rsvps', $rsvps, 5 ); //hardcoded, store it for 3 minutes 
+			set_transient( 'webilect_meetup_rsvps', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
 		}
 		return apply_filters('meetup_RSVP_filter', $rsvps);
 	}

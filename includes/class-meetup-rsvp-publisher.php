@@ -83,13 +83,10 @@ class Meetup_Rsvp_Publisher {
 		$this->load_dependencies();
 		$this->set_locale();
 			
-		//Create a global object instance to hook up to the Meetup.com API
-		//$this->rsvps = new Meetup_RSVPS();
-		//NO NEED
-
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		//object for Meetup.com API
 		self::$rsvps = new Meetup_RSVPS();
 
 	}

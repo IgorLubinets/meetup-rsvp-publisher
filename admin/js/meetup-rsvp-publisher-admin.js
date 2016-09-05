@@ -1,32 +1,66 @@
-(function( $ ) {
-	'use strict';
+( function($) {
+	$(document).ready( function() {
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+	$('.meetup-slides').slick({
+  			centerPadding: '60px',
+	  		slidesToShow: 3,
+  			arrows: false,
+			infinite: false,
+//			arrows: true,
+/*
+			nextArrow: '<span class="dashicons dashicons-arrow-right-alt2" style="font-size: 45px; color: gray; margin: 10px;"></span>',
+			prevArrow: '<span class="dashicons dashicons-arrow-left-alt2" style="font-size: 45px; color: gray; margin: 10px"></span>',
+*/
+			responsive: [
+   	 	{
+      		breakpoint: 1024,
+      			settings: {
+        			arrows: false,
+        			centerMode: false,
+        			centerPadding: '40px',
+        			slidesToShow: 2 
+      		}
+    		},
+    		{
+      		breakpoint: 600,
+      			settings: {
+        			arrows: false,
+        			centerMode: false,
+        			centerPadding: '40px',
+        			slidesToShow: 1
+      		}
+    		}
+  			]
+		});
+		
+		$('#prevSlide').click( function() {
+			$('.meetup-slides').slick("slickPrev");
+		});
+		$('#nextSlide').click( function() {
+			$('.meetup-slides').slick("slickNext");
+		});
 
-})( jQuery );
+		//testing admin-ajax.php 
+		var data = {
+			action: 'webilect_rsvp_publish_ajax'
+		};	
+		$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
+			console.log( response );
+		});
+
+
+		//handle visibility toggle buttons
+		$('span[id^="make-visible-"]').click( function() {
+			$(this).css( 'display', 'none' );
+			$(this).parent('div').find('span[id^="make-invisible-"]').css('display', 'block');		
+			$(this).closest('.meetup-item').css('opacity', '.35');
+		});
+		$('span[id^="make-invisible-"]').click( function() {
+			$(this).css( 'display', 'none' );
+			$(this).closest('.meetup-item').css( 'opacity', '1' );
+			$(this).parent('div').find('span[id^="make-visible-"]').css('display', 'block');		
+		});
+
+
+	});
+})(jQuery);
