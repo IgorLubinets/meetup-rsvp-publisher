@@ -27,11 +27,13 @@
 	
 	<?php
 	//	$rsvps = new Meetup_RSVPS();
-	$results = Meetup_Rsvp_Publisher::$rsvps->getLiveRSVPs();
+	$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
 	$return_value = '';
-	//	date_default_timezone_set('America/Los_Angeles');	
-	?>
 
+	//var_dump( $groups);
+
+	?>
+	
 	<hr>
 	<div style="margin-bottom: 40px;">
 		<span id="prevSlide" class="dashicons dashicons-arrow-left" style="font-size: 70px; color: #f20017;"></span>
@@ -39,9 +41,9 @@
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
 
-	<div class="meetup-slides" style="width: 100%; margin: 0 auto;">
+	<div class="meetup-slides" style="width: 100%; margin: 0 auto; font-size: 1.2em">
 		<?php
-		foreach( $results as $item ) {
+		foreach( $groups->results as $item ) {
 		?>
 			<div id="<?php echo $item->id; ?>" class="meetup-item"
 				 style="font-size: .8em; background-color: #f20017; padding: 0; 
@@ -54,27 +56,19 @@
 						style="display: none; font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
 				</div>
 
-				<div class="meetup-text" style="background-color: white; min-height: 230px; margin-right: 0; margin-left: 0; 
-					margin-top: 50px; margin-bottom: 30px; padding: 7px;">
-					<h2> <?php echo $item->name ?></h2>
-					<?php		/*date voodoo */		
-					$epoch = substr( ($item->time+$item->utc_offset), 0, 10);
-					$new_time = new DateTime("@$epoch");
-					?>
-						<p style="color: gray"><?php echo $new_time->format('F j, Y, g:i a'); ?></p>
-						<p style="color: gray;"> 
-						<?php 
-							echo $item->status; ?> 
-							group id: <?php echo $item->group->id; ?> 
-							Event ID: <?php echo $item->id; ?>
-						</p>	
-						<p style="color: gray;">
-						<?php 
-							echo $item->venue->address_1; ?>, <?php echo $item->venue->city; ?>
-						</p>	
-						<a href="<?php echo $item->event_url;?>"><?php echo $item->event_url; ?></a>	
-					</div>
+				<div class="meetup-text" style="background-color: white; min-height: 250px; margin-right: 0; margin-left: 0; 
+					margin-top: 40px; margin-bottom: 10px; padding: 15px;">
+					<h2><?php echo $item->name; ?></h2>
+					<strong>Visibility: </strong><?php echo $item->visibility; ?>
+					<p><?php echo $item->members; ?> members</p>
+					<p><?php echo $item->city; ?>, <?php echo $item->state; ?></p>
+					<a href="<?php echo $item->link; ?>">Details</a>
 				</div>
+				<span style="color: white; padding: 0; padding-left: 10px;;
+					font-weight: bold; margin: 0 auto;">
+					Group ID: <?php echo $item->id; ?>
+				</span>
+			</div>
 			<?php
 			}
 			?>

@@ -69,6 +69,24 @@ class Meetup_RSVPS {
 		}
 		return apply_filters('meetup_RSVP_filter', $rsvps);
 	}
+	
+	public function getGroups( array $parameters = array() ) {
+		$rsvps = get_transient( 'webilect_meetup_rsvps_groups' );
+		if( false === $rsvps ) {
+			//echo '<h2>No Transient, going live...</h2>';
+			try {
+				$rsvps = ( new Meetup($this->credentials) )->getGroups( $parameters ); 	
+			} 
+			catch ( \Exception $exception ) {
+				echo 'Exception caught!!!';
+				echo $exception->getMessage();
+				$this->error=true;
+				return;
+			}
+			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
+		}
+		return $rsvps;
+	}
 
 	/**
 	 * Filter function to process the shortcode filters 
