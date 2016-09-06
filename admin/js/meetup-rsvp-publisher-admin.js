@@ -3,32 +3,25 @@
 
 	$('.meetup-slides').slick({
   			centerPadding: '60px',
-	  		slidesToShow: 3,
+	  		slidesToShow: 4,
   			arrows: false,
 			infinite: false,
-//			arrows: true,
-/*
-			nextArrow: '<span class="dashicons dashicons-arrow-right-alt2" style="font-size: 45px; color: gray; margin: 10px;"></span>',
-			prevArrow: '<span class="dashicons dashicons-arrow-left-alt2" style="font-size: 45px; color: gray; margin: 10px"></span>',
-*/
 			responsive: [
-   	 	{
-      		breakpoint: 1024,
+  			{
+	    			breakpoint: 1360,
       			settings: {
         			arrows: false,
         			centerMode: false,
         			centerPadding: '40px',
-        			slidesToShow: 2 
-      		}
-    		},
-    		{
-      		breakpoint: 600,
+        			slidesToShow: 3 
+		    		}
+    		}, { breakpoint: 600,
       			settings: {
         			arrows: false,
         			centerMode: false,
         			centerPadding: '40px',
         			slidesToShow: 1
-      		}
+      			}
     		}
   			]
 		});

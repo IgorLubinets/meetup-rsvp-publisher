@@ -84,7 +84,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
 	
 	//buggy css file
-	//	wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
+		wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
 	
 	}
 
@@ -131,6 +131,17 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( $this, 'display_key_settings' )
 		); 
 		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-settings' );
+
+		add_options_page(
+			__( 'Meetup RSVP Publisher Documentation', 'meetup-rsvp-publisher-documentation' ),
+			__( 'Meetup RSVP Publisher Documentation', 'meetup-rsvp-publisher-documentation' ),
+			'manage_options',
+			'meetup-rsvp-publisher-documentation',
+			array( $this, 'display_plugin_documentation_page' )
+		); 
+		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-documentation' );
+
+
 	}
 
 	/**
@@ -149,6 +160,13 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function display_key_settings() {
 		include_once 'partials/meetup-rsvp-publisher-admin-settings.php';
+	}
+	/**
+	 * Render the options page for meetup-rsvp-publisher
+	 *
+	 */
+	public function display_plugin_documentation_page() {
+		include_once 'partials/meetup-rsvp-publisher-admin-documentation.php';
 	}
 
 	/**

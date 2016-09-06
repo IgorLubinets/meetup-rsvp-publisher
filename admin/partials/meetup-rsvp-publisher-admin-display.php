@@ -20,7 +20,7 @@
 	<h2 class="nav-tab-wrapper">
 		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher">Shortcode Builder</a>
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-settings">Settings</a>	
-		<a class="nav-tab" href="#">Documentation</a>	
+		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-documentation">Documentation</a>	
 
 	</h2>
 
@@ -29,13 +29,14 @@
 	$return_value = '';
 	//var_dump( $groups);
 	?>
+<div style="width: 100%; ">
 	
 	<div style="margin-bottom: 40px;">
 		<span id="prevSlide" class="dashicons dashicons-arrow-left" style="margin-right: 35px; font-size: 70px; color: #f20017;"></span>
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
 
-	<div class="meetup-slides" style="width: 100%; margin: 0 auto;">
+	<div class="meetup-slides">
 		<?php
 		foreach( $groups->results as $item ) {
 		?>
@@ -69,6 +70,7 @@
 			?>
 	</div>
 
+</div>
 	<div style="clear:both"></div>	
 
 	<?php

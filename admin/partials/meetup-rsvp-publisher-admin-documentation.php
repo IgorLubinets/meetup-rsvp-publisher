@@ -15,21 +15,16 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
 
-	<h1>Meetup RSVP Publisher Settings<h1>
+	<h1>Meetup RSVP Publisher Documentation<h1>
 
 	<h2 class="nav-tab-wrapper">
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher">Shortcode Builder</a>
-		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-settings">Settings</a>	
-		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-documentation">Documentation</a>	
+		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-settings">Settings</a>	
+		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-documentation">Documentation</a>	
 
 	</h2>
-
-	<form action="options.php" method="post">
-		<?php
-		settings_fields( $this->plugin_name );
-		do_settings_sections( $this->plugin_name );
-		submit_button();
-		?>
-	</form>
+	
+	<p>You will find all the necessary documentation here.</p>	
+	
 
 </div>
