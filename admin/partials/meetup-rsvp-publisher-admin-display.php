@@ -17,39 +17,33 @@
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-	<form action="options.php" method="post">
-		<?php
-		settings_fields( $this->plugin_name );
-		do_settings_sections( $this->plugin_name );
-		submit_button();
-		?>
-	</form>
-	
+	<h2 class="nav-tab-wrapper">
+		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher">Shortcode Builder</a>
+		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-settings">Settings</a>	
+		<a class="nav-tab" href="#">Documentation</a>	
+
+	</h2>
+
 	<?php
-	//	$rsvps = new Meetup_RSVPS();
 	$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
 	$return_value = '';
-
 	//var_dump( $groups);
-
 	?>
 	
-	<hr>
 	<div style="margin-bottom: 40px;">
-		<span id="prevSlide" class="dashicons dashicons-arrow-left" style="font-size: 70px; color: #f20017;"></span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span id="prevSlide" class="dashicons dashicons-arrow-left" style="margin-right: 35px; font-size: 70px; color: #f20017;"></span>
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
 
-	<div class="meetup-slides" style="width: 100%; margin: 0 auto; font-size: 1.2em">
+	<div class="meetup-slides" style="width: 100%; margin: 0 auto;">
 		<?php
 		foreach( $groups->results as $item ) {
 		?>
 			<div id="<?php echo $item->id; ?>" class="meetup-item"
-				 style="font-size: .8em; background-color: #f20017; padding: 0; 
+				 style="background-color: #f20017; padding: 0; 
 					margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; margin-bottom: 25px">
 						
-				<div class="visibility-buttons-deck" style="padding: 5px">
+				<div class="visibility-buttons-deck" style="padding: 5px; height: 25px;">
 					<span id="make-visible-<?php echo $item->id;?>" class="dashicons dashicons-visibility" 
 						style="font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
 					<span id="make-invisible-<?php echo $item->id;?>" class="dashicons dashicons-hidden" 
@@ -64,11 +58,12 @@
 					<p><?php echo $item->city; ?>, <?php echo $item->state; ?></p>
 					<a href="<?php echo $item->link; ?>">Details</a>
 				</div>
-				<span style="color: white; padding: 0; padding-left: 10px;;
-					font-weight: bold; margin: 0 auto;">
+				<div style="color: white; height: 35px; padding: 0; 
+					font-weight: bold; margin: 0 auto; text-align: center;">
 					Group ID: <?php echo $item->id; ?>
-				</span>
+				</div>
 			</div>
+		
 			<?php
 			}
 			?>
@@ -80,9 +75,15 @@
 	//Shortcode string container pane ?>
 	<div id="shortCode" style="background-color: white; padding: 20px;
 			box-shadow: 1px 1px 3px gray; border-radius: 3px">
-		<h3 style="padding-left: 10px">Shortcode Builder</h3>
+		<h3 style="padding-left: 10px">Ready Shortcode</h3>
 		<textarea style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-size: 30px" 
 			placeholder="Your shortcode will show up here"></textarea> 
+
+		<div style="float: right; width: 16%">
+			<input type="submit" class="button button-primary" style="font-size: 1.3em; width: 110px; height: 50px" value="Preview"><br><br>
+			<input type="submit" class="button button-secondary" style="width: 110px; height: 35px" value="Set As Default">		
+		</div>
+
 	</div>	
 
 </div>

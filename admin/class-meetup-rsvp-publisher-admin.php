@@ -116,13 +116,21 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function add_options_page() {
 		$this->plugin_screen_hook_suffix = add_options_page(
-			__( 'Meetup RSVP Publisher Settings', 'meetup-rsvp-publisher' ),
+			__( 'Meetup RSVP Publisher', 'meetup-rsvp-publisher' ),
 			__( 'Meetup RSVP Publisher', 'meetup-rsvp-publisher' ),
 			'manage_options',
 			$this->plugin_name,
 			array( $this, 'display_options_page' )
 		);
-
+		
+		add_options_page(
+			__( 'Meetup RSVP Publisher Settings', 'meetup-rsvp-publisher-settings' ),
+			__( 'Meetup RSVP Publisher Settings', 'meetup-rsvp-publisher-settings' ),
+			'manage_options',
+			'meetup-rsvp-publisher-settings',
+			array( $this, 'display_key_settings' )
+		); 
+		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-settings' );
 	}
 
 	/**
@@ -134,6 +142,13 @@ class Meetup_Rsvp_Publisher_Admin {
 //		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS.php';
 
 		include_once 'partials/meetup-rsvp-publisher-admin-display.php';
+	}
+	/**
+	 * Render the options page for meetup-rsvp-publisher
+	 *
+	 */
+	public function display_key_settings() {
+		include_once 'partials/meetup-rsvp-publisher-admin-settings.php';
 	}
 
 	/**
