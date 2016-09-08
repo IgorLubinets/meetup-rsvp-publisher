@@ -1,13 +1,8 @@
 <?php 
 //var_dump( $shortcode_Filters );
-
-// Set different slider for the preview pane vs. the normal flow.
-if( !isset($shortcode_Filters['admin_preview']) ) : ?>
-	<div style="width: 95%; margin: 0 auto" 
+?>
+<div style="width: 95%; margin: 0 auto" 
 		class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?>">
-<?php else : ?>
-	<div style="width: 95%; margin: 0 auto" class="meetup-admin-preview-slides">
-<?php endif; ?>
 
 	<?php
 	foreach( $results as $item ) : ?>

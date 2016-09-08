@@ -5,7 +5,10 @@
   			centerPadding: '60px',
 	  		slidesToShow: 4,
   			arrows: false,
-			infinite: false,
+
+			infinite: true,
+			centerMode: true,
+
 			responsive: [
   			{
 	    			breakpoint: 1360,
@@ -100,11 +103,15 @@
 		$('span[id^="make-visible-"]').click( function() {
 			$(this).css( 'display', 'none' );
 			$(this).parent('div').find('span[id^="make-invisible-"]').css('display', 'block');		
-			$(this).closest('.meetup-item').css('opacity', '.35');
+			//$(this).closest('.meetup-item').css('opacity', '.35');
+			$(this).closest('.meetup-item').addClass('grayout');
 		});
 		$('span[id^="make-invisible-"]').click( function() {
 			$(this).css( 'display', 'none' );
-			$(this).closest('.meetup-item').css( 'opacity', '1' );
+		
+//			$(this).closest('.meetup-item').css( 'opacity', '1' );
+			$(this).closest('.meetup-item').removeClass('grayout');
+
 			$(this).parent('div').find('span[id^="make-visible-"]').css('display', 'block');		
 		});
 

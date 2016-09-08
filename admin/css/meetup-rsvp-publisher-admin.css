@@ -2,3 +2,7 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+.grayout {
+	opacity: .45;
+	transition-duration: .5s;
+}
