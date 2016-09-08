@@ -29,14 +29,23 @@
 	$return_value = '';
 	//var_dump( $groups);
 	?>
-<div style="width: 100%; ">
+<div style="width: 100%; margin-top: 50px; margin-bottom: 50px">
 	
+	<!--	
 	<div style="margin-bottom: 40px;">
 		<span id="prevSlide" class="dashicons dashicons-arrow-left" style="margin-right: 35px; font-size: 70px; color: #f20017;"></span>
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
+	-->
+	<h2 style="text-decoration: underline;">1) Pick Visibility:</h2>
+	<div style="margin: 25px; font-size: 1.4em; color: #f20017">
+		<label style="margin: 15px; margin-right: 30px"><input type="radio" id="allStatusShow" name="allStatus" value="show" checked>Show All</label>
+		<label style="margin: 15px"><input type="radio" id="allStatusHide" name="allStatus" value="hide">Hide All</label>
+	</div>
 
-	<div class="meetup-slides">
+	<h2 style="text-decoration: underline">2) Include/Exclude Groups:</h2>
+	<span id="prevSlide" class="dashicons dashicons-arrow-left" style="margin: 0; padding-top: 120px; font-size: 70px; color: #f20017; float: left; width: 4%"></span>
+	<div class="meetup-slides" style="width: 85%; float: left ">
 		<?php
 		foreach( $groups->results as $item ) {
 		?>
@@ -44,11 +53,11 @@
 				 style="background-color: #f20017; padding: 0; 
 					margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; margin-bottom: 25px">
 						
-				<div class="visibility-buttons-deck" style="padding: 5px; height: 25px;">
+				<div class="visibility-buttons-deck" style="padding: 0px; padding-top: 5px; padding-bottom: 5px; height: 25px; text-align: center; margin: 0 auto">
 					<span id="make-visible-<?php echo $item->id;?>" class="dashicons dashicons-visibility" 
-						style="font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
+						style="font-size: 45px; padding-top: 5px; color: white; margin: 0 auto; text-align: center; width: auto"></span>
 					<span id="make-invisible-<?php echo $item->id;?>" class="dashicons dashicons-hidden" 
-						style="display: none; font-size: 45px; padding-top: 5px; padding-left: 20px; color: white"></span>
+						style="display: none; font-size: 45px; padding-top: 5px; color: white; text-align: center; margin: 0 auto; width: auto;"></span>
 				</div>
 
 				<div class="meetup-text" style="background-color: white; min-height: 250px; margin-right: 0; margin-left: 0; 
@@ -69,6 +78,9 @@
 			}
 			?>
 	</div>
+	<span id="nextSlide" class="dashicons dashicons-arrow-right" 
+			style="padding: 0; padding-top: 120px; margin: 0; font-size: 70px; color: #f20017; float: left; width: 4%"></span>
+
 
 </div>
 	<div style="clear:both"></div>	
@@ -76,13 +88,13 @@
 	<?php 
 	add_thickbox(); ?>
 
+	<h3 style="padding-left: 10px; text-decoration: underline">3) Ready Shortcode</h3>
 	<?php
 	//Shortcode string container pane ?>
-	<div style="background-color: white; padding: 20px;
+	<div style="background-color: white; padding: 20px; 
 			box-shadow: 1px 1px 3px gray; border-radius: 3px">
-		<h3 style="padding-left: 10px">Ready Shortcode</h3>
-		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px" 
-			placeholder="Your shortcode will show up here">[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]</textarea> 
+		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px; color: #f20017" 
+			placeholder="Your shortcode will show up here">[meetup-rsvps-publish show="all" display="slider" /]</textarea> 
 
 		<div style="float: right; width: 16%">
 			<a id="show-preview" class="thickbox"

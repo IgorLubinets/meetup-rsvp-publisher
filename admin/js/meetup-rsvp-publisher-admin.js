@@ -1,13 +1,18 @@
 ( function($) {
 	$(document).ready( function() {
 
+	//Shortcode object 
+	var shortCode = new Object; 
+	shortCode['allStatus'] = $('input[name="allStatus"]:checked').val();
+	console.log('INITIAL: CHeCKBOX SET TO: ' + shortCode['allStatus'] );
+
 	$('.meetup-slides').slick({
   			centerPadding: '60px',
 	  		slidesToShow: 4,
   			arrows: false,
 
-			infinite: true,
-			centerMode: true,
+		//	infinite: true,
+		//	centerMode: true,
 
 			responsive: [
   			{
@@ -28,7 +33,9 @@
     		}
   			]
 		});
-		
+	//	$('.meetup-slides').slick('reinit');
+	//	$(window).trigger('resize');
+
 		$('#prevSlide').click( function() {
 			$('.meetup-slides').slick("slickPrev");
 		});
@@ -101,10 +108,12 @@
 
 		//handle visibility toggle buttons
 		$('span[id^="make-visible-"]').click( function() {
+			console.log('Clicked the eye');	
 			$(this).css( 'display', 'none' );
 			$(this).parent('div').find('span[id^="make-invisible-"]').css('display', 'block');		
 			//$(this).closest('.meetup-item').css('opacity', '.35');
 			$(this).closest('.meetup-item').addClass('grayout');
+	
 		});
 		$('span[id^="make-invisible-"]').click( function() {
 			$(this).css( 'display', 'none' );
@@ -113,8 +122,46 @@
 			$(this).closest('.meetup-item').removeClass('grayout');
 
 			$(this).parent('div').find('span[id^="make-visible-"]').css('display', 'block');		
+
 		});
 
 
+		//Code to handle ShowAll HideAll radio buttons 
+		/////////////////////////////////////////////////////////////////////
+		$('#allStatusShow').click( function() {
+			if( shortCode['allStatus'] !== 'show' ) {
+				toggleEye();
+				shortCode['allStatus'] = 'show';
+			}
+			
+		});	
+		$('#allStatusHide').click( function() {
+			if( shortCode['allStatus'] !== 'hide' ) {
+				toggleEye();
+				shortCode['allStatus'] = 'hide';	
+			}
+		});	
+
+	
+		function toggleEye() {
+			$('.meetup-item').each( function() {
+				if( $(this).hasClass('grayout') ) {
+					$('span[id^="make-visible-"]', this).css('display', 'block');
+					$('span[id^="make-invisible-"]', this).css('display', 'none');
+					$(this).removeClass('grayout');
+				} else {
+					$('span[id^="make-invisible-"]', this).css('display', 'block');
+					$('span[id^="make-visible-"]', this).css('display', 'none');
+					$(this).addClass('grayout');
+				}
+			});	
+			$('div[class^="meetup-rsvp-slides-"]').slick('unslick').slick('reinit');
+		
+		}
+
+		/////////////////////////////////////////////////////////////////////
+		//End Code to handle creation of the Shortcode string
+		
+	
 	});
 })(jQuery);
