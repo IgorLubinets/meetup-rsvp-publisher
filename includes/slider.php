@@ -1,4 +1,13 @@
-<div style="width: 95%; margin: 0 auto" class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?>">
+<?php 
+//var_dump( $shortcode_Filters );
+
+// Set different slider for the preview pane vs. the normal flow.
+if( !isset($shortcode_Filters['admin_preview']) ) : ?>
+	<div style="width: 95%; margin: 0 auto" 
+		class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?>">
+<?php else : ?>
+	<div style="width: 95%; margin: 0 auto" class="meetup-admin-preview-slides">
+<?php endif; ?>
 
 	<?php
 	foreach( $results as $item ) : ?>
@@ -6,11 +15,11 @@
 			 style="font-size: .8em; background-color: #f20017; padding: 0; 
 				margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; 
 				margin-bottom: 25px; max-height: 470px">
-<!--		<div id="<?php //echo $item->id; ?>" class="meetup-item"
-			 style="font-size: .8em; background-color: #f20017; padding: 0; 
-				margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; margin-bottom: 25px">
--->
-
+		<!--		<div id="<?php //echo $item->id; ?>" class="meetup-item"
+				 style="font-size: .8em; background-color: #f20017; padding: 0; 
+				margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; 
+				border-radius: 20px; margin-bottom: 25px">
+		-->
 			<div class="meetup-text" style="background-color: white; min-height: 370px; margin-right: 0; margin-left: 0; 
 					margin-top: 50px; margin-bottom: 30px; padding: 7px;">
 				<h3> <?php echo $item->name ?></h3>

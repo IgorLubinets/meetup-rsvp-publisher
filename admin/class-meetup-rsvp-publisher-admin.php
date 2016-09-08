@@ -215,15 +215,21 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function webilect_rsvp_publish_ajax() {
-  		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();	
-		wp_send_json( $results );
-	
+  		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();
+		
+//echo 'Shortcode received: ' . $_POST['shortcode'];	
+
+//		wp_send_json( $results );
+
+		//echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]');	
+		echo do_shortcode( stripslashes($_POST['shortcode'])  );	
+		
 		/*
 		$response = WP_Ajax_Response( $dummy );
 		$response->send();
 		exit();
 		*/
-		die();
+		wp_die();
 	}
 	
 }

@@ -72,20 +72,40 @@
 
 </div>
 	<div style="clear:both"></div>	
+	
+	<?php 
+	add_thickbox(); ?>
 
 	<?php
 	//Shortcode string container pane ?>
-	<div id="shortCode" style="background-color: white; padding: 20px;
+	<div style="background-color: white; padding: 20px;
 			box-shadow: 1px 1px 3px gray; border-radius: 3px">
 		<h3 style="padding-left: 10px">Ready Shortcode</h3>
-		<textarea style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-size: 30px" 
-			placeholder="Your shortcode will show up here"></textarea> 
+		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px" 
+			placeholder="Your shortcode will show up here">[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]</textarea> 
 
 		<div style="float: right; width: 16%">
-			<input type="submit" class="button button-primary" style="font-size: 1.3em; width: 110px; height: 50px" value="Preview"><br><br>
+			<a id="show-preview" class="thickbox"
+				href="#TB_inline?width=900&height=600&inlineId=shortcode-preview">
+				<input type="submit" class="button button-primary" style="font-size: 1.3em; width: 110px; height: 50px" value="Preview">
+			</a>
+			<br><br>
 			<input type="submit" class="button button-secondary" style="width: 110px; height: 35px" value="Set As Default">		
 		</div>
 
 	</div>	
+
+	<?php 
+	//Try to create modal, thick-box ?>
+	<div id="shortcode-preview" style="display: none">
+		<h1 style="font-size: 3em;">
+			Live Preview	
+		</h1>
+		<div id="shortcode-preview-slides">
+			<?php echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]'); ?>
+			<?php //echo do_shortcode('[meetup-rsvps-publish show="all"/]'); ?>
+		</div>
+	</div>
+
 
 </div>
