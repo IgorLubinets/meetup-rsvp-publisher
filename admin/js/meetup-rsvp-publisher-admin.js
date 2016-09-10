@@ -11,8 +11,8 @@
 	  		slidesToShow: 4,
   			arrows: false,
 
-		//	infinite: true,
-		//	centerMode: true,
+			infinite: true,
+			centerMode: true,
 
 			responsive: [
   			{
@@ -41,6 +41,7 @@
 		});
 		$('#nextSlide').click( function() {
 			$('.meetup-slides').slick("slickNext");
+			$(window).trigger('resize');
 		});
 
 	//Duplicate, to try for the thickbox
@@ -132,6 +133,7 @@
 			if( shortCode['allStatus'] !== 'show' ) {
 				toggleEye();
 				shortCode['allStatus'] = 'show';
+				updateShortCodeString();
 			}
 			
 		});	
@@ -139,6 +141,7 @@
 			if( shortCode['allStatus'] !== 'hide' ) {
 				toggleEye();
 				shortCode['allStatus'] = 'hide';	
+				updateShortCodeString();
 			}
 		});	
 
@@ -155,8 +158,15 @@
 					$(this).addClass('grayout');
 				}
 			});	
-			$('div[class^="meetup-rsvp-slides-"]').slick('unslick').slick('reinit');
-		
+//			$('div[class^="meetup-rsvp-slides-"]').slick('unslick').slick('reinit');
+			$(window).trigger('resize');
+
+		}
+
+		function updateShortCodeString() {
+			var showHide = ( shortCode['allStatus'] === 'show' ) ? 'show="all"' : 'hide="all"'; 
+
+			console.log( '[meetup-rsvps-publish ' + showHide + ' display="slider"/]');		
 		}
 
 		/////////////////////////////////////////////////////////////////////

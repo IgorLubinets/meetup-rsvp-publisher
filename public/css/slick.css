@@ -122,3 +122,8 @@
 	transform: scale(1.05);
 	z-index: 1000;
 }*/ 
+.grayout {
+   opacity: .45;
+   transition-duration: .5s;
+}
+

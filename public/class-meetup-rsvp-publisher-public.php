@@ -107,9 +107,12 @@ class Meetup_Rsvp_Publisher_Public {
 
 		wp_enqueue_style('slick-slider-css', plugin_dir_url( __FILE__ ) . 'css/slick.css');
 		wp_enqueue_style('slick-slider-default-theme', plugin_dir_url( __FILE__ ) . 'css/slick-theme.css');
-		wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
-		wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
 
+		//Don't load twice for admin, only for public use
+		if( ! is_admin() ) {
+			wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
+			wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
+		}
 
 		Meetup_Rsvp_Publisher::$rsvps->setFilters( $shortcode_Filters );
 
