@@ -22,6 +22,14 @@
 	});
 	console.log('Backbone: initial checkbox set to: ' + readyShortCode.get('allStatus') );
 
+	readyShortCode.on("change", function() {
+		console.log('Model Change Detected');
+	//	updateShortCodeString(); 
+		$('#shortCode').val( updateShortCodeString() );		
+		console.log('End Model Change Detected');
+		
+	});
+
 	var item_length = $('.meetup-slides>div').length;
 	console.log('Number of Groups: ' + item_length);
 
@@ -225,14 +233,22 @@
 			var groupsList = '';
 			
 			$.each( readyShortCode.get('excludeGroups'), function( key, value ) {
-				if( value === true || value === false )	{
+				if( value === true  && shortCode['allStatus'] === 'hide' )	{
 					console.log( key + 'Value : ' + value );	
 					groupsList = groupsList + ' ' + key;
 					console.log( 'Grouplist: ' + groupsList );
 				}
+				else if( value === false && shortCode['allStatus'] === 'show' ) {
+					groupsList = groupsList + ' ' + key;
+					console.log( "grouplist: " + groupsList );
+				}
 			});	
-				
-			console.log( '[meetup-rsvps-publish ' + showHide + ' ' + groupsListDirective + '="' + groupsList + '" ' +' display="slider"/]');		
+						
+			var result = '[meetup-rsvps-publish ' + showHide +
+				( (groupsList !== '')? (' ' + groupsListDirective + '="' + groupsList + 
+				'" ') : '' ) +' display="slider"/]';
+			console.log( 'RESULT: ' + result );
+			return result;		
 		}
 
 		/////////////////////////////////////////////////////////////////////

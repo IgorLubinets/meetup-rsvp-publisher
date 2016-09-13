@@ -43,7 +43,9 @@
 		<label style="margin: 15px"><input type="radio" id="allStatusHide" name="allStatus" value="hide">Hide All</label>
 	</div>
 	<div style="margin-left: 45px; width: 10%; float: left;">
-		<button id="allStatusReset" value="Reset" class="button button-secondary" style="width: 110px; height: 50px;" >Reset</button>
+		<button id="allStatusReset" value="Reset" class="button button-secondary" style="font-size: 20px; height: 50px" >
+			Reset button 
+		</button>
 	</div>
 	<div style="clear:both"></div>	
 
