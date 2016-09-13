@@ -121,12 +121,14 @@
 			
 			console.log('Current Meetup Item ID: ' + currentMeetupItem.attr('id') );
 			var currentGroups = _.clone( readyShortCode.get('excludeGroups') );
-			delete currentGroups[ currentMeetupItem.attr('id') ];
+			currentGroups[ currentMeetupItem.attr('id') ] = false;
+
 			console.log( 'Contents of currentGroups array before model ' + JSON.stringify(currentGroups) );
 			readyShortCode.set( 'excludeGroups', currentGroups );
 		
 			console.log( 'Added item: ' + JSON.stringify(readyShortCode.get('excludeGroups'))  );		
-
+			
+			updateShortCodeString();
 		});
 		// if user clicks on the crossed out eye to make it visible
 		$('span[id^="make-invisible-"]').click( function() {
@@ -142,7 +144,8 @@
 			readyShortCode.set( 'excludeGroups', currentGroups );
 		
 			console.log( 'Added item: ' + JSON.stringify(readyShortCode.get('excludeGroups'))  );		
-
+			
+			updateShortCodeString();
 		});
 		//////////////////////////////////
 		// end handle visibility toggle buttons
@@ -154,6 +157,7 @@
 			if( shortCode['allStatus'] !== 'show' ) {
 				//toggleEye();
 				flipEye( true );
+				readyShortCode.set('excludeGroups', {});				
 				shortCode['allStatus'] = 'show';
 				updateShortCodeString();
 			}
@@ -163,6 +167,7 @@
 			if( shortCode['allStatus'] !== 'hide' ) {
 				//toggleEye();
 				flipEye( false );
+				readyShortCode.set('excludeGroups', {});				
 				shortCode['allStatus'] = 'hide';	
 				updateShortCodeString();
 			}
@@ -171,6 +176,7 @@
 			$('#allStatusHide').attr('checked', false);
 			$('#allStatusShow').attr('checked', true);
 			shortCode['allStatus'] = 'show';
+			readyShortCode.set('excludeGroups', {});				
 			flipEye( true );
 		});
 
@@ -196,7 +202,8 @@
 					});
 				}
 		}
-	
+
+		//Old function, may not be necessary any more?
 		function toggleEye() {
 			$('.meetup-item').each( function() {
 				if( $(this).hasClass('grayout') ) {
@@ -214,8 +221,18 @@
 
 		function updateShortCodeString() {
 			var showHide = ( shortCode['allStatus'] === 'show' ) ? 'show="all"' : 'hide="all"'; 
-
-			console.log( '[meetup-rsvps-publish ' + showHide + ' display="slider"/]');		
+			var groupsListDirective = ( shortCode['allStatus'] === 'show' ) ? 'hideGroups' : 'showGroups';
+			var groupsList = '';
+			
+			$.each( readyShortCode.get('excludeGroups'), function( key, value ) {
+				if( value === true || value === false )	{
+					console.log( key + 'Value : ' + value );	
+					groupsList = groupsList + ' ' + key;
+					console.log( 'Grouplist: ' + groupsList );
+				}
+			});	
+				
+			console.log( '[meetup-rsvps-publish ' + showHide + ' ' + groupsListDirective + '="' + groupsList + '" ' +' display="slider"/]');		
 		}
 
 		/////////////////////////////////////////////////////////////////////
