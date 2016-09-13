@@ -6,15 +6,10 @@
 	shortCode['allStatus'] = $('input[name="allStatus"]:checked').val();
 	console.log('INITIAL: CHeCKBOX SET TO: ' + shortCode['allStatus'] );
 
+	//Backbone
 	var ShortCodeModel = Backbone.Model.extend({
 		initialize: function(){
 			this.set('excludeGroups', {})		
-			if( 'show' === $('input[name="allStatus"]:checked').val() )	{
-				flipEye( true );				
-			}
-			else {
-				flipEye( false );
-			}
 		}	
 	});
 	var readyShortCode = new ShortCodeModel({ 
@@ -22,8 +17,10 @@
 	});
 	console.log('Backbone: initial checkbox set to: ' + readyShortCode.get('allStatus') );
 
+	//	var ShortCodeView = Backbone.View({model: readyShortCode});
+
 	var item_length = $('.meetup-slides>div').length;
-	console.log('Number of Groups: ' + item_length);
+	console.log('Number of Slides: ' + item_length);
 
 	$('.meetup-slides').slick({
   			centerPadding: '60px',
@@ -110,31 +107,13 @@
 		});
 
 		//handle visibility toggle buttons
-		///////////////////////////////////////////
-		// if user clicks on the eye, to make it invisible
 		$('span[id^="make-visible-"]').click( function() {
 			console.log('Clicked the eye');	
 			$(this).css( 'display', 'none' );
 			$(this).parent('div').find('span[id^="make-invisible-"]').css('display', 'block');		
+			//$(this).closest('.meetup-item').css('opacity', '.35');
 			var currentMeetupItem = $(this).closest('.meetup-item');
 			$(this).closest('.meetup-item').addClass('grayout');
-			
-			console.log('Current Meetup Item ID: ' + currentMeetupItem.attr('id') );
-			var currentGroups = _.clone( readyShortCode.get('excludeGroups') );
-			delete currentGroups[ currentMeetupItem.attr('id') ];
-			console.log( 'Contents of currentGroups array before model ' + JSON.stringify(currentGroups) );
-			readyShortCode.set( 'excludeGroups', currentGroups );
-		
-			console.log( 'Added item: ' + JSON.stringify(readyShortCode.get('excludeGroups'))  );		
-
-		});
-		// if user clicks on the crossed out eye to make it visible
-		$('span[id^="make-invisible-"]').click( function() {
-			$(this).css( 'display', 'none' );
-			$(this).parent('div').find('span[id^="make-visible-"]').css('display', 'block');		
-			var currentMeetupItem = $(this).closest('.meetup-item');
-			$(this).closest('.meetup-item').removeClass('grayout');
-			
 			console.log('Current Meetup Item ID: ' + currentMeetupItem.attr('id') );
 			var currentGroups = _.clone( readyShortCode.get('excludeGroups') );
 			currentGroups[ currentMeetupItem.attr('id') ] = true;
@@ -144,16 +123,31 @@
 			console.log( 'Added item: ' + JSON.stringify(readyShortCode.get('excludeGroups'))  );		
 
 		});
-		//////////////////////////////////
-		// end handle visibility toggle buttons
+		$('span[id^="make-invisible-"]').click( function() {
+			$(this).css( 'display', 'none' );
+		
+//			$(this).closest('.meetup-item').css( 'opacity', '1' );
+			$(this).closest('.meetup-item').removeClass('grayout');
+			$(this).parent('div').find('span[id^="make-visible-"]').css('display', 'block');		
+
+			var currentMeetupItem = $(this).closest('.meetup-item');
+			console.log('Current Meetup Item ID: ' + currentMeetupItem.attr('id') );
+			
+			var currentGroups = _.clone( readyShortCode.get('excludeGroups') );
+			currentGroups[ currentMeetupItem.attr('id') ] = false;
+			console.log( 'Contents of currentGroups array before model ' + JSON.stringify(currentGroups) );
+			readyShortCode.set( 'excludeGroups', currentGroups );
+		
+			console.log( 'Added item: ' + JSON.stringify(readyShortCode.get('excludeGroups'))  );		
+
+		});
 
 
 		//Code to handle ShowAll HideAll radio buttons 
 		/////////////////////////////////////////////////////////////////////
 		$('#allStatusShow').click( function() {
 			if( shortCode['allStatus'] !== 'show' ) {
-				//toggleEye();
-				flipEye( true );
+				toggleEye();
 				shortCode['allStatus'] = 'show';
 				updateShortCodeString();
 			}
@@ -161,40 +155,25 @@
 		});	
 		$('#allStatusHide').click( function() {
 			if( shortCode['allStatus'] !== 'hide' ) {
-				//toggleEye();
-				flipEye( false );
+				toggleEye();
 				shortCode['allStatus'] = 'hide';	
 				updateShortCodeString();
 			}
 		});	
-		$('#allStatusReset').click( function() {
-			$('#allStatusHide').attr('checked', false);
-			$('#allStatusShow').attr('checked', true);
-			shortCode['allStatus'] = 'show';
-			flipEye( true );
-		});
 
-		/**
-		 * Function to turn all slides either ON or OFF
-		 * @param flag boolean
-		 * @return none
-		 */	
 		function flipEye( flag ) {
-				var slides = $('.meetup-item');
+			$('.meetup-item').each( function() {
 				if( flag === true ) {
-					slides.each( function() {
-						$('span[id^="make-invisible-"]', this).css('display', 'none');
-						$('span[id^="make-visible-"]', this).css('display', 'block');
-						$(this).removeClass('grayout');
-					});
-						
+					$('span[id=^"make-invisible-"]', this).css('display', 'none');
+					$('span[id=^make-visible-"]', this).css('display', 'block');
+					$('.meetup-item').removeClass('grayout');
 				} else {
-					slides.each( function() {
-						$('span[id^="make-invisible-"]', this).css('display', 'block');
-						$('span[id^="make-visible-"]', this).css('display', 'none');
-						$(this).addClass('grayout');
-					});
+					$('span[id=^"make-invisible-"]', this).css('display', 'block');
+					$('span[id=^make-visible-"]', this).css('display', 'none');
+					$('.meetup-item').addClass('grayout');
 				}
+			});
+
 		}
 	
 		function toggleEye() {

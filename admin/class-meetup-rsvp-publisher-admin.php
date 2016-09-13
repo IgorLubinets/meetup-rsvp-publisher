@@ -106,8 +106,9 @@ class Meetup_Rsvp_Publisher_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		wp_enqueue_script( 'backbone' );		
 		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', true);		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'slick-slider' ), $this->version, true);
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone', 'slick-slider' ), $this->version, true);
 	
 	}
 
@@ -125,10 +126,10 @@ class Meetup_Rsvp_Publisher_Admin {
 		);
 		
 		add_options_page(
-			__( 'Meetup RSVP Publisher Settings', 'meetup-rsvp-publisher-settings' ),
-			__( 'Meetup RSVP Publisher Settings', 'meetup-rsvp-publisher-settings' ),
+			'Meetup RSVP Publisher Settings',
+			'Meetup RSVP Publisher Settings',
 			'manage_options',
-			'meetup-rsvp-publisher-settings',
+			'meetup-rsvp-publisher-settings', /* url slug */
 			array( $this, 'display_key_settings' )
 		); 
 		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-settings' );
