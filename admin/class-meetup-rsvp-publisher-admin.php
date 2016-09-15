@@ -176,7 +176,10 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function register_setting() {
-	
+//		include_once 'partials/meetup-rsvp-publisher-register-settings.php';
+
+		//Add settings for Meetup.com API KEY
+		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
 	      $this->options_name . '_key_settings',
    	   'Meetup.com Credentials', 
@@ -192,8 +195,65 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( 'label_for' => $this->options_name . '_api_key_value' )
 		);
 		register_setting( $this->plugin_name, $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
+
+		//Add settings to set slider or list 
+		/////////////////////////////////////////////////////////////////	
+		add_settings_section(
+	      $this->options_name . '_rsvps_styles_settings',
+   	   'Choose Styling', 
+      	array( $this, $this->options_name . '_rsvp_card_style' ),
+      	$this->plugin_name
+   	);
+		add_settings_field(
+			$this->options_name . '_rsvp_card_style_format',
+			'Choose RSVP container style',
+			array( $this, $this->options_name . '_rsvp_card_style_selector' ),
+			$this->plugin_name,
+			$this->options_name . '_rsvps_styles_settings',
+			array( 'label_for' => $this->options_name . '_rsvp_card_style_format' )
+		);
+		register_setting( $this->plugin_name, $this->options_name . '_rsvp_card_style_format', array( $this, 'api_key_value_sanitation') );
+
+		//Create a list of RSVP fields 
+		/////////////////////////////////////////////////////////////////	
+		add_settings_section(
+	      $this->options_name . '_rsvp_field_list_section',
+   	   'RSVP Fields to Display', 
+      	array( $this, $this->options_name . '_rsvp_fields_list_callback' ),
+      	$this->plugin_name
+   	);
+		add_settings_field(
+			$this->plugin_name . 'event_title', //id
+			'Event Title',				//title
+			array( $this, $this->options_name . '_add_event_title_callback' ), //callback
+			$this->plugin_name, 
+			$this->options_name . '_rsvp_field_list_section',
+			//a label for our field, optional	
+			array( 'label_for' => $this->options_name . '_rsvp_field_list_new[event_title]' )
+		);
+		register_setting( $this->plugin_name, $this->options_name . '_rsvp_field_list_new',	array( $this, 'api_key_value_sanitation') );
+
 	}
 
+	public function webilect_meetup_rsvp_publisher_options_rsvp_fields_list_callback() {
+		echo '<hr style="background-color: red; height: 3px"><h4>Handle RSVP Fields</h4>';
+	} 
+	public function webilect_meetup_rsvp_publisher_options_add_event_title_callback() {
+		$options = (array)get_option( $this->options_name . '_rsvp_field_list_new' );
+	?>
+		<input type="checkbox" id="event_title" 
+			name="<?php echo $this->options_name . '_rsvp_field_list_new[event_title]'; ?>"
+		 	<?php 
+			if( isset($options['event_title']) ) { 
+				echo 'checked'; 
+			}
+			?> />
+	<?php
+	}
+
+
+	// AUX Functions
+	/////////////////////////////////////////////////////////////
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
 		echo '<hr><h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
 	}
@@ -209,8 +269,32 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function api_key_value_sanitation( $input ) {
-		return $input; //does nothing right now
+		return $input; //does nothing right now, dummy function
 	}
+
+
+
+	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style() { 
+		echo '<hr style="background-color: red; height: 3px"><h2>Please choose the RSVPs styles</h2>';
+	}
+
+	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style_selector() { 
+		$rsvp_style_format = get_option($this->options_name . '_rsvp_card_style_format');
+	?>
+		<select name="<?php echo $this->options_name . '_rsvp_card_style_format'; ?>" 
+				id="<?php echo $this->options_name . '_rsvp_card_style_format'; ?>"
+				style="width: 160px; height: 35px; font-size: 1.35em; padding: 5px">
+			<option value="slider" <?php echo ( 'slider'===$rsvp_style_format ) ? 'selected' : ''; ?> >Slider</option>
+			<option value="list" <?php echo ( 'list'===$rsvp_style_format ) ? 'selected' : ''; ?> >List</option>
+		</select>	
+	<?php
+	}
+
+
+	///////////////////////////////////////////////////////////
+	// End AUX Functions
+
+
 
 	/*
 	 * Function for AJAX requests for JS enabled components

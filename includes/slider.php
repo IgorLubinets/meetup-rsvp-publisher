@@ -17,23 +17,32 @@
 		-->
 			<div class="meetup-text" style="background-color: white; min-height: 370px; margin-right: 0; margin-left: 0; 
 					margin-top: 50px; margin-bottom: 30px; padding: 7px;">
-				<h3> <?php echo $item->name ?></h3>
+				<h3 style="font-size: 1.75em"> <?php echo $item->name ?></h3>
+				<p style="font-size: small; text-align: left; margin: 0; padding-top: 0px">(hosted by <em>  
+					<?php echo $item->group->name; ?></em>)
+				</p>
 				<?php		/*date voodoo */		
 					$epoch = substr( ($item->time+$item->utc_offset), 0, 10);
 					$new_time = new DateTime("@$epoch");
 				?>
 				<p style="color: gray"><?php echo $new_time->format('F j, Y, g:i a'); ?></p>
-				<p style="color: gray;"> 
+<!--				<p style="color: gray;"> 
 				<?php 
-					echo $item->status; ?> 
+/*					echo $item->status; ?> 
 					group id: <?php echo $item->group->id; ?> 
-					Event ID: <?php echo $item->id; ?>
+					Event ID: <?php echo $item->id; 
+*/	
+				?>
 				</p>	
+-->
 				<p style="color: gray;">
 				<?php 
 					echo $item->venue->address_1; ?>, <?php echo $item->venue->city; ?>
 				</p>	
-				<a href="<?php echo $item->event_url;?>"><?php echo $item->event_url; ?></a>	
+				<p>
+					<a href="<?php echo $item->event_url;?>">Event Details...</a>	
+				</p>
+	
 			</div>
 		</div>
 	<?php endforeach; ?>

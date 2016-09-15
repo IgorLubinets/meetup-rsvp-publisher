@@ -87,7 +87,9 @@
 		//		When you start dragging then it appears.  Otherwise width set to zero.
 		//		This seems to work, need more testing!
 		$('#show-preview').click( function() {
-			$(window).trigger('resize');
+
+		//	$(window).trigger('resize'); // was a good idea to try with the infinite on
+
 		//	$('.meetup-admin-preview-slides').slick('unslick').slick('reinit');			
 		//		console.log( 'Shortcode: ' + $('#shortCode').val() );
 		

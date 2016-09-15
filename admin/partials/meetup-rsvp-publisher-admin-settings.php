@@ -27,6 +27,7 @@
 	<form action="options.php" method="post">
 		<?php
 		settings_fields( $this->plugin_name );
+		//settings_fields( $this->plugin_name . '_rsvp_field_list' );
 		do_settings_sections( $this->plugin_name );
 		submit_button();
 		?>
