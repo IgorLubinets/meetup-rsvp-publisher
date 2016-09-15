@@ -151,9 +151,6 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function display_options_page() {
-
-//		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/includes/Meetup_RSVPS.php';
-
 		include_once 'partials/meetup-rsvp-publisher-admin-display.php';
 	}
 	/**
@@ -164,11 +161,18 @@ class Meetup_Rsvp_Publisher_Admin {
 		include_once 'partials/meetup-rsvp-publisher-admin-settings.php';
 	}
 	/**
-	 * Render the options page for meetup-rsvp-publisher
+	 * Render the documentation page for meetup-rsvp-publisher
 	 *
 	 */
 	public function display_plugin_documentation_page() {
 		include_once 'partials/meetup-rsvp-publisher-admin-documentation.php';
+	}
+	/**
+	 * Render the Security page for meetup-rsvp-publisher
+	 * This is where you input your Meetup.com API Key
+	 */
+	public function display_plugin_security_page() {
+		include_once 'partials/meetup-rsvp-publisher-admin-security.php';
 	}
 
 	/**
@@ -176,8 +180,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function register_setting() {
-//		include_once 'partials/meetup-rsvp-publisher-register-settings.php';
-
+	
 		//Add settings for Meetup.com API KEY
 		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
@@ -272,8 +275,6 @@ class Meetup_Rsvp_Publisher_Admin {
 		return $input; //does nothing right now, dummy function
 	}
 
-
-
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style() { 
 		echo '<hr style="background-color: red; height: 3px"><h2>Please choose the RSVPs styles</h2>';
 	}
@@ -289,11 +290,8 @@ class Meetup_Rsvp_Publisher_Admin {
 		</select>	
 	<?php
 	}
-
-
 	///////////////////////////////////////////////////////////
 	// End AUX Functions
-
 
 
 	/*
