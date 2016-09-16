@@ -142,6 +142,15 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( $this, 'display_plugin_documentation_page' )
 		); 
 		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-documentation' );
+	
+		add_options_page(
+			'Meetup RSVP Publisher Security',
+			'Meetup RSVP Publisher Security',
+			'manage_options',
+			$this->plugin_name . '-security', /* url slug */
+			array( $this, 'display_plugin_security_page' )
+		); 
+		remove_submenu_page( 'options-general.php', 'meetup-rsvp-publisher-security' );
 
 
 	}
@@ -181,23 +190,23 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function register_setting() {
 	
-		//Add settings for Meetup.com API KEY
+		//Add Security settings to hold Meetup.com API KEY
 		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
 	      $this->options_name . '_key_settings',
    	   'Meetup.com Credentials', 
       	array( $this, $this->options_name . '_api_key_text' ),
-      	$this->plugin_name
+      	$this->plugin_name . '-security'  
    	);
 		add_settings_field(
 			$this->options_name . '_api_key_value',
 			__( 'Enter your meetup.com API key into this field', 'meetup-rsvp-publisher' ),
 			array( $this, $this->options_name . '_api_key_tab' ),
-			$this->plugin_name,
+			$this->plugin_name . '-security',
 			$this->options_name . '_key_settings',
 			array( 'label_for' => $this->options_name . '_api_key_value' )
 		);
-		register_setting( $this->plugin_name, $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
+		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
 
 		//Add settings to set slider or list 
 		/////////////////////////////////////////////////////////////////	

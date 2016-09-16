@@ -21,15 +21,14 @@
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher">Shortcode Builder</a>
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-settings">Settings</a>	
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-documentation">Documentation</a>	
-		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-security">Documentation</a>	
+		<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher-security">Security</a>	
 
 	</h2>
 
 	<form action="options.php" method="post">
 		<?php
-		settings_fields( $this->plugin_name );
-		//settings_fields( $this->plugin_name . '_rsvp_field_list' );
-		do_settings_sections( $this->plugin_name );
+		settings_fields( $this->plugin_name . '_security_key' );
+		do_settings_sections( $this->plugin_name . '-security' );
 		submit_button();
 		?>
 	</form>
