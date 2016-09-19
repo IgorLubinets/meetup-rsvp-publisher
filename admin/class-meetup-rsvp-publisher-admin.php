@@ -107,6 +107,12 @@ class Meetup_Rsvp_Publisher_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( 'backbone' );		
+		wp_enqueue_script( 'jquery-ui-core' );
+		
+//		wp_enqueue_script('jquery-ui-draggable');
+//		wp_enqueue_script('jquery-ui-droppable');
+		wp_enqueue_script('jquery-ui-sortable');
+	
 		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', true);		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone', 'slick-slider' ), $this->version, true);
 	

@@ -45,6 +45,11 @@ class Meetup_RSVPS {
 		catch ( \Exception $exception ) {
 			echo 'Exception caught!!!';
 			echo $exception->getMessage();
+
+			if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
+				echo '<h2>Wrong Key!</h2>';
+			}
+
 			$this->error=true;
 			return;
 		}
@@ -80,10 +85,22 @@ class Meetup_RSVPS {
 			catch ( \Exception $exception ) {
 				echo 'Exception caught!!!';
 				echo $exception->getMessage();
+				
+			
 				$this->error=true;
+			
+				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
+					echo '<script type="text/javascript">alert( "Key Not Authorized! Please enter a correct API Key! You will be redirected..." ); </script>';
+					$redirect_script = '<script type="text/javascript">';
+					$redirect_script .= 'window.location = "' . admin_url() . 'options-general.php?page=meetup-rsvp-publisher-security"' ;
+					$redirect_script .= '</script>';
+					echo $redirect_script;	
+				}
+
+
 				return;
 			}
-			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
+			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 60 ); //hardcoded, store it for 60 seconds 
 		}
 		return $rsvps;
 	}

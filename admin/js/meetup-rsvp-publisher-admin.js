@@ -1,6 +1,11 @@
 ( function($) {
 	$(document).ready( function() {
 
+		//Drag and Drop reorder RSVP details
+		/////////////////////////////////////
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();		
+
 	//Shortcode object 
 	var shortCode = new Object; 
 	shortCode['allStatus'] = $('input[name="allStatus"]:checked').val();
@@ -35,7 +40,7 @@
 
 	$('.meetup-slides').slick({
   			centerPadding: '60px',
-	  		slidesToShow: 3,
+	  		slidesToShow: 4,
 			initialSlide: 1,
   			arrows: false,
 			infinite: false,
@@ -43,8 +48,9 @@
 			responsive: [
 
   			{
-	    		breakpoint: 1360,
+	    		breakpoint: 1368,
       		settings: {
+					slidesToShow: 3,
         			arrows: false,
         			centerPadding: '40px',
         			slidesToShow: 2 
@@ -255,7 +261,7 @@
 
 		/////////////////////////////////////////////////////////////////////
 		//End Code to handle creation of the Shortcode string
-		
+ 		
 	
 	});
 })(jQuery);
