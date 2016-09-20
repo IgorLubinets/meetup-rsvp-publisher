@@ -291,7 +291,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style() { 
-		echo '<hr style="background-color: red; height: 3px"><h2>Please choose the RSVPs styles</h2>';
+		echo '<hr style="background-color: red; height: 3px"><h2>Please choose the RSVP layout</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style_selector() { 

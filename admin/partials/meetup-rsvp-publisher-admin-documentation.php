@@ -15,7 +15,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
 
-	<h1>Meetup RSVP Publisher Documentation<h1>
+	<h1>Meetup RSVP Publisher Documentation</h1>
 
 	<h2 class="nav-tab-wrapper">
 		<a class="nav-tab" href="<?php echo admin_url() ?>options-general.php?page=meetup-rsvp-publisher">Shortcode Builder</a>

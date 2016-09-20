@@ -6,6 +6,11 @@
 		$( "#sortable" ).sortable();
 		$( "#sortable" ).disableSelection();		
 
+	/*	$('.custom-class').click( function() {
+			$(this).removeAttr('disabled');
+		});
+	*/	
+
 	//Shortcode object 
 	var shortCode = new Object; 
 	shortCode['allStatus'] = $('input[name="allStatus"]:checked').val();
