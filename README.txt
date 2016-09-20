@@ -1,14 +1,14 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: IgorL 
 Donate link: http://igorcodes.com
-Tags: comments, spam
+Tags: meetup.com meetup rsvp publish events
 Requires at least: 3.0.1
 Tested up to: 3.4
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+This plugin allows Meetup.com members easily publish their RSVPed events for public consumption on their websites.
 
 == Description ==
 
