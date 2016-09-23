@@ -342,33 +342,57 @@ class Meetup_Rsvp_Publisher_Admin {
 				$transient_value += $value * 60 * 60 * 24;	
 			}
 		}
-
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-	
-		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
-
+//		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+		
 		?>
 	
-		<label style="width: 100px; float: left;" for="seconds">Seconds: </label>
-		<input id="seconds" name="<?php echo $this->options_name . '_transient_period[seconds]'; ?>"
-			value="<?php echo ( isset($transient_period['seconds']) ) ? $transient_period['seconds'] : ''; ?>" 
-			type="text" style="width: 80px; height: 50px"/> <br>
+	<table style="table-layout: fixed; width: 300px">
+		<tbody>
+			<tr>
+				<th style="vertical-align: middle; width: 80px">	
+					<label for="seconds">Seconds: </label>
+				</th>
+				<td>
+					<input id="seconds" name="<?php echo $this->options_name . '_transient_period[seconds]'; ?>"
+						value="<?php echo ( isset($transient_period['seconds']) ) ? $transient_period['seconds'] : ''; ?>" 
+						type="text" style="width: 80px; height: 50px"/> <br>
+				</td>
+			</tr>
+			<tr style="vertical-align: middle">
+				<th style="vertical-align: middle">
+					<label style="vertical-align: middle" for="minutes">Minutes: </label>
+				</th>
+				<td>
+					<input id="minutes" name="<?php echo $this->options_name . '_transient_period[minutes]'; ?>"
+						value="<?php echo ( isset($transient_period['minutes']) ) ? $transient_period['minutes'] : ''; ?>" 
+						type="text" style="width: 80px; height: 50px;"/> <br>	
+				</td>
+			</tr>	
+			<tr>
+				<th style="vertical-align: middle">	
+					<label style="float: left" for="hours">Hours: </label>
+				</th>
+				<td>
+					<input id="hours" name="<?php echo $this->options_name . '_transient_period[hours]'; ?>"
+						value="<?php echo ( isset($transient_period['hours']) ) ? $transient_period['hours'] : ''; ?>" 
+						type="text" style="width: 80px; height: 50px"/> <br>	
+				</td>
+			</tr>
+			<tr>
+				<th style="vertical-align: middle">
+					<label style="float: left" for="days">Days: </label>
+				</th>
+				<td>	
+					<input id="days" name="<?php echo $this->options_name . '_transient_period[days]'; ?>"
+						value="<?php echo ( isset($transient_period['days']) ) ? $transient_period['days'] : ''; ?>" 
+						type="text" style="width: 80px; height: 50px"/> <br> 	
+				</td>
+			</tr>	
+		</tbody>
+	</table>
 
-		<label style="width: 100px; float: left" for="minutes">Minutes: </label>
-		<input id="minutes" name="<?php echo $this->options_name . '_transient_period[minutes]'; ?>"
-			value="<?php echo ( isset($transient_period['minutes']) ) ? $transient_period['minutes'] : ''; ?>" 
-			type="text" style="width: 80px; height: 50px;"/> <br>	
 
-		<label style="width: 100px; float: left" for="hours">Hours: </label>
-		<input id="hours" name="<?php echo $this->options_name . '_transient_period[hours]'; ?>"
-			value="<?php echo ( isset($transient_period['hours']) ) ? $transient_period['hours'] : ''; ?>" 
-			type="text" style="width: 80px; height: 50px"/> <br>	
-
-		<label style="width: 100px; float: left" for="days">Days: </label>
-		<input id="days" name="<?php echo $this->options_name . '_transient_period[days]'; ?>"
-			value="<?php echo ( isset($transient_period['days']) ) ? $transient_period['days'] : ''; ?>" 
-			type="text" style="width: 80px; height: 50px"/> <br> 	
-	
 	<?php 
 	}
 
