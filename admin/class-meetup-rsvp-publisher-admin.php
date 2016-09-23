@@ -112,7 +112,10 @@ class Meetup_Rsvp_Publisher_Admin {
 //		wp_enqueue_script('jquery-ui-draggable');
 //		wp_enqueue_script('jquery-ui-droppable');
 		wp_enqueue_script('jquery-ui-sortable');
-	
+		wp_enqueue_script('jquery-touch-punch');
+
+		wp_enqueue_script('jquery-ui-spinner');	
+
 		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', true);		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone', 'slick-slider' ), $this->version, true);
 	
@@ -214,6 +217,25 @@ class Meetup_Rsvp_Publisher_Admin {
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
 
+
+		//Add Transient Period for the API call
+		////////////////////////////////////////////////////////////////	
+		add_settings_section(
+	      $this->options_name . '_transient_settings',
+   	   'Meetup API Polling Period', 
+      	array( $this, $this->options_name . '_transient_period_callback' ),
+      	$this->plugin_name . '-security'
+   	);
+		add_settings_field(
+			$this->plugin_name . '_transient_period', //id
+			'Note:  Meetup limits the number of API requests',				//title
+			array( $this, $this->options_name . '_transient_period_field_callback' ), //callback
+			$this->plugin_name . '-security', 
+			$this->options_name . '_transient_settings'
+		);
+		register_setting( $this->plugin_name . '_transient_period', $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
+
+
 		//Add settings to set slider or list 
 		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
@@ -234,7 +256,8 @@ class Meetup_Rsvp_Publisher_Admin {
 
 		//Create a list of RSVP fields 
 		/////////////////////////////////////////////////////////////////	
-		add_settings_section(
+
+/*		add_settings_section(
 	      $this->options_name . '_rsvp_field_list_section',
    	   'RSVP Fields to Display', 
       	array( $this, $this->options_name . '_rsvp_fields_list_callback' ),
@@ -250,9 +273,12 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( 'label_for' => $this->options_name . '_rsvp_field_list_new[event_title]' )
 		);
 		register_setting( $this->plugin_name, $this->options_name . '_rsvp_field_list_new',	array( $this, 'api_key_value_sanitation') );
+*/
 
-	}
+	} //End register setting...
 
+
+/* Not needed now, but keep it around for little longer 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_fields_list_callback() {
 		echo '<hr style="background-color: red; height: 3px"><h4>Handle RSVP Fields</h4>';
 	} 
@@ -268,9 +294,9 @@ class Meetup_Rsvp_Publisher_Admin {
 			?> />
 	<?php
 	}
+*/
 
-
-	// AUX Functions
+	// Functions to render settings sections and fields
 	/////////////////////////////////////////////////////////////
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
 		echo '<hr><h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
@@ -278,12 +304,72 @@ class Meetup_Rsvp_Publisher_Admin {
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_tab() { 
 		$api_key = get_option( $this->options_name . '_api_key_value' ); 
-		//		var_dump( $api_key );
 		?>
 		<input type="text" name="<?php echo $this->options_name . '_api_key_value';?>" 
 				id="<?php echo $this->options_name . '_api_key_value'; ?>" value="<?php echo $api_key; ?>"
 				style="width: 300px; height: 50px;" />
 	<?php
+	}
+
+	public function webilect_meetup_rsvp_publisher_options_transient_period_callback() {
+		echo '<hr><h2>Specify how often to poll Meetup.com for new data</h2>';
+	}
+
+	public function webilect_meetup_rsvp_publisher_options_transient_period_field_callback() { 
+	?>
+		<?php
+		/** Nugget to display current page, to selectively load scripts **/
+		//		global $current_screen;
+		//	 echo $current_screen->id; ?>	
+
+		<?php
+		//Load the array containing the transient period values
+		$transient_period = (array)get_option( $this->options_name . '_transient_period' );
+		$transient_value = 0;
+		
+		//process the transient period: convert to seconds + store in the DB
+		foreach( $transient_period as $key => $value) {
+			if( $key === 'seconds' && isset($value) )  {
+				$transient_value += $value * 1;	
+			}
+			else if( $key === 'minutes' && isset($value) )  {
+				$transient_value += $value * 60;	
+			}
+			else if( $key === 'hours' && isset($value) )  {
+				$transient_value += $value * 60 * 60;	
+			}
+			else if( $key === 'days' && isset($value) )  {
+				$transient_value += $value * 60 * 60 * 24;	
+			}
+		}
+
+		update_option( $this->options_name . '_transient_value', $transient_value, true );
+	
+		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+
+		?>
+	
+		<label style="width: 100px; float: left;" for="seconds">Seconds: </label>
+		<input id="seconds" name="<?php echo $this->options_name . '_transient_period[seconds]'; ?>"
+			value="<?php echo ( isset($transient_period['seconds']) ) ? $transient_period['seconds'] : ''; ?>" 
+			type="text" style="width: 80px; height: 50px"/> <br>
+
+		<label style="width: 100px; float: left" for="minutes">Minutes: </label>
+		<input id="minutes" name="<?php echo $this->options_name . '_transient_period[minutes]'; ?>"
+			value="<?php echo ( isset($transient_period['minutes']) ) ? $transient_period['minutes'] : ''; ?>" 
+			type="text" style="width: 80px; height: 50px;"/> <br>	
+
+		<label style="width: 100px; float: left" for="hours">Hours: </label>
+		<input id="hours" name="<?php echo $this->options_name . '_transient_period[hours]'; ?>"
+			value="<?php echo ( isset($transient_period['hours']) ) ? $transient_period['hours'] : ''; ?>" 
+			type="text" style="width: 80px; height: 50px"/> <br>	
+
+		<label style="width: 100px; float: left" for="days">Days: </label>
+		<input id="days" name="<?php echo $this->options_name . '_transient_period[days]'; ?>"
+			value="<?php echo ( isset($transient_period['days']) ) ? $transient_period['days'] : ''; ?>" 
+			type="text" style="width: 80px; height: 50px"/> <br> 	
+	
+	<?php 
 	}
 
 	public function api_key_value_sanitation( $input ) {
@@ -316,9 +402,9 @@ class Meetup_Rsvp_Publisher_Admin {
 	public function webilect_rsvp_publish_ajax() {
   		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();
 		
-//echo 'Shortcode received: ' . $_POST['shortcode'];	
+	//echo 'Shortcode received: ' . $_POST['shortcode'];	
 
-//		wp_send_json( $results );
+	//		wp_send_json( $results );
 
 		//echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]');	
 		echo do_shortcode( stripslashes($_POST['shortcode'])  );	

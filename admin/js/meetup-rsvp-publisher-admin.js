@@ -6,6 +6,8 @@
 		$( "#sortable" ).sortable();
 		$( "#sortable" ).disableSelection();		
 
+
+
 	/*	$('.custom-class').click( function() {
 			$(this).removeAttr('disabled');
 		});
@@ -266,7 +268,28 @@
 
 		/////////////////////////////////////////////////////////////////////
 		//End Code to handle creation of the Shortcode string
- 		
+
+		
+		function calculateTransient() { 
+			//Transient boxes
+			var seconds = $('#seconds').spinner({ 
+				min:0,
+				change: updateTransient() 
+			});
+			var minutes = $('#minutes').spinner({ min:0 });
+			var hours = $('#hours').spinner({ min:0 });
+			var days = $('#days').spinner({ min: 0 });				
+			var totalTransients = $('#transient-period').val();
+			console.log( "Transient Period: " + totalTransients );
+	
+		}
+		calculateTransient();
+		
+		function updateTransient( event, ui, multiplier ) {
+				
+			console.log( 'Multiplier ' + multiplier );
+		}
+
 	
 	});
 })(jQuery);

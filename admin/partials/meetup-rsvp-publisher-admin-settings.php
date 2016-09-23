@@ -24,13 +24,6 @@
 
 	</h2>
 
-	<form action="options.php" method="post">
-		<?php
-		settings_fields( $this->plugin_name );
-		do_settings_sections( $this->plugin_name );
-		submit_button();
-		?>
-	</form>
 
 	<?php //NOTE: Need to move styles out into a separate stylesheet file ?>
 
@@ -47,8 +40,8 @@
 	<h3>Drag to reorder fields</h3>
 
 	<div style="border-radius: 20px; background-color: #f20017; 
-					padding: 0; padding-top: 35px; padding-bottom: 20px;
-					width: 62%; max-width: 500px; text-align: center">
+					padding: 0; padding-top: 35px; padding-bottom: 20px; margin-left: 10px;
+					width: 62%; max-width: 400px; text-align: center">
 		<ul id="sortable" style="background: white">
 			<li class="ui-state-default">Event Title<input type="checkbox" checked></li>
 			<li class="ui-state-default">Hosted By<input type="checkbox" checked></li>
@@ -59,5 +52,13 @@
 			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Map Link<input type="checkbox" checked></li>
 		</ul>
 	</div>
+
+	<form action="options.php" method="post">
+		<?php
+		settings_fields( $this->plugin_name );
+		do_settings_sections( $this->plugin_name );
+		submit_button();
+		?>
+	</form>
 
 </div>
