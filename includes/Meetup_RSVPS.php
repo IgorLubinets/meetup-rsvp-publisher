@@ -43,11 +43,13 @@ class Meetup_RSVPS {
 //			echo '<h2>Querying Live Server...</h2>';
 		} 
 		catch ( \Exception $exception ) {
-			echo 'Exception caught!!!';
-			echo $exception->getMessage();
-
-			if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
-				echo '<h2>Wrong Key!</h2>';
+			//display error only to admin users
+			if( is_admin() ) { 
+				echo 'Exception caught!!!';
+				echo $exception->getMessage();
+				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
+					echo '<h2>Wrong Key!</h2>';
+				}
 			}
 
 			$this->error=true;
@@ -68,10 +70,11 @@ class Meetup_RSVPS {
 
 		$rsvps = get_transient( 'webilect_meetup_rsvps' );
 		if( false === $rsvps ) {
-//			echo '<h2>No Transient, going live...</h2>';
+			//echo '<h2>No Transient, going live...</h2>';
 			$rsvps = $this->getLiveRSVPs();
 			set_transient( 'webilect_meetup_rsvps', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
 		}
+			
 		return apply_filters('meetup_RSVP_filter', $rsvps);
 	}
 	
@@ -90,7 +93,7 @@ class Meetup_RSVPS {
 				$this->error=true;
 			
 				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
-					echo '<script type="text/javascript">alert( "Key Not Authorized! Please enter a correct API Key! You will be redirected..." ); </script>';
+					echo '<script type="text/javascript">alert( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
 					$redirect_script = '<script type="text/javascript">';
 					$redirect_script .= 'window.location = "' . admin_url() . 'options-general.php?page=meetup-rsvp-publisher-security"' ;
 					$redirect_script .= '</script>';
@@ -100,7 +103,7 @@ class Meetup_RSVPS {
 
 				return;
 			}
-			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 60 ); //hardcoded, store it for 60 seconds 
+			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 10 ); //hardcoded, store it for 60 seconds 
 		}
 		return $rsvps;
 	}
@@ -117,7 +120,7 @@ class Meetup_RSVPS {
 
 		$temp = [];
 
-		if( $this->filters ) {
+		if( $this->filters && !empty($data) ) {
 			foreach( $data as $rsvp ) {
 				if( isset( $this->filters['show'] ) && strtolower($this->filters['show']) === 'all' ) {
 					//echo "showing: " . $this->filters['show'] . "<br>";

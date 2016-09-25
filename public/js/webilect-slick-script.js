@@ -3,9 +3,13 @@
 
 	$('div[class^="meetup-rsvp-slides-"]').slick({
 			centerMode: true,
-  			centerPadding: '60px',
-	  		slidesToShow: 3,
+  		//	centerPadding: '60px',
+	  		slidesToShow: 2,
   			arrows: false,
+			infinite: true,
+			swipeToSlide: true,
+			centerPadding: '50px',
+			autoplay: true,
 			responsive: [
    	 	{
       		breakpoint: 1024,
@@ -13,7 +17,7 @@
         			arrows: false,
         			centerMode: true,
         			centerPadding: '40px',
-        			slidesToShow: 3
+        			slidesToShow: 2 
       		}
     		},
     		{

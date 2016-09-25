@@ -1,4 +1,58 @@
 /**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
+ * Meetup RSVP Publisher Styles 
  */
+
+/* List styles */
+/*******************************************************/
+.meetup-rsvp-publisher-list {
+
+}
+.meetup-rsvp-publisher-list>li {
+	padding: 10px; 
+	background: rgba(0, 0, 0, .015);
+	list-style-type: none; 
+	border: 1px solid gray;
+	width: 100%;
+	min-width: 300px;
+	max-width: 600px;
+	text-align: left;
+}
+.meetup-rsvp-publisher-list h3 {
+	color: red;	
+}
+.meetup-rsvp-publisher-list p {
+	text-align: left !important;
+}
+
+
+/* Slides styles */
+/******************************************************/
+.meetup-rsvp-slides-container {
+	width: 95%; 
+	margin: 0 auto;
+}
+.meetup-rsvp-publisher-slide {
+	font-size: .8em; 
+	background-color: #f20017; 
+	padding: 0; 
+   margin: 5px; 
+	box-shadow: 4px 4px 5px gray; 
+	width: 40%; 
+	float: left; 
+	border-radius: 20px; 
+   margin-bottom: 25px; 
+	max-height: 470px;
+}
+.meetup-text {
+	background-color: white;
+	min-height: 370px; 
+	margin-right: 0; 
+	margin-left: 0; 
+   margin-top: 50px; 
+	margin-bottom: 30px; 
+	padding: 7px;
+}
+.meetup-text h3 {
+	font-size: 1.75em;
+}
+

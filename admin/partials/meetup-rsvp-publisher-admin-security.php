@@ -28,7 +28,6 @@
 	<form action="options.php" method="post">
 		<?php
 		settings_fields( $this->plugin_name . '_security_key' );
-		settings_fields( $this->plugin_name . '_transient_period' );
 		do_settings_sections( $this->plugin_name . '-security' );
 		submit_button();
 		?>

@@ -49,7 +49,6 @@
 			<li class="ui-state-default">
 				<!--<span class="dashicons dashicons-move"></span>-->
 				<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Address<input type="checkbox" checked></li>
-			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Map Link<input type="checkbox" checked></li>
 		</ul>
 	</div>
 

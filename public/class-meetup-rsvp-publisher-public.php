@@ -124,7 +124,7 @@ class Meetup_Rsvp_Publisher_Public {
 
 		$plugin_base_path = WP_PLUGIN_DIR . '/' . $this->plugin_name;
 	
-		if( false === Meetup_Rsvp_Publisher::$rsvps->error ) {
+		if( false === Meetup_Rsvp_Publisher::$rsvps->error && !empty($results) ) {
 			ob_start();
 			if( isset( $shortcode_Filters['display'] ) ) {
 				if( $shortcode_Filters['display'] === 'list' ) {
@@ -145,7 +145,7 @@ class Meetup_Rsvp_Publisher_Public {
 			ob_end_clean();
 			return $output;
 		} else {
-			return '<p>An Error Has Occurred :-(</p>';	
+			return '<p>Error Displaying Events</p>';	
 		}	
 	}
 

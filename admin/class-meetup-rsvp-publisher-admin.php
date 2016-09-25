@@ -85,7 +85,10 @@ class Meetup_Rsvp_Publisher_Admin {
 	
 	//buggy css file
 		wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
-	
+
+		//add public stylesheet for preview pane
+		//revise later?
+		wp_enqueue_style( 'include-preview-pane-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/meetup-rsvp-publisher-public.css' );	
 	}
 
 	/**
@@ -233,7 +236,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			$this->plugin_name . '-security', 
 			$this->options_name . '_transient_settings'
 		);
-		register_setting( $this->plugin_name . '_transient_period', $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
+		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
 
 
 		//Add settings to set slider or list 
@@ -343,7 +346,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			}
 		}
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-//		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+		//	echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
 		
 		?>
 	
@@ -419,6 +422,13 @@ class Meetup_Rsvp_Publisher_Admin {
 	// End AUX Functions
 
 
+	public function handle_wrong_api_key() {
+		
+
+		
+
+	}
+
 	/*
 	 * Function for AJAX requests for JS enabled components
 	 *
@@ -426,9 +436,8 @@ class Meetup_Rsvp_Publisher_Admin {
 	public function webilect_rsvp_publish_ajax() {
   		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();
 		
-	//echo 'Shortcode received: ' . $_POST['shortcode'];	
-
-	//		wp_send_json( $results );
+		//echo 'Shortcode received: ' . $_POST['shortcode'];	
+		//wp_send_json( $results );
 
 		//echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]');	
 		echo do_shortcode( stripslashes($_POST['shortcode'])  );	

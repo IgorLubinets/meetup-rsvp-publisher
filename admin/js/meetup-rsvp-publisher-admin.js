@@ -52,6 +52,7 @@
   			arrows: false,
 			infinite: false,
 			centerMode: true,
+			swipeToSlide: true,
 			responsive: [
 
   			{
