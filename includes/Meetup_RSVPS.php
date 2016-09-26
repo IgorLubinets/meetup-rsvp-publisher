@@ -70,9 +70,10 @@ class Meetup_RSVPS {
 
 		$rsvps = get_transient( 'webilect_meetup_rsvps' );
 		if( false === $rsvps ) {
-			//echo '<h2>No Transient, going live...</h2>';
+			echo '<h2>No Transient, going live...</h2>';
 			$rsvps = $this->getLiveRSVPs();
-			set_transient( 'webilect_meetup_rsvps', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
+			//	set_transient( 'webilect_meetup_rsvps', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
+			set_transient( 'webilect_meetup_rsvps', $rsvps, get_option('webilect_meetup_rsvp_publisher_options_transient_value', 15) ); 
 		}
 			
 		return apply_filters('meetup_RSVP_filter', $rsvps);

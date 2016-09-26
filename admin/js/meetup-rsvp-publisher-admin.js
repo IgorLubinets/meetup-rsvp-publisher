@@ -274,7 +274,7 @@
 		function calculateTransient() { 
 			//Transient boxes
 			var seconds = $('#seconds').spinner({ 
-				min:0,
+				min:1, //if you set to zero, transient never expires!
 				change: updateTransient() 
 			});
 			var minutes = $('#minutes').spinner({ min:0 });
