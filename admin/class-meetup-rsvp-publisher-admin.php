@@ -81,7 +81,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		 * class.
 		 */
 
-	//	wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
 	
 	//buggy css file
 		wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
@@ -353,7 +353,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	<table style="table-layout: fixed; width: 300px">
 		<tbody>
 			<tr>
-				<th style="vertical-align: middle; width: 80px">	
+				<th style="vertical-align: middle; width: 80px; text-align: right">	
 					<label for="seconds">Seconds: </label>
 				</th>
 				<td>
@@ -362,8 +362,8 @@ class Meetup_Rsvp_Publisher_Admin {
 						type="text" style="width: 80px; height: 50px"/> <br>
 				</td>
 			</tr>
-			<tr style="vertical-align: middle">
-				<th style="vertical-align: middle">
+			<tr style="vertical-align: middle;">
+				<th style="vertical-align: middle; text-align: right">
 					<label style="vertical-align: middle" for="minutes">Minutes: </label>
 				</th>
 				<td>
@@ -373,8 +373,8 @@ class Meetup_Rsvp_Publisher_Admin {
 				</td>
 			</tr>	
 			<tr>
-				<th style="vertical-align: middle">	
-					<label style="float: left" for="hours">Hours: </label>
+				<th style="vertical-align: middle; text-align: right;">	
+					<label for="hours">Hours: </label>
 				</th>
 				<td>
 					<input id="hours" name="<?php echo $this->options_name . '_transient_period[hours]'; ?>"
@@ -383,8 +383,8 @@ class Meetup_Rsvp_Publisher_Admin {
 				</td>
 			</tr>
 			<tr>
-				<th style="vertical-align: middle">
-					<label style="float: left" for="days">Days: </label>
+				<th style="vertical-align: middle; text-align: right">
+					<label for="days">Days: </label>
 				</th>
 				<td>	
 					<input id="days" name="<?php echo $this->options_name . '_transient_period[days]'; ?>"

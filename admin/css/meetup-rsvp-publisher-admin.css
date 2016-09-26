@@ -6,3 +6,9 @@
 	opacity: .45;
 	transition-duration: .5s;
 }
+
+.ui-button-text {
+	font-size: 25px;
+	padding: 6px;
+	padding-right: 0;
+}
