@@ -421,14 +421,11 @@ class Meetup_Rsvp_Publisher_Admin {
 	///////////////////////////////////////////////////////////
 	// End AUX Functions
 
-
+	// WP ADMIN AJAX FUNCTIONS
+ 	//////////////////////////////////////////////////////////
 	public function handle_wrong_api_key() {
-		
-
-		
 
 	}
-
 	/*
 	 * Function for AJAX requests for JS enabled components
 	 *
@@ -450,4 +447,22 @@ class Meetup_Rsvp_Publisher_Admin {
 		wp_die();
 	}
 	
+	/*
+	 * Function for AJAX requests to reorder RSVP fields 
+	 *
+	 */
+	public function webilect_rsvp_publish_rsvp_fields_reorder_ajax() {
+		$rsvpFieldOrder = $_POST['rsvpFieldOrder'];
+		
+		if( isset($rsvpFieldOrder) ) {
+			update_option( $this->plugin_name . '_rsvp_field_order', $rsvpFieldOrder, true ); 
+		}	
+		echo "success!!!";
+		echo "received: " . json_encode($rsvpFieldOrder);  
+		
+		wp_die();
+	}
+ 	//////////////////////////////////////////////////////////
+	// END WP ADMIN AJAX FUNCTIONS
+
 }

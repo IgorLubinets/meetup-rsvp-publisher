@@ -43,12 +43,32 @@
 					padding: 0; padding-top: 35px; padding-bottom: 20px; margin-left: 10px;
 					width: 62%; max-width: 400px; text-align: center">
 		<ul id="sortable" style="background: white">
-			<li class="ui-state-default">Event Title<input type="checkbox" checked></li>
-			<li class="ui-state-default">Hosted By<input type="checkbox" checked></li>
-			<li class="ui-state-default">Date<input type="checkbox" checked></li>
-			<li class="ui-state-default">
-				<!--<span class="dashicons dashicons-move"></span>-->
-				<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Address<input type="checkbox" checked></li>
+
+		<?php
+		$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
+		foreach( $rsvpFieldOrder as $currentField ) : ?>
+			<?php 
+			if( 'rsvp-fields-event-title' === $currentField ) : ?>
+				<li id="rsvp-fields-event-title" class="ui-state-default">Event Title<input type="checkbox" checked></li>
+			<?php 
+			elseif( 'rsvp-fields-hostedby' === $currentField ) : ?>	
+				<li id="rsvp-fields-hostedby" class="ui-state-default">Hosted By<input type="checkbox" checked></li>
+			<?php
+			elseif( 'rsvp-fields-date' === $currentField ) : ?>
+				<li id="rsvp-fields-date" class="ui-state-default">Date<input type="checkbox" checked></li>
+			<?php 
+			elseif( 'rsvp-fields-address' === $currentField ) : ?>		
+				<li id="rsvp-fields-address" class="ui-state-default">
+					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Address<input type="checkbox" checked>
+				</li>
+			<?php
+			elseif ( 'rsvp-fields-details' === $currentField ) : ?> 
+				<li id="rsvp-fields-details" class="ui-state-default">Details<input type="checkbox" checked></li>
+			<?php 
+			endif; ?>
+		<?php
+		endforeach; ?>
+	
 		</ul>
 	</div>
 

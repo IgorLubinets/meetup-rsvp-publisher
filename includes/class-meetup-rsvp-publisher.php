@@ -182,9 +182,11 @@ class Meetup_Rsvp_Publisher {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );	
 		
-		//handle both public and private javascript calls to display the RSVPs
+		//handle admin-ajax private javascript calls 
 		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_ajax', $plugin_admin, 'webilect_rsvp_publish_ajax' );
-//$this->loader->add_action( 'wp_ajax_nopriv_webilect_rsvp_publish_ajax', $plugin_admin, 'webilect_rsvp_publish_ajax' );
+		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_rsvp_fields_reorder_ajax', $plugin_admin, 'webilect_rsvp_publish_rsvp_fields_reorder_ajax' );
+
+
 
 		$this->loader->add_action( 'admin_head-display_options_page', $plugin_admin, 'handle_wrong_api_key' ); 
 	}

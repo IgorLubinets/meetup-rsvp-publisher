@@ -1,35 +1,31 @@
 ( function($) {
 	$(document).ready( function() {
+	
+		$('div[class^="meetup-rsvp-slides-"]').each( function() {
+			console.log( 'width', $(this).width());	
+			var numberOfSlides = ( $(this).width() > 400 ) ? 2 : 1; 
 
-	$('div[class^="meetup-rsvp-slides-"]').slick({
-			centerMode: true,
-  		//	centerPadding: '60px',
-	  		slidesToShow: 2,
-  			arrows: false,
-			infinite: true,
-			swipeToSlide: true,
-			centerPadding: '50px',
-			autoplay: true,
-			responsive: [
-   	 	{
-      		breakpoint: 1024,
-      			settings: {
-        			arrows: false,
-        			centerMode: true,
-        			centerPadding: '40px',
-        			slidesToShow: 2 
-      		}
-    		},
-    		{
-      		breakpoint: 600,
-      			settings: {
-        			arrows: false,
-        			centerMode: true,
-        			centerPadding: '40px',
-        			slidesToShow: 1
-      		}
-    		}
-  			]
+			if( $(this).width() < 400 ) {
+				$(this).slick({
+					centerMode: true,
+	  				slidesToShow: 1,
+  					arrows: false,
+					infinite: true,
+					swipeToSlide: true,
+					centerPadding: '50px',
+					autoplay: true,
+				}); 
+			} else {
+				$(this).slick({
+					centerMode: false,
+	  				slidesToShow: 3,
+  					arrows: false,
+					infinite: true,
+					swipeToSlide: true,
+					centerPadding: '50px',
+					autoplay: true,
+				}); 
+			}
 		});
 
 		//testing admin-ajax.php 

@@ -1,13 +1,7 @@
 ( function($) {
 	$(document).ready( function() {
 
-		//Drag and Drop reorder RSVP details
-		/////////////////////////////////////
-		$( "#sortable" ).sortable();
-		$( "#sortable" ).disableSelection();		
-
-
-
+	
 	/*	$('.custom-class').click( function() {
 			$(this).removeAttr('disabled');
 		});
@@ -132,6 +126,30 @@
 
 			});
 		});
+
+
+		//Drag and Drop reorder RSVP details
+		/////////////////////////////////////
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();		
+
+		$('#sortable').sortable({
+			stop: function( event, ui ) {
+				console.log( $('#sortable').sortable("toArray") );
+				var rsvpFieldOrder = $('#sortable').sortable("toArray");
+				var data = {
+					action: 'webilect_rsvp_publish_rsvp_fields_reorder_ajax',
+					rsvpFieldOrder: rsvpFieldOrder,
+				};	
+				$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
+					console.log( response );	
+				});
+			}
+		});
+
+
+
+
 
 		//handle visibility toggle buttons
 		///////////////////////////////////////////
