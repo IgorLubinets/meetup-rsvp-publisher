@@ -309,6 +309,70 @@
 			console.log( 'Multiplier ' + multiplier );
 		}
 
+
+
+
+		//SETTINGS PAGE: handle RSVP fields visibility
+		///////////////////////////////////////////
+		// if user clicks on the eye, to make it invisible
+		$('.dashicons-hidden').click( function() {
+			console.log('Clicked cross eye');	
+
+			$(this).css( 'display', 'none' );
+			$(this).parent('li').find('.dashicons-visibility').css('display', 'block');		
+
+			var currentRsvpField = $(this).parent('li').attr('id');
+			console.log( 'current id=' + currentRsvpField );
+
+			$(this).parent('li').removeClass('grayout');
+	
+			var showHide = {
+				action: 'webilect_rsvp_publish_rsvp_fields_show_hide_fields_ajax',
+				todo: 'show',
+				id: currentRsvpField,
+			};		
+			
+			// send the show/hide command to the server				
+			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', showHide, function( response ) {
+				console.log( response );
+			});
+
+		
+
+		});
+		// if user clicks on the crossed out eye to make it visible
+		$('.dashicons-visibility').click( function() {
+			console.log( 'Clicked the straight eye');
+
+			$(this).css( 'display', 'none' );
+			$(this).parent('li').find('.dashicons-hidden').css('display', 'block');		
+
+			var currentRsvpField = $(this).parent('li').attr('id');
+			console.log( 'clicked invisible current id=' + currentRsvpField );
+
+	
+			$(this).parent('li').addClass('grayout');			
+			
+			var showHide = {
+				action: 'webilect_rsvp_publish_rsvp_fields_show_hide_fields_ajax',
+				todo: 'hide',
+				id: currentRsvpField,
+			};	
+			// send the show/hide command to the server				
+			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', showHide, function( response ) {
+			console.log( response );
+
+
+		});
+
+	
+		});
+		
+				//////////////////////////////////
+		// SETTINGS PAGE: end handle visibility toggle buttons
+
+
+
 	
 	});
 })(jQuery);

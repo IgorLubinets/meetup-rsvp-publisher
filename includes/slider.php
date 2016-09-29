@@ -1,7 +1,9 @@
 <?php 
 	//var_dump( $shortcode_Filters );
-	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
 
+	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
+	$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
+//	var_dump( $showHideRsvpFields );
 ?>
 <div class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?> meetup-slides-container">
 	<?php
@@ -17,13 +19,13 @@
 			<?php
 			foreach( $rsvpFieldOrder as $currentField ) : ?> 
 				<?php 
-				if( 'rsvp-fields-event-title' === $currentField ) : ?>
+				if( 'rsvp-fields-event-title' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
 					<p class="<?php echo $currentField; ?>">
 						<?php 
 						echo $item->name ?>
 					</p>
 				<?php 
-				elseif ( 'rsvp-fields-hostedby' === $currentField ) : ?>
+				elseif( 'rsvp-fields-hostedby' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
 					<p class="<?php echo $currentField; ?>"
 						style="font-size: small; text-align: left; margin: 0; padding-top: 0px">
 						(hosted by <strong>  
@@ -32,7 +34,7 @@
 						</strong>)
 					</p>
 				<?php
-				elseif ( 'rsvp-fields-date' === $currentField ) : ?>
+				elseif( 'rsvp-fields-date' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
 					<p class="<?php echo $currentField; ?>"
 						style="color: gray">
 						<?php 
@@ -40,7 +42,7 @@
 					</p>
 
 				<?php
-				elseif ( 'rsvp-fields-address' === $currentField ) : ?>
+				elseif( 'rsvp-fields-address' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
 					<a class="<?php echo $currentField; ?>"
 						href="https://maps.google.com/?q=<?php echo $item->venue->lat; ?>,<?php echo $item->venue->lon; ?>">	
 						<p class="<?php echo $currentField; ?>" style="color: gray;">
@@ -48,6 +50,8 @@
 							echo $item->venue->address_1; ?>, <?php echo $item->venue->city; ?>
 						</p>
 					</a>
+				<?php
+				elseif( 'rsvp-fields-details' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?> 
 					<p class="<?php echo $currentField; ?>">
 						<a href="<?php echo $item->event_url;?>">Event Details...</a>	
 					</p>

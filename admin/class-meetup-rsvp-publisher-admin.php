@@ -421,6 +421,8 @@ class Meetup_Rsvp_Publisher_Admin {
 	///////////////////////////////////////////////////////////
 	// End AUX Functions
 
+
+
 	// WP ADMIN AJAX FUNCTIONS
  	//////////////////////////////////////////////////////////
 	public function handle_wrong_api_key() {
@@ -432,13 +434,8 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function webilect_rsvp_publish_ajax() {
   		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();
-		
-		//echo 'Shortcode received: ' . $_POST['shortcode'];	
-		//wp_send_json( $results );
-
 		//echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]');	
 		echo do_shortcode( stripslashes($_POST['shortcode'])  );	
-		
 		/*
 		$response = WP_Ajax_Response( $dummy );
 		$response->send();
@@ -459,8 +456,31 @@ class Meetup_Rsvp_Publisher_Admin {
 		}	
 		echo "success!!!";
 		echo "received: " . json_encode($rsvpFieldOrder);  
-		
 		wp_die();
+	}
+
+	/*
+	 * Function for AJAX requests to show/hide RSVP fields
+	 */
+	public function webilect_rsvp_publish_rsvp_fields_show_hide_fields_ajax() {
+		$todo = $_POST['todo'];
+		$id = $_POST['id'];
+
+		echo 'Server received: ' . ' todo: ' . $_POST['todo'] . ' id: ' . $_POST['id'];	
+		
+		if( isset($todo) && isset($id) ) {
+			$showHideRsvpFields = get_option( $this->options_name . '_show_hide_rsvp_fields_list' );
+			
+			if( 'hide' === $todo ) {
+				$showHideRsvpFields[$id] = false;				
+			}
+			else {
+				$showHideRsvpFields[$id] = true;	
+			}
+			update_option( $this->options_name . '_show_hide_rsvp_fields_list', $showHideRsvpFields );
+		}
+
+		wp_die();	
 	}
  	//////////////////////////////////////////////////////////
 	// END WP ADMIN AJAX FUNCTIONS
