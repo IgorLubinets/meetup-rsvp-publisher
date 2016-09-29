@@ -109,7 +109,9 @@
 				<input type="submit" class="button button-primary" style="font-size: 1.3em; width: 110px; height: 50px" value="Preview">
 			</a>
 			<br><br>
-			<input type="submit" class="button button-secondary" style="width: 110px; height: 35px" value="Set As Default">		
+			<input id="set-as-default" type="submit" class="button button-secondary" 
+				style="width: 110px; height: 35px" value="Set As Default">		
+
 		</div>
 
 	</div>	

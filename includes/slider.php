@@ -1,12 +1,18 @@
+<?php
+/*
+ *	Partial file to display RSVPs as a slick slider, using divs.  
+ *	Called from inside the shortcode render function
+ */
+?>
 <?php 
 	//var_dump( $shortcode_Filters );
-
-	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
-	$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
-//	var_dump( $showHideRsvpFields );
 ?>
 <div class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?> meetup-slides-container">
 	<?php
+	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
+	$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
+	//	var_dump( $showHideRsvpFields );
+
 	foreach( $results as $item ) : ?>
 
 		<?php /*date voodoo */		
@@ -28,10 +34,10 @@
 				elseif( 'rsvp-fields-hostedby' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
 					<p class="<?php echo $currentField; ?>"
 						style="font-size: small; text-align: left; margin: 0; padding-top: 0px">
-						(hosted by <strong>  
+						( hosted by <strong>  
 							<?php 
 							echo $item->group->name; ?>
-						</strong>)
+						</strong> )
 					</p>
 				<?php
 				elseif( 'rsvp-fields-date' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?>
@@ -53,7 +59,7 @@
 				<?php
 				elseif( 'rsvp-fields-details' === $currentField && (false !== $showHideRsvpFields[$currentField]) ) : ?> 
 					<p class="<?php echo $currentField; ?>">
-						<a href="<?php echo $item->event_url;?>">Event Details...</a>	
+						<a href="<?php echo $item->event_url;?>" rel="nofollow">Event Details...</a>	
 					</p>
 				<?php
 				endif; ?>

@@ -1,3 +1,9 @@
+<?php
+/*
+ *	Partial file to display RSVPs as a unordered list, called from inside the shortcode render function
+ *
+ */
+?>
 <ul class="meetup-rsvp-publisher-list">
 	<?php
 	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
@@ -39,7 +45,7 @@
 					</p>	
 				<?php elseif( 'rsvp-fields-details' === $currentField && (false !== $showHideRsvpFields[$currentField])  ) : ?>
 					<p class="<?php echo $currentField; ?>">
-						<a href="'<?php echo $item->event_url;?>'">Event Details...</a> 
+						<a href="<?php echo $item->event_url;?>" rel="nofollow">Event Details...</a> 
 					</p>
 				<?php
 				endif; ?>	

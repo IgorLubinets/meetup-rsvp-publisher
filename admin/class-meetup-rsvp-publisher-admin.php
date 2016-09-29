@@ -71,21 +71,9 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function * defined in Meetup_Rsvp_Publisher_Loader as all of the hooks are defined * in that particular class.
-		 *
-		 * The Meetup_Rsvp_Publisher_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
-	
-	//buggy css file
 		wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
-
+		
 		//add public stylesheet for preview pane
 		//revise later?
 		wp_enqueue_style( 'include-preview-pane-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/meetup-rsvp-publisher-public.css' );	
@@ -98,30 +86,15 @@ class Meetup_Rsvp_Publisher_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Meetup_Rsvp_Publisher_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Meetup_Rsvp_Publisher_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 		wp_enqueue_script( 'backbone' );		
 		wp_enqueue_script( 'jquery-ui-core' );
-		
-//		wp_enqueue_script('jquery-ui-draggable');
-//		wp_enqueue_script('jquery-ui-droppable');
-		wp_enqueue_script('jquery-ui-sortable');
-		wp_enqueue_script('jquery-touch-punch');
-
-		wp_enqueue_script('jquery-ui-spinner');	
-
+		wp_enqueue_script( 'jquery-ui-sortable' );
+		wp_enqueue_script( 'jquery-touch-punch' );
+		wp_enqueue_script( 'jquery-ui-spinner' );	
 		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', true);		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone', 'slick-slider' ), $this->version, true);
-	
+		wp_localize_script( $this->plugin_name, 'admin_url', array('ajax_url' => admin_url( 'admin-ajax.php' ) ) );	
+
 	}
 
 	/**
@@ -175,7 +148,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		include_once 'partials/meetup-rsvp-publisher-admin-display.php';
 	}
 	/**
-	 * Render the options page for meetup-rsvp-publisher
+	 * Render the settings page for meetup-rsvp-publisher
 	 *
 	 */
 	public function display_key_settings() {
@@ -481,6 +454,15 @@ class Meetup_Rsvp_Publisher_Admin {
 		}
 
 		wp_die();	
+	}
+
+
+	/*
+	 *
+	 *
+	 */
+	public function webilect_rsvp_publish_set_default_shortcode_ajax() {
+
 	}
  	//////////////////////////////////////////////////////////
 	// END WP ADMIN AJAX FUNCTIONS

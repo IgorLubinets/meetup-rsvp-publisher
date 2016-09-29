@@ -109,7 +109,8 @@
 			};	
 			//console.log( 'Will Be Passing: ' + $('#shortCode').val() );
 			
-			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
+//			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
+			$.post( admin_url.ajax_url, data, function( response ) {
 				$('#shortcode-preview-slides').html(response);	
 				//		$('.meetup-admin-preview-slides').slick('reinit');
 				console.log( response );
@@ -128,6 +129,23 @@
 		});
 
 
+		//Sets the default shortcode to the one currently displayed in the box		
+		$('#set-as-default').click( function() {
+			var shortCodeValue = $('#shortCode').val();
+			if( shortCodeValue === '' ) {
+				alert( 'Shortcode is empty, try again' );
+			}
+
+			var data = {
+				action: 'webilect_rsvp_publish_set_default_shortcode_ajax',
+				shortcode: shortCodeValue,
+			};
+		
+			console.log( admin_url.ajax_url );	
+			
+
+		});
+
 		//Drag and Drop reorder RSVP details
 		/////////////////////////////////////
 		$( "#sortable" ).sortable();
@@ -141,7 +159,7 @@
 					action: 'webilect_rsvp_publish_rsvp_fields_reorder_ajax',
 					rsvpFieldOrder: rsvpFieldOrder,
 				};	
-				$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
+				$.post( admin_url.ajax_url, data, function( response ) {
 					console.log( response );	
 				});
 			}
@@ -333,7 +351,7 @@
 			};		
 			
 			// send the show/hide command to the server				
-			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', showHide, function( response ) {
+			$.post( admin_url.ajax_url, showHide, function( response ) {
 				console.log( response );
 			});
 
@@ -359,7 +377,7 @@
 				id: currentRsvpField,
 			};	
 			// send the show/hide command to the server				
-			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', showHide, function( response ) {
+			$.post( admin_url.ajax_url, showHide, function( response ) {
 			console.log( response );
 
 

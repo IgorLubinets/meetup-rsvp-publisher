@@ -1,10 +1,10 @@
 /**
- * All of the CSS for your admin-specific functionality should be
+ * CSS for the admin-specific functionality is 
  * included in this file.
  */
 .grayout {
-	opacity: .45;
-	transition-duration: .5s;
+	opacity: .55; 
+	transition-duration: .3s;
 }
 
 .ui-button-text {
