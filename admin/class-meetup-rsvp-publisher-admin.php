@@ -462,7 +462,11 @@ class Meetup_Rsvp_Publisher_Admin {
 	 *
 	 */
 	public function webilect_rsvp_publish_set_default_shortcode_ajax() {
-
+		echo stripslashes( $_POST['shortcode'] );
+		
+		
+			
+		wp_die();
 	}
  	//////////////////////////////////////////////////////////
 	// END WP ADMIN AJAX FUNCTIONS

@@ -186,6 +186,7 @@ class Meetup_Rsvp_Publisher {
 		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_ajax', $plugin_admin, 'webilect_rsvp_publish_ajax' );
 		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_rsvp_fields_reorder_ajax', $plugin_admin, 'webilect_rsvp_publish_rsvp_fields_reorder_ajax' );
 		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_rsvp_fields_show_hide_fields_ajax', $plugin_admin, 'webilect_rsvp_publish_rsvp_fields_show_hide_fields_ajax' );
+		$this->loader->add_action( 'wp_ajax_webilect_rsvp_publish_set_default_shortcode_ajax', $plugin_admin, 'webilect_rsvp_publish_set_default_shortcode_ajax' );		
 
 		$this->loader->add_action( 'admin_head-display_options_page', $plugin_admin, 'handle_wrong_api_key' ); 
 	}

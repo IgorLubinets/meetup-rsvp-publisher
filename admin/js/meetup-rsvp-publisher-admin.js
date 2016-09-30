@@ -141,8 +141,9 @@
 				shortcode: shortCodeValue,
 			};
 		
-			console.log( admin_url.ajax_url );	
-			
+			$.post( admin_url.ajax_url, data, function( response ) {
+				console.log( response );
+			});			
 
 		});
 
@@ -321,17 +322,16 @@
 	
 		}
 		calculateTransient();
-		
+
+		//Redundant?  Meant to do something else?	
 		function updateTransient( event, ui, multiplier ) {
-				
 			console.log( 'Multiplier ' + multiplier );
 		}
 
 
 
-
 		//SETTINGS PAGE: handle RSVP fields visibility
-		///////////////////////////////////////////
+		///////////////////////////////////////////////////
 		// if user clicks on the eye, to make it invisible
 		$('.dashicons-hidden').click( function() {
 			console.log('Clicked cross eye');	
@@ -354,9 +354,6 @@
 			$.post( admin_url.ajax_url, showHide, function( response ) {
 				console.log( response );
 			});
-
-		
-
 		});
 		// if user clicks on the crossed out eye to make it visible
 		$('.dashicons-visibility').click( function() {
@@ -378,15 +375,10 @@
 			};	
 			// send the show/hide command to the server				
 			$.post( admin_url.ajax_url, showHide, function( response ) {
-			console.log( response );
-
-
+				console.log( response );
+			});
 		});
-
-	
-		});
-		
-				//////////////////////////////////
+		//////////////////////////////////////////////////////
 		// SETTINGS PAGE: end handle visibility toggle buttons
 
 

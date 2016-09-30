@@ -37,19 +37,21 @@
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
 	-->
-	<h2 style="text-decoration: underline;">1) Pick Visibility:</h2>
-	<div style="margin: 25px; font-size: 1.4em; color: #f20017; width: 30%; float: left">
+	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0">1) Pick Overall Visibility</h1>
+	<div style="margin: 25px; font-size: 1.4em; color: #f20017; width: 30%; float: left; max-width: 300px">
 		<label style="margin: 15px; margin-right: 30px"><input type="radio" id="allStatusShow" name="allStatus" value="show" checked>Show All</label>
 		<label style="margin: 15px"><input type="radio" id="allStatusHide" name="allStatus" value="hide">Hide All</label>
 	</div>
-	<div style="margin-left: 45px; width: 10%; float: left;">
-		<button id="allStatusReset" value="Reset" class="button button-secondary" style="font-size: 20px; height: 50px" >
-			Reset button 
+<!--	<div style="width: 10%; float: left; padding: 10px">
+		<button id="allStatusReset" value="Reset" class="button button-primary" 
+			style="font-size: 17px; height: 50px">
+			Builder Reset 
 		</button>
 	</div>
+-->
 	<div style="clear:both"></div>	
 
-	<h2 style="text-decoration: underline">2) Pick Groups:</h2>
+	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0">2) Pick Your Groups ( click the <span class="dashicons dashicons-visibility" style="padding: 5px;"></span>  icon)</h1>
 	<span id="prevSlide" class="dashicons dashicons-arrow-left" 
 		style="margin: 0; margin-right: 50px; padding-top: 120px; font-size: 120px; color: #f20017; float: left; width: 4%"></span>
 	<div class="meetup-slides" style="width: 85%; float: left ">
@@ -95,7 +97,7 @@
 	<?php 
 	add_thickbox(); ?>
 
-	<h3 style="padding-left: 10px; text-decoration: underline">3) Get the Shortcode</h3>
+	<h1 style="text-decoration: underline; padding: 10px; padding-left: 0">3) Get the Shortcode</h1>
 	<?php
 	//Shortcode string container pane ?>
 	<div style="background-color: white; padding: 20px; 
@@ -103,14 +105,19 @@
 		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px; color: #f20017" 
 			placeholder="Your shortcode will show up here">[meetup-rsvps-publish show="all" display="slider" /]</textarea> 
 
-		<div style="float: right; width: 16%">
+		<div style="float: left; padding: 15px; padding-top: 5px;">
 			<a id="show-preview" class="thickbox"
 				href="#TB_inline?width=900&height=600&inlineId=shortcode-preview">
 				<input type="submit" class="button button-primary" style="font-size: 1.3em; width: 110px; height: 50px" value="Preview">
 			</a>
 			<br><br>
-			<input id="set-as-default" type="submit" class="button button-secondary" 
+			<!--<input id="set-as-default" type="submit" class="button button-secondary" 
 				style="width: 110px; height: 35px" value="Set As Default">		
+			-->
+			<button id="allStatusReset" value="Reset" class="button button-secondary" 
+				style="font-size: 14px; height: 50px">
+				Builder Reset 
+			</button>
 
 		</div>
 
