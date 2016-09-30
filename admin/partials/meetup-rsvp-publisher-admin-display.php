@@ -37,7 +37,7 @@
 		<span id="nextSlide" class="dashicons dashicons-arrow-right" style="font-size: 70px; color: #f20017;"></span>
 	</div>
 	-->
-	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0">1) Pick Overall Visibility</h1>
+	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0; font-style: italic;">1) Pick Visibility</h1>
 	<div style="margin: 25px; font-size: 1.4em; color: #f20017; width: 30%; float: left; max-width: 300px">
 		<label style="margin: 15px; margin-right: 30px"><input type="radio" id="allStatusShow" name="allStatus" value="show" checked>Show All</label>
 		<label style="margin: 15px"><input type="radio" id="allStatusHide" name="allStatus" value="hide">Hide All</label>
@@ -51,7 +51,7 @@
 -->
 	<div style="clear:both"></div>	
 
-	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0">2) Pick Your Groups ( click the <span class="dashicons dashicons-visibility" style="padding: 5px;"></span>  icon)</h1>
+	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0; font-style: italic">2) Pick Your Groups ( click the <span class="dashicons dashicons-visibility" style="padding: 5px; text-decoration: none"></span>  icon)</h1>
 	<span id="prevSlide" class="dashicons dashicons-arrow-left" 
 		style="margin: 0; margin-right: 50px; padding-top: 120px; font-size: 120px; color: #f20017; float: left; width: 4%"></span>
 	<div class="meetup-slides" style="width: 85%; float: left ">
@@ -97,7 +97,7 @@
 	<?php 
 	add_thickbox(); ?>
 
-	<h1 style="text-decoration: underline; padding: 10px; padding-left: 0">3) Get the Shortcode</h1>
+	<h1 style="text-decoration: underline; padding: 10px; padding-left: 0; font-style: italic">3) Get the Shortcode</h1>
 	<?php
 	//Shortcode string container pane ?>
 	<div style="background-color: white; padding: 20px; 
