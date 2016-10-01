@@ -1,11 +1,6 @@
 ( function($) {
-	$(document).ready( function() {
+$(document).ready( function() {
 
-	
-	/*	$('.custom-class').click( function() {
-			$(this).removeAttr('disabled');
-		});
-	*/	
 
 	//Shortcode object 
 	var shortCode = new Object; 
@@ -30,7 +25,7 @@
 
 	readyShortCode.on("change", function() {
 		console.log('Model Change Detected');
-	//	updateShortCodeString(); 
+		console.log('NEW SHORTCODE==> ' + updateShortCodeString() ); 
 		$('#shortCode').val( updateShortCodeString() );		
 		console.log('End Model Change Detected');
 		
@@ -70,15 +65,12 @@
 
   			]
 		});
-	//	$('.meetup-slides').slick('reinit');
-	//	$(window).trigger('resize');
 
 		$('#prevSlide').click( function() {
 			$('.meetup-slides').slick("slickPrev");
 		});
 		$('#nextSlide').click( function() {
 			$('.meetup-slides').slick("slickNext");
-			console.log( $('.meetup-slides').slick('slickCurrentSlide') );
 		});
 
 	//Duplicate, to try for the thickbox
@@ -109,7 +101,6 @@
 			};	
 			//console.log( 'Will Be Passing: ' + $('#shortCode').val() );
 			
-//			$.post('http://192.241.196.100/wp-admin/admin-ajax.php', data, function( response ) {
 			$.post( admin_url.ajax_url, data, function( response ) {
 				$('#shortcode-preview-slides').html(response);	
 				//		$('.meetup-admin-preview-slides').slick('reinit');
@@ -129,23 +120,23 @@
 		});
 
 
+		//REDUNDANT!! Decided not to go there...
 		//Sets the default shortcode to the one currently displayed in the box		
 		$('#set-as-default').click( function() {
 			var shortCodeValue = $('#shortCode').val();
 			if( shortCodeValue === '' ) {
 				alert( 'Shortcode is empty, try again' );
 			}
-
 			var data = {
 				action: 'webilect_rsvp_publish_set_default_shortcode_ajax',
 				shortcode: shortCodeValue,
 			};
-		
 			$.post( admin_url.ajax_url, data, function( response ) {
 				console.log( response );
 			});			
-
 		});
+		/////////////////////////////////////
+		//END REDUNDANT
 
 		//Drag and Drop reorder RSVP details
 		/////////////////////////////////////
@@ -165,9 +156,6 @@
 				});
 			}
 		});
-
-
-
 
 
 		//handle visibility toggle buttons
@@ -220,6 +208,7 @@
 				flipEye( true );
 				readyShortCode.set('excludeGroups', {});				
 				shortCode['allStatus'] = 'show';
+				readyShortCode.set('allStatus', 'show');	
 				updateShortCodeString();
 			}
 			
@@ -230,6 +219,7 @@
 				flipEye( false );
 				readyShortCode.set('excludeGroups', {});				
 				shortCode['allStatus'] = 'hide';	
+				readyShortCode.set('allStatus', 'hide');	
 				updateShortCodeString();
 			}
 		});	
@@ -239,6 +229,10 @@
 			shortCode['allStatus'] = 'show';
 			readyShortCode.set('excludeGroups', {});				
 			flipEye( true );
+			$('#shortCode').val('[meetup-rsvp-publisher show="all" display="slider"/]');	
+			//"rewind" to first slide
+			$('.meetup-slides').slick('slickGoTo', parseInt(1), true );
+
 		});
 
 		/**
@@ -297,13 +291,12 @@
 				}
 			});	
 						
-			var result = '[meetup-rsvps-publish ' + showHide +
+			var result = '[meetup-rsvp-publisher ' + showHide +
 				( (groupsList !== '')? (' ' + groupsListDirective + '="' + groupsList + 
 				'" ') : '' ) +' display="slider"/]';
 			console.log( 'RESULT: ' + result );
 			return result;		
 		}
-
 		/////////////////////////////////////////////////////////////////////
 		//End Code to handle creation of the Shortcode string
 
@@ -381,8 +374,6 @@
 		//////////////////////////////////////////////////////
 		// SETTINGS PAGE: end handle visibility toggle buttons
 
-
-
 	
-	});
+});
 })(jQuery);

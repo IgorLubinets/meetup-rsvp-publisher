@@ -100,7 +100,7 @@ class Meetup_Rsvp_Publisher_Public {
 	}
 
 	public function webilect_meetup_rsvp_publisher_register_shortcodes() {
-		add_shortcode( 'meetup-rsvps-publish', array( $this, 'webilect_meetup_rsvp_publisher_the_shortcode' ) );
+		add_shortcode( 'meetup-rsvp-publisher', array( $this, 'webilect_meetup_rsvp_publisher_the_shortcode' ) );
 	}
 	
 	public function webilect_meetup_rsvp_publisher_the_shortcode( $shortcode_Filters ) {

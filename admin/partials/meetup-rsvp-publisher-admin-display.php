@@ -103,7 +103,7 @@
 	<div style="background-color: white; padding: 20px; 
 			box-shadow: 1px 1px 3px gray; border-radius: 3px">
 		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px; color: #f20017" 
-			placeholder="Your shortcode will show up here">[meetup-rsvps-publish show="all" display="slider" /]</textarea> 
+			placeholder="Your shortcode will show up here">[meetup-rsvp-publisher show="all" display="slider" /]</textarea> 
 
 		<div style="float: left; padding: 15px; padding-top: 5px;">
 			<a id="show-preview" class="thickbox"
@@ -130,8 +130,8 @@
 			Live Preview	
 		</h1>
 		<div id="shortcode-preview-slides">
-			<?php echo do_shortcode('[meetup-rsvps-publish show="all" display="slider" admin_preview="true" /]'); ?>
-			<?php //echo do_shortcode('[meetup-rsvps-publish show="all"/]'); ?>
+			<?php echo do_shortcode('[meetup-rsvp-publisher show="all" display="slider" admin_preview="true" /]'); ?>
+			<?php //echo do_shortcode('[meetup-rsvp-publisher show="all"/]'); ?>
 		</div>
 	</div>
 
