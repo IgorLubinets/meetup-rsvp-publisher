@@ -72,11 +72,11 @@ class Meetup_Rsvp_Publisher_Admin {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/meetup-rsvp-publisher-admin.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'slick-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/slick.css' );		
+		wp_enqueue_style( 'slick-styles', plugin_dir_url( dirname(__FILE__) ) . 'public/css/slick.css' );		
 		
 		//add public stylesheet for preview pane
 		//revise later?
-		wp_enqueue_style( 'include-preview-pane-styles', plugins_url() . '/meetup-rsvp-publisher/public/css/meetup-rsvp-publisher-public.css' );	
+		wp_enqueue_style( 'include-preview-pane-styles', plugin_dir_url( dirname(__FILE__) ) . 'public/css/meetup-rsvp-publisher-public.css' );	
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		wp_enqueue_script( 'jquery-touch-punch' );
 		wp_enqueue_script( 'jquery-ui-spinner' );	
-		wp_enqueue_script( 'slick-slider', plugins_url() . '/meetup-rsvp-publisher/public/js/slick.min.js', $this->plugin_name, '', true);		
+		wp_enqueue_script( 'slick-slider', plugin_dir_url( dirname(__FILE__) ) . 'public/js/slick.min.js', $this->plugin_name, '', true);		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/meetup-rsvp-publisher-admin.js', array( 'jquery', 'backbone', 'slick-slider' ), $this->version, true);
 		wp_localize_script( $this->plugin_name, 'admin_url', array('ajax_url' => admin_url( 'admin-ajax.php' ) ) );	
 
