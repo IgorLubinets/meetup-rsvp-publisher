@@ -24,6 +24,34 @@
 	margin-bottom: 25px;
 }
 
+.visibility-buttons-deck {
+	padding: 0px; 
+	padding-top: 5px; 
+	padding-bottom: 5px; 
+	height: 25px; 
+	text-align: center; 
+	margin: 0 auto;
+}
+
+#prevSlide {
+	margin: 0; 
+	margin-right: 50px; 
+	padding-top: 120px; 
+	font-size: 120px; 
+	color: #ed1c40; 
+	float: left; 
+	width: 4%;
+}
+
+#nextSlide {
+	margin: 0; 
+	margin-right: 50px; 
+	padding-top: 120px; 
+	font-size: 120px; 
+	color: #ed1c40; 
+	float: left; 
+	width: 4%;
+}
 
 .admin-rsvp-card-container { 
 	border-radius: 20px; 

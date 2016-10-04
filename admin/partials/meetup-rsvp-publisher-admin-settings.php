@@ -31,7 +31,10 @@
 
 		<?php
 		$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
-		$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
+		if($rsvpFieldOrder === false) {
+			$rsvpFieldOrder = array( 'rsvp-fields-date', 'rsvp-fields-event-title', 'rsvp-fields-address', 'rsvp-fields-hostedby', 'rsvp-fields-details' );
+		}
+			$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
 		//var_dump($showHideRsvpFields);
 
 		foreach( $rsvpFieldOrder as $currentField ) : ?>

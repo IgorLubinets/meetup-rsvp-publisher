@@ -53,14 +53,14 @@
 
 	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0; font-style: italic">2) Pick Your Groups ( click the <span class="dashicons dashicons-visibility" style="padding: 5px; text-decoration: none"></span>  icon)</h1>
 
-	<span id="prevSlide" class="dashicons dashicons-arrow-left" 
-		style="margin: 0; margin-right: 50px; padding-top: 120px; font-size: 120px; color: #ed1c40; float: left; width: 4%"></span>
+	<span id="prevSlide" class="dashicons dashicons-arrow-left"></span>
+
 	<div class="meetup-slides" style="width: 85%; float: left ">
 		<?php
 		foreach( $groups->results as $item ) {
 		?>
 			<div id="<?php echo $item->id; ?>" class="meetup-item admin-meetup-item">
-				<div class="visibility-buttons-deck" style="padding: 0px; padding-top: 5px; padding-bottom: 5px; height: 25px; text-align: center; margin: 0 auto">
+				<div class="visibility-buttons-deck">
 					<span id="make-visible-<?php echo $item->id;?>" class="dashicons dashicons-visibility" 
 						style="font-size: 45px; padding-top: 5px; color: white; margin: 0 auto; text-align: center; width: auto"></span>
 					<span id="make-invisible-<?php echo $item->id;?>" class="dashicons dashicons-hidden" 
@@ -85,8 +85,8 @@
 			}
 			?>
 	</div>
-	<span id="nextSlide" class="dashicons dashicons-arrow-right" 
-			style="padding: 0; padding-top: 120px; margin: 0; font-size: 120px; color: #ed1c40; float: left; width: 4%"></span>
+
+	<span id="nextSlide" class="dashicons dashicons-arrow-right"></span>
 
 
 </div>
@@ -130,16 +130,15 @@
 	</div>	
 
 	<?php 
-	//Try to create modal, thick-box ?>
+	//Creates modal (thick-box) ?>
 	<div id="shortcode-preview" style="display: none">
 		<h1 style="font-size: 3em;">
 			Live Preview	
 		</h1>
 		<div id="shortcode-preview-slides">
-			<?php echo do_shortcode('[meetup-rsvp-publisher show="all" display="slider" admin_preview="true" /]'); ?>
-			<?php //echo do_shortcode('[meetup-rsvp-publisher show="all"/]'); ?>
+			<?php //echo do_shortcode('[meetup-rsvp-publisher show="all" display="slider" admin_preview="true" /]'); ?>
+			<?php echo do_shortcode('[meetup-rsvp-publisher /]'); ?>
 		</div>
 	</div>
-
 
 </div>
