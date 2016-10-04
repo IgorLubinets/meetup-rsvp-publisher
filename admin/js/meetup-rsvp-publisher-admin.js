@@ -6,6 +6,9 @@ $(document).ready( function() {
 	var shortCode = new Object; 
 	shortCode['allStatus'] = $('input[name="allStatus"]:checked').val();
 	console.log('INITIAL: CHeCKBOX SET TO: ' + shortCode['allStatus'] );
+	
+	shortCode['display'] = $('input[name="pickLayout"]:checked').val();
+	console.log('PICK LAYOUT = ', shortCode['display'] );
 
 	var ShortCodeModel = Backbone.Model.extend({
 		initialize: function(){
@@ -16,6 +19,7 @@ $(document).ready( function() {
 			else {
 				flipEye( false );
 			}
+			
 		}	
 	});
 	var readyShortCode = new ShortCodeModel({ 
@@ -28,7 +32,7 @@ $(document).ready( function() {
 		console.log('NEW SHORTCODE==> ' + updateShortCodeString() ); 
 		$('#shortCode').val( updateShortCodeString() );		
 		console.log('End Model Change Detected');
-		
+		flashShortCode( $('#shortCode'), 'animation' ); 	
 	});
 
 	var item_length = $('.meetup-slides>div').length;
@@ -227,13 +231,35 @@ $(document).ready( function() {
 			$('#allStatusHide').attr('checked', false);
 			$('#allStatusShow').attr('checked', true);
 			shortCode['allStatus'] = 'show';
+			readyShortCode.set('allStatus', 'show');	
 			readyShortCode.set('excludeGroups', {});				
+			readyShortCode.set('display', '');
 			flipEye( true );
-			$('#shortCode').val('[meetup-rsvp-publisher show="all" display="slider"/]');	
+			$('#shortCode').val('[meetup-rsvp-publisher show="all"/]');	
 			//"rewind" to first slide
 			$('.meetup-slides').slick('slickGoTo', parseInt(1), true );
 
 		});
+
+	
+		//SHORTCODE SECTION, SHORTCODE BUILDER
+		//DISPLAY style radio buttons 	
+		//Slider radio button in the Shortcode section
+		$('#pickSlider').click( function() {
+			shortCode['display'] = 'slider';
+			readyShortCode.set('display', 'slider');
+		});
+		//List radio button in the Shortcode section
+		$('#pickList').click( function() {
+			shortCode['display'] = 'list';
+			readyShortCode.set('display', 'list');
+		});
+		//Default radio button selected
+		$('#useDefault').click( function() {
+			shortCode['display'] = '';
+			readyShortCode.set('display', '');
+		});	
+
 
 		/**
 		 * Function to turn all slides either ON or OFF
@@ -278,7 +304,12 @@ $(document).ready( function() {
 			var showHide = ( shortCode['allStatus'] === 'show' ) ? 'show="all"' : 'hide="all"'; 
 			var groupsListDirective = ( shortCode['allStatus'] === 'show' ) ? 'hideGroups' : 'showGroups';
 			var groupsList = '';
-			
+			var layoutString = '';	
+			var displayLayout = ( shortCode['display'] !== 'default' ) ? shortCode['display'] : false;		
+			if( displayLayout ) {
+				layoutString = 'display="' + displayLayout + '"';
+			}
+	
 			$.each( readyShortCode.get('excludeGroups'), function( key, value ) {
 				if( value === true  && shortCode['allStatus'] === 'hide' )	{
 					console.log( key + 'Value : ' + value );	
@@ -291,11 +322,13 @@ $(document).ready( function() {
 				}
 			});	
 						
+			
 			var result = '[meetup-rsvp-publisher ' + showHide +
 				( (groupsList !== '')? (' ' + groupsListDirective + '="' + groupsList + 
-				'" ') : '' ) +' display="slider"/]';
+				'" ') : '' ) + ' ' + layoutString  + '/]';
 			console.log( 'RESULT: ' + result );
 			return result;		
+			
 		}
 		/////////////////////////////////////////////////////////////////////
 		//End Code to handle creation of the Shortcode string
@@ -374,6 +407,12 @@ $(document).ready( function() {
 		//////////////////////////////////////////////////////
 		// SETTINGS PAGE: end handle visibility toggle buttons
 
+		//AUX UX function
+		function flashShortCode ( element, nameOfClass ) {
+			element.addClass( nameOfClass );
+			setTimeout( function() { element.removeClass( nameOfClass ); }, 1000 );	
+		}
+		
 	
 });
 })(jQuery);

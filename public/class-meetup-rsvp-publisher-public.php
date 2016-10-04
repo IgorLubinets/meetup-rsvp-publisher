@@ -135,9 +135,13 @@ class Meetup_Rsvp_Publisher_Public {
 					include( $plugin_base_path . '/includes/slider.php' );
 				}
 			} else {
-				//include( 'list.php' );	
-				include( $plugin_base_path . '/includes/list.php' );
-
+				$defaultLayout = get_option( 'webilect_meetup_rsvp_publisher_options_rsvp_card_style_format' );
+				if( $defaultLayout === 'list' ) {
+					include( $plugin_base_path . '/includes/list.php' );
+				}
+				else {
+					include( $plugin_base_path . '/includes/slider.php' );
+				}
 			}	
 
 			//	return ob_get_clean(); //without creating an extra variable

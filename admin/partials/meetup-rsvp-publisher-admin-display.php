@@ -52,16 +52,14 @@
 	<div style="clear:both"></div>	
 
 	<h1 style="text-decoration: underline; padding: 15px; padding-left: 0; font-style: italic">2) Pick Your Groups ( click the <span class="dashicons dashicons-visibility" style="padding: 5px; text-decoration: none"></span>  icon)</h1>
+
 	<span id="prevSlide" class="dashicons dashicons-arrow-left" 
-		style="margin: 0; margin-right: 50px; padding-top: 120px; font-size: 120px; color: #f20017; float: left; width: 4%"></span>
+		style="margin: 0; margin-right: 50px; padding-top: 120px; font-size: 120px; color: #ed1c40; float: left; width: 4%"></span>
 	<div class="meetup-slides" style="width: 85%; float: left ">
 		<?php
 		foreach( $groups->results as $item ) {
 		?>
-			<div id="<?php echo $item->id; ?>" class="meetup-item"
-				 style="background-color: #f20017; padding: 0; 
-					margin: 5px; box-shadow: 4px 4px 5px gray; width: 40%; float: left; border-radius: 20px; margin-bottom: 25px">
-						
+			<div id="<?php echo $item->id; ?>" class="meetup-item admin-meetup-item">
 				<div class="visibility-buttons-deck" style="padding: 0px; padding-top: 5px; padding-bottom: 5px; height: 25px; text-align: center; margin: 0 auto">
 					<span id="make-visible-<?php echo $item->id;?>" class="dashicons dashicons-visibility" 
 						style="font-size: 45px; padding-top: 5px; color: white; margin: 0 auto; text-align: center; width: auto"></span>
@@ -88,7 +86,7 @@
 			?>
 	</div>
 	<span id="nextSlide" class="dashicons dashicons-arrow-right" 
-			style="padding: 0; padding-top: 120px; margin: 0; font-size: 120px; color: #f20017; float: left; width: 4%"></span>
+			style="padding: 0; padding-top: 120px; margin: 0; font-size: 120px; color: #ed1c40; float: left; width: 4%"></span>
 
 
 </div>
@@ -102,8 +100,16 @@
 	//Shortcode string container pane ?>
 	<div style="background-color: white; padding: 20px; 
 			box-shadow: 1px 1px 3px gray; border-radius: 3px">
-		<textarea id="shortCode" style="height: 120px; width: 80%; margin: 10px; margin-top: 5px; font-weight: 300; font-size: 28px; color: #f20017" 
-			placeholder="Your shortcode will show up here">[meetup-rsvp-publisher show="all" display="slider" /]</textarea> 
+
+		<div style="margin: 0; padding-bottom: 15px; font-size: 1.4em; color: #f20017; width: 50%; float: left; max-width: 450px">
+			<label style="margin: 15px; margin-right: 30px"><input type="radio" id="pickSlider" name="pickLayout" value="slider">Slider</label>
+			<label style="margin: 15px; margin-right: 30px"><input type="radio" id="pickList" name="pickLayout" value="list">List</label>
+			<label style="margin: 15px"><input type="radio" id="useDefault" name="pickLayout" value="default" checked>Default</label>
+		</div>
+		<div style="clear:both"></div>	
+
+
+		<textarea id="shortCode" placeholder="Your shortcode will show up here">[meetup-rsvp-publisher /]</textarea> 
 
 		<div style="float: left; padding: 15px; padding-top: 5px;">
 			<a id="show-preview" class="thickbox"
