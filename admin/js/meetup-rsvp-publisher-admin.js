@@ -104,7 +104,10 @@ $(document).ready( function() {
 				shortcode: shortCodeValue,
 			};	
 			//console.log( 'Will Be Passing: ' + $('#shortCode').val() );
-			
+		 
+			console.log('ADMIN_AJAX============' , admin_url.ajax_url);		
+
+	
 			$.post( admin_url.ajax_url, data, function( response ) {
 				$('#shortcode-preview-slides').html(response);	
 				//		$('.meetup-admin-preview-slides').slick('reinit');

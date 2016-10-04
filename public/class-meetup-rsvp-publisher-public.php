@@ -122,7 +122,11 @@ class Meetup_Rsvp_Publisher_Public {
 		$results = Meetup_Rsvp_Publisher::$rsvps->getCachedRSVPs();  
 		//var_dump($results);
 
-		$plugin_base_path = WP_PLUGIN_DIR . '/' . $this->plugin_name;
+//		$plugin_base_path = WP_PLUGIN_DIR . '/' . $this->plugin_name;
+		
+		$plugin_base_path = plugin_dir_path( dirname( __FILE__ ) );
+
+//		echo $plugin_base_path;
 	
 		if( false === Meetup_Rsvp_Publisher::$rsvps->error && !empty($results) ) {
 			ob_start();
