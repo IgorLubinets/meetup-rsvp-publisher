@@ -36,7 +36,7 @@
 		}
 			$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
 		if($showHideRsvpField === false) {
-			$rsvpFieldOrder = array( 'rsvp-fields-date', 'rsvp-fields-event-title', 'rsvp-fields-address', 'rsvp-fields-hostedby', 'rsvp-fields-details' );
+			$showHideRsvpField = array( 'rsvp-fields-date', 'rsvp-fields-event-title', 'rsvp-fields-address', 'rsvp-fields-hostedby', 'rsvp-fields-details' );
 
 		}
 
