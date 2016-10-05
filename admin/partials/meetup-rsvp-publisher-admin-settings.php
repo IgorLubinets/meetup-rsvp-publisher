@@ -29,6 +29,12 @@
 	<div class="admin-rsvp-card-container">
 		<ul id="sortable" style="background: white">
 
+	  <?php
+      $rsvpFieldOrder = get_option( $this->options_name . '_rsvp_field_order' );
+      $showHideRsvpFields = (array)get_option( $this->options_name . '_show_hide_rsvp_fields_list' );
+      ?>
+
+
 		<?php
 		foreach( $rsvpFieldOrder as $currentField ) : ?>
 			<?php 
