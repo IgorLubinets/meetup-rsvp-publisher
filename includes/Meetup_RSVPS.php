@@ -55,7 +55,7 @@ class Meetup_RSVPS {
 			$this->error=true;
 			return;
 		}
-		var_dump( $rsvps->results );
+//		var_dump( $rsvps->results );
 		return $rsvps->results;
 	}
 
