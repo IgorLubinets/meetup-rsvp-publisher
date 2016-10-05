@@ -120,7 +120,7 @@ class Meetup_RSVPS {
 		//echo '<br>Dumping filters from the filter_RSVPs function';
 		//var_dump( $this->filters );
 
-		var_dump( $data );
+//		var_dump( $data );
 
 		$temp = [];
 
