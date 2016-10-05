@@ -451,7 +451,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		$rsvpFieldOrder = $_POST['rsvpFieldOrder'];
 		
 		if( isset($rsvpFieldOrder) ) {
-			update_option( $this->plugin_name . '_rsvp_field_order', $rsvpFieldOrder, true ); 
+			update_option( $this->options_name . '_rsvp_field_order', $rsvpFieldOrder, true ); 
 		}	
 		echo "success!!!";
 		echo "received: " . json_encode($rsvpFieldOrder);  
