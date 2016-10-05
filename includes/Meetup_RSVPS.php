@@ -55,6 +55,7 @@ class Meetup_RSVPS {
 			$this->error=true;
 			return;
 		}
+		var_dump( $rsvps->results );
 		return $rsvps->results;
 	}
 
@@ -118,6 +119,8 @@ class Meetup_RSVPS {
 	//	echo '<h1>Filtering...</h1>';	
 		//echo '<br>Dumping filters from the filter_RSVPs function';
 		//var_dump( $this->filters );
+
+		var_dump( $data );
 
 		$temp = [];
 

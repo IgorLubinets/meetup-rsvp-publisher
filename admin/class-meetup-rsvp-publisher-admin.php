@@ -301,7 +301,7 @@ class Meetup_Rsvp_Publisher_Admin {
 		<?php
 		//Load the array containing the transient period values
 		$transient_period = (array)get_option( $this->options_name . '_transient_period' );
-		$transient_value = 0;
+		$transient_value = 1; //just to make sure it is never 0, please never 0, never again!
 		
 		//process the transient period: convert to seconds + store in the DB
 		foreach( $transient_period as $key => $value) {
@@ -319,7 +319,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			}
 		}
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-		//	echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+			echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
 		
 		?>
 	
