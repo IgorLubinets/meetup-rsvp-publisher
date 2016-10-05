@@ -29,6 +29,7 @@
 	<div class="admin-rsvp-card-container">
 		<ul id="sortable" style="background: white">
 
+		<?php
 		foreach( $rsvpFieldOrder as $currentField ) : ?>
 			<?php 
 
