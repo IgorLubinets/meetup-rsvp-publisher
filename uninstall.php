@@ -40,3 +40,5 @@ delete_option('webilect_meetup_rsvp_publisher_options_main_container_blah');
 delete_option('webilect_meetup_rsvp_publisher_options_api_key_value');
 delete_option('webilect_meetup_rsvp_publisher_options_api_key');
 
+delete_transient('webilect_meetup_rsvps');
+delete_transient('webilect_meetup_rsvps_groups');
