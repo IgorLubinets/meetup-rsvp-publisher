@@ -29,19 +29,6 @@
 	<div class="admin-rsvp-card-container">
 		<ul id="sortable" style="background: white">
 
-		<?php
-		$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
-		if($rsvpFieldOrder === false) {
-			$rsvpFieldOrder = array( 'rsvp-fields-date', 'rsvp-fields-event-title', 'rsvp-fields-address', 'rsvp-fields-hostedby', 'rsvp-fields-details' );
-			update_option( $this->options_name . '_show_hide_rsvp_field_order', $rsvpFieldOrder );
-		}
-
-		$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
-		if($showHideRsvpField === false) {
-			$showHideRsvpField = array( 'rsvp-fields-date', 'rsvp-fields-event-title', 'rsvp-fields-address', 'rsvp-fields-hostedby', 'rsvp-fields-details' );
-			update_option( $this->options_name . '_show_hide_rsvp_fields_list', $showHideRsvpFields );
-		}
-
 		foreach( $rsvpFieldOrder as $currentField ) : ?>
 			<?php 
 
