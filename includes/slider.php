@@ -9,7 +9,7 @@
 ?>
 <div class="meetup-rsvp-slides-<?php echo Meetup_RSVPS::$slidersCounter; ?> meetup-slides-container">
 	<?php
-	$rsvpFieldOrder = get_option( 'meetup-rsvp-publisher_rsvp_field_order' );
+	$rsvpFieldOrder = get_option( 'webilect_meetup_rsvp_publisher_options_rsvp_field_order' );
 	$showHideRsvpFields = (array)get_option( 'webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list' );
 	//	var_dump( $showHideRsvpFields );
 
