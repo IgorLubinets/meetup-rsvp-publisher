@@ -215,7 +215,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( $this, $this->options_name . '_api_key_tab' ),
 			$this->plugin_name . '-security',
 			$this->options_name . '_key_settings',
-			array( 'label_for' => $this->options_name . '_api_key_value' )
+			array( 'label_for' => $this->options_name . '_api_key_value', 'class' => 'security-labels' )
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
 
@@ -233,7 +233,8 @@ class Meetup_Rsvp_Publisher_Admin {
 			'Beware: you are limited as to how many requests you are allowed per second.<br>(If you exceed the limit, you might get temporarily locked out)',			//title
 			array( $this, $this->options_name . '_transient_period_field_callback' ), //callback
 			$this->plugin_name . '-security', 
-			$this->options_name . '_transient_settings'
+			$this->options_name . '_transient_settings',
+			array( 'class' => 'security-labels' )
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
 
@@ -301,7 +302,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	// Functions to render settings sections and fields
 	/////////////////////////////////////////////////////////////
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
-		echo '<hr><h2>' . __( 'Please enter Your Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
+		echo '<hr><h2 class="admin-header">' . __( 'Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_tab() { 
@@ -314,7 +315,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_callback() {
-		echo '<hr><h2>Specify the time period to cache data</h2>';
+		echo '<hr><h2 class="admin-header">Specify the time period to cache data</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_field_callback() { 
@@ -344,8 +345,9 @@ class Meetup_Rsvp_Publisher_Admin {
 				$transient_value += $value * 60 * 60 * 24;	
 			}
 		}
+		
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-			echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+	//		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
 		
 		?>
 	
@@ -353,17 +355,17 @@ class Meetup_Rsvp_Publisher_Admin {
 		<tbody>
 			<tr>
 				<th style="vertical-align: middle; width: 80px; text-align: right">	
-					<label for="seconds">Seconds: </label>
+					<label for="seconds" class="transient-labels">Seconds: </label>
 				</th>
 				<td>
 					<input id="seconds" name="<?php echo $this->options_name . '_transient_period[seconds]'; ?>"
-						value="<?php echo ( isset($transient_period['seconds']) ) ? $transient_period['seconds'] : ''; ?>" 
+						value="<?php echo ( isset($transient_period['seconds']) ) ? $transient_period['seconds'] : 1; ?>" 
 						type="text" style="width: 80px; height: 50px"/> <br>
 				</td>
 			</tr>
 			<tr style="vertical-align: middle;">
 				<th style="vertical-align: middle; text-align: right">
-					<label style="vertical-align: middle" for="minutes">Minutes: </label>
+					<label style="vertical-align: middle" for="minutes" class="transient-labels">Minutes: </label>
 				</th>
 				<td>
 					<input id="minutes" name="<?php echo $this->options_name . '_transient_period[minutes]'; ?>"
@@ -373,7 +375,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			</tr>	
 			<tr>
 				<th style="vertical-align: middle; text-align: right;">	
-					<label for="hours">Hours: </label>
+					<label for="hours" class="transient-labels" >Hours: </label>
 				</th>
 				<td>
 					<input id="hours" name="<?php echo $this->options_name . '_transient_period[hours]'; ?>"
@@ -383,7 +385,7 @@ class Meetup_Rsvp_Publisher_Admin {
 			</tr>
 			<tr>
 				<th style="vertical-align: middle; text-align: right">
-					<label for="days">Days: </label>
+					<label for="days" class="transient-labels">Days: </label>
 				</th>
 				<td>	
 					<input id="days" name="<?php echo $this->options_name . '_transient_period[days]'; ?>"

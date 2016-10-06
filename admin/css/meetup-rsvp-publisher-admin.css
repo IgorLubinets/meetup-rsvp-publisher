@@ -2,6 +2,15 @@
  * CSS for the admin-specific functionality is 
  * included in this file.
  */
+
+
+
+
+/*Desktop styles */
+.meetup-slides {
+	width: 85%;
+	float: left;
+}
 .grayout {
 	opacity: .55; 
 	transition-duration: .3s;
@@ -22,6 +31,24 @@
 	float: left; 
 	border-radius: 20px; 
 	margin-bottom: 25px;
+}
+
+.admin-header {
+	text-decoration: underline; 
+	padding: 15px; 
+	padding-left: 0; 
+	font-style: italic;
+	font-size: 23px;
+	font-weight: 400;
+}
+
+.security-labels th, .security-labels label {
+	font-weight: 300;
+
+}
+
+.transient-labels {
+	font-weight: 700 !important;
 }
 
 .visibility-buttons-deck {
@@ -162,4 +189,29 @@
 .highLight {
 	background-color: beige;
 	transition-duration: .3s;
+}
+
+/* Responsive stuff */
+@media( max-width: 1680px ) {
+	.meetup-slides {
+		width: 80%;
+		float: left;
+	}
+	#prevSlide {
+		margin: 0; 
+		margin-right: 50px;
+		padding-top: 120px; 
+		font-size: 110px; 
+		color: #ed1c40; 
+		float: left; 
+	}
+	#nextSlide {
+		margin: 0; 
+		margin-right: 50px; 
+		padding-top: 120px; 
+		font-size: 110px; 
+		color: #ed1c40; 
+		float: left; 
+	}
+	
 }

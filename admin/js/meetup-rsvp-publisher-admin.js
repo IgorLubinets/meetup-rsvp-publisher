@@ -47,14 +47,19 @@ $(document).ready( function() {
 			centerMode: true,
 			swipeToSlide: true,
 			responsive: [
-
-  			{
-	    		breakpoint: 1368,
+			{
+	    		breakpoint: 1600,
       		settings: {
 					slidesToShow: 3,
         			arrows: false,
         			centerPadding: '40px',
-        			slidesToShow: 2 
+		    	}
+    		}, {
+	    		breakpoint: 1368,
+      		settings: {
+					slidesToShow: 2.5,
+        			arrows: false,
+        			centerPadding: '40px',
 		    	}
     		}, { 
 				breakpoint: 600,
