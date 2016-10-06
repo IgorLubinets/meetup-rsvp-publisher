@@ -224,13 +224,13 @@ class Meetup_Rsvp_Publisher_Admin {
 		////////////////////////////////////////////////////////////////	
 		add_settings_section(
 	      $this->options_name . '_transient_settings',
-   	   'Meetup API Polling Period', 
+   	   'Meetup API Cache Settings', 
       	array( $this, $this->options_name . '_transient_period_callback' ),
       	$this->plugin_name . '-security'
    	);
 		add_settings_field(
 			$this->plugin_name . '_transient_period', //id
-			'Note:  Meetup limits the number of API requests',				//title
+			'Beware: you are limited as to how many requests you are allowed per second.<br>(If you exceed the limit, you might get temporarily locked out)',			//title
 			array( $this, $this->options_name . '_transient_period_field_callback' ), //callback
 			$this->plugin_name . '-security', 
 			$this->options_name . '_transient_settings'
@@ -314,7 +314,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_callback() {
-		echo '<hr><h2>Specify how often to poll Meetup.com for new data</h2>';
+		echo '<hr><h2>Specify the time period to cache data</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_field_callback() { 

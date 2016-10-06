@@ -34,7 +34,7 @@ delete_option('meetup-rsvp-publisher_rsvp_field_order');
 delete_option('webilect_meetup_rsvp_publisher_options_transient_value');
 delete_option('webilect_meetup_rsvp_publisher_options_transient_period');
 delete_option('webilect_meetup_rsvp_publisher_options_show_hide_rsvp_fields_list');
-delete_option('webilect_meetup_rsvp_publisher_options_rsvp_field_list_new');
+delete_option('webilect_meetup_rsvp_publisher_options_rsvp_field_list');
 delete_option('webilect_meetup_rsvp_publisher_options_rsvp_card_style_format');
 delete_option('webilect_meetup_rsvp_publisher_options_main_container_blah');
 delete_option('webilect_meetup_rsvp_publisher_options_api_key_value');
