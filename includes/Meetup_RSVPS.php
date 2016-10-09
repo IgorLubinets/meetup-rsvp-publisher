@@ -69,12 +69,20 @@ class Meetup_RSVPS {
 		// had to do it, because once I set the transient to 0 ( to never expire )
 		// it got stuck, never updating! BUG?
 
+		/*
+			Maybe a little paranoid, but just had a problem where transient got set to 
+			never expire. So, need to filter the zero out
+		 */
+		$transient_value = get_option('webilect_meetup_rsvp_publisher_options_transient_value');
+		if( $transient_value === false ) {
+			delete_transient( 'webilect_meetup_rsvps' );
+		}	
 		$rsvps = get_transient( 'webilect_meetup_rsvps' );
+
 		if( false === $rsvps ) {
 			echo '<h2>No Transient, going live...</h2>';
 			$rsvps = $this->getLiveRSVPs();
-			//	set_transient( 'webilect_meetup_rsvps', $rsvps, 15 ); //hardcoded, store it for 15 seconds 
-			set_transient( 'webilect_meetup_rsvps', $rsvps, get_option('webilect_meetup_rsvp_publisher_options_transient_value', 15) ); 
+			set_transient( 'webilect_meetup_rsvps', $rsvps, ( ($transient_value === false) ? 15 : $transient_value )  ); 
 		}
 			
 		return apply_filters('meetup_RSVP_filter', $rsvps);

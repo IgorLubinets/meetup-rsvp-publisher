@@ -29,7 +29,7 @@
 	$return_value = '';
 	//var_dump( $groups);
 	?>
-<div style="width: 100%; margin-top: 50px; margin-bottom: 50px">
+<div style="width: 100%; margin-top: 20px; margin-bottom: 30px">
 	
 	<!--	
 	<div style="margin-bottom: 40px;">

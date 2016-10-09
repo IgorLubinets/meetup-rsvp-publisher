@@ -363,7 +363,6 @@ class Meetup_Rsvp_Publisher_Admin {
 				$transient_value += $value * 60 * 60 * 24;	
 			}
 		}
-		
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
 		
 		?>
