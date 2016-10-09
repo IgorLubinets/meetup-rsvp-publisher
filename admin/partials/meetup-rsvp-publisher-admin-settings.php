@@ -24,7 +24,7 @@
 
 	</h2>
 
-	<h3>Drag to reorder fields</h3>
+	<h2 class="admin-header">Drag to reorder fields</h2>
 
 	<div class="admin-rsvp-card-container">
 		<ul id="sortable" style="background: white">
@@ -98,7 +98,9 @@
 	<form action="options.php" method="post">
 		<?php
 		settings_fields( $this->plugin_name );
+	
 		do_settings_sections( $this->plugin_name );
+
 		submit_button();
 		?>
 	</form>

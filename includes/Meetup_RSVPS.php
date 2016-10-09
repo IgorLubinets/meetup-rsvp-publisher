@@ -90,18 +90,18 @@ class Meetup_RSVPS {
 			catch ( \Exception $exception ) {
 				echo 'Exception caught!!!';
 				echo $exception->getMessage();
-				
 			
 				$this->error=true;
 			
 				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
-					echo '<script type="text/javascript">alert( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
+					echo '<script type="text/javascript">
+						console.log( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
 					$redirect_script = '<script type="text/javascript">';
-					$redirect_script .= 'window.location = "' . admin_url() . 'options-general.php?page=meetup-rsvp-publisher-security"' ;
+					$redirect_script .= 'window.location = "' . admin_url() 
+						. 'options-general.php?page=meetup-rsvp-publisher-security&authorized=no"' ;
 					$redirect_script .= '</script>';
 					echo $redirect_script;	
 				}
-
 
 				return;
 			}

@@ -25,10 +25,23 @@
 
 	</h2>
 
+
 	<form action="options.php" method="post">
 		<?php
+		if( $_GET['authorized'] === 'no' && $_GET['settings-updated'] !== 'true') : ?>
+			<div style="color: red; font-weight: 600; background-color: yellow; padding: 15px; margin: 15px; margin-left: 0">
+				ATTENTION: please enter a valid Meetup.com API key
+			</div>	
+		<?php
+		endif;  ?>
+
+		<?php 
 		settings_fields( $this->plugin_name . '_security_key' );
 		do_settings_sections( $this->plugin_name . '-security' );
+		?>
+
+
+		<?php
 		submit_button();
 		?>
 	</form>

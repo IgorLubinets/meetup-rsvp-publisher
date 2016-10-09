@@ -217,27 +217,9 @@ class Meetup_Rsvp_Publisher_Admin {
 			$this->options_name . '_key_settings',
 			array( 'label_for' => $this->options_name . '_api_key_value', 'class' => 'security-labels' )
 		);
-		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_sanitation') );
+		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_checker_sanitation') );
 
-
-		//Add Transient Period for the API call
-		////////////////////////////////////////////////////////////////	
-		add_settings_section(
-	      $this->options_name . '_transient_settings',
-   	   'Meetup API Cache Settings', 
-      	array( $this, $this->options_name . '_transient_period_callback' ),
-      	$this->plugin_name . '-security'
-   	);
-		add_settings_field(
-			$this->plugin_name . '_transient_period', //id
-			'Beware: you are limited as to how many requests you are allowed per second.<br>(If you exceed the limit, you might get temporarily locked out)',			//title
-			array( $this, $this->options_name . '_transient_period_field_callback' ), //callback
-			$this->plugin_name . '-security', 
-			$this->options_name . '_transient_settings',
-			array( 'class' => 'security-labels' )
-		);
-		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
-
+		add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
 
 		//Add settings to set slider or list 
 		/////////////////////////////////////////////////////////////////	
@@ -253,9 +235,34 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( $this, $this->options_name . '_rsvp_card_style_selector' ),
 			$this->plugin_name,
 			$this->options_name . '_rsvps_styles_settings',
-			array( 'label_for' => $this->options_name . '_rsvp_card_style_format' )
+			array( 
+				'class' => 'security-labels',
+				'label_for' => $this->options_name . '_rsvp_card_style_format' )
 		);
 		register_setting( $this->plugin_name, $this->options_name . '_rsvp_card_style_format', array( $this, 'api_key_value_sanitation') );
+
+
+		//Add Transient Period for the API call
+		////////////////////////////////////////////////////////////////	
+//		if( $_GET['authorized'] !== 'no' ) {
+			
+			add_settings_section(
+		      $this->options_name . '_transient_settings',
+   		   'Meetup API Cache Settings', 
+     		 	array( $this, $this->options_name . '_transient_period_callback' ),
+      		$this->plugin_name 
+   		);
+			add_settings_field(
+				$this->plugin_name . '_transient_period', //id
+				'Beware: you are limited as to how many requests you are allowed per second.<br>(If you exceed the limit, you might get temporarily locked out)',			//title
+				array( $this, $this->options_name . '_transient_period_field_callback' ), //callback
+				$this->plugin_name,  
+				$this->options_name . '_transient_settings',
+				array( 'class' => 'security-labels' )
+			);
+			register_setting( $this->plugin_name, $this->options_name . '_transient_period',	array( $this, 'api_key_value_sanitation') );
+//		}
+
 
 		//Create a list of RSVP fields 
 		/////////////////////////////////////////////////////////////////	
@@ -315,7 +322,9 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_callback() {
-		echo '<hr><h2 class="admin-header">Specify the time period to cache data</h2>';
+		if( $_GET['authorized'] !== 'no' ) {
+			echo '<hr><h2 class="admin-header">Specify the time period to cache data</h2>';
+		}
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_transient_period_field_callback() { 
@@ -347,11 +356,11 @@ class Meetup_Rsvp_Publisher_Admin {
 		}
 		
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-	//		echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
+			echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
 		
 		?>
 	
-	<table style="table-layout: fixed; width: 300px">
+	<table style="table-layout: fixed; width: 300px;">
 		<tbody>
 			<tr>
 				<th style="vertical-align: middle; width: 80px; text-align: right">	
@@ -400,12 +409,16 @@ class Meetup_Rsvp_Publisher_Admin {
 	<?php 
 	}
 
+	public function api_key_value_checker_sanitation( $input ) {
+		return $input; //does nothing right now, dummy function
+	}
+
 	public function api_key_value_sanitation( $input ) {
 		return $input; //does nothing right now, dummy function
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style() { 
-		echo '<hr style="background-color: red; height: 3px"><h2>Please choose the RSVP layout</h2>';
+		echo '<hr style="background-color: red; height: 3px"><h2 class="admin-header">Please choose the RSVP layout</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style_selector() { 
