@@ -205,8 +205,9 @@ class Meetup_Rsvp_Publisher_Admin {
 		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
 	      $this->options_name . '_key_settings',
-   	   'Meetup.com Credentials', 
-      	array( $this, $this->options_name . '_api_key_text' ),
+   	   //'Meetup.com Credentials', 
+      	'',
+			array( $this, $this->options_name . '_api_key_text' ),
       	$this->plugin_name . '-security'  
    	);
 		add_settings_field(
@@ -218,14 +219,21 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( 'label_for' => $this->options_name . '_api_key_value', 'class' => 'security-labels' )
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_checker_sanitation') );
+	
+		if( $_GET['authorized'] === 'no' && ( false === get_option('webilect_meetup_rsvp_publisher_options_api_key_value') ) ) {
+			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
+		}
+		if( $_GET['authorized'] === 'no' && get_option('webilect_meetup_rsvp_publisher_options_api_key_value') ) {
+			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
+		}
 
-		add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
 
 		//Add settings to set slider or list 
 		/////////////////////////////////////////////////////////////////	
 		add_settings_section(
 	      $this->options_name . '_rsvps_styles_settings',
-   	   'Choose Styling', 
+   	   //'Choose Styling',
+			'', 
       	array( $this, $this->options_name . '_rsvp_card_style' ),
       	$this->plugin_name
    	);
@@ -248,7 +256,8 @@ class Meetup_Rsvp_Publisher_Admin {
 			
 			add_settings_section(
 		      $this->options_name . '_transient_settings',
-   		   'Meetup API Cache Settings', 
+   		   //'Meetup API Cache Settings', 
+				'',
      		 	array( $this, $this->options_name . '_transient_period_callback' ),
       		$this->plugin_name 
    		);
@@ -309,7 +318,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	// Functions to render settings sections and fields
 	/////////////////////////////////////////////////////////////
 	public function webilect_meetup_rsvp_publisher_options_api_key_text() {
-		echo '<hr><h2 class="admin-header">' . __( 'Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
+		echo '<h2 class="admin-header">' . __( 'Meetup.com API key', 'meetup-rsvp-publisher' ) . '</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_api_key_tab() { 
@@ -356,7 +365,6 @@ class Meetup_Rsvp_Publisher_Admin {
 		}
 		
 		update_option( $this->options_name . '_transient_value', $transient_value, true );
-			echo '<h2>Transient Value:  ' . $transient_value . '</h2>';
 		
 		?>
 	
@@ -404,7 +412,10 @@ class Meetup_Rsvp_Publisher_Admin {
 			</tr>	
 		</tbody>
 	</table>
-
+	
+	<?php
+	echo '<p>Debuggin -- Transient Value:  ' . $transient_value . '</p>';
+	?>
 
 	<?php 
 	}
@@ -418,7 +429,7 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style() { 
-		echo '<hr style="background-color: red; height: 3px"><h2 class="admin-header">Please choose the RSVP layout</h2>';
+		echo '<h2 class="admin-header">Please choose the RSVP layout</h2>';
 	}
 
 	public function webilect_meetup_rsvp_publisher_options_rsvp_card_style_selector() { 
