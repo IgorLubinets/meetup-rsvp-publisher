@@ -14,7 +14,7 @@
 		$epoch = substr( ($item->time+$item->utc_offset), 0, 10);
 		$new_time = new DateTime("@$epoch"); ?>
 		
-		<div>
+		<div class="meetup-rsvp-publisher-card-item">
 
 			<?php 
 			foreach( $rsvpFieldOrder as $currentField ) : ?> 

@@ -110,7 +110,8 @@ class Meetup_Rsvp_Publisher_Public {
 
 		//Don't load twice for admin, only for public use
 		if( ! is_admin() ) {
-			wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true);
+			wp_enqueue_script('masonry'); //for cards layout
+			wp_enqueue_script('slick-slider-script', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', 'jquery', '', true); //for carousel
 			wp_enqueue_script('webilect-slick-script', plugin_dir_url( __FILE__ ) . 'js/webilect-slick-script.js', 'slick-slider-script', '', true);
 		}
 

@@ -36,5 +36,15 @@
 			console.log( response );
 		});
 
+		////////////////////////////////////////////
+      //Handle the Cards (masonry)
+      $('.meetup-rsvp-publisher-cards').masonry({
+         itemSelector: '.meetup-rsvp-publisher-card-item',
+         columnWidth: 300,
+
+      });
+      //End handling the Cards
+      ////////////////////////////////////////////
+	
 	});
 })(jQuery);

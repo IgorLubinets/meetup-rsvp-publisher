@@ -212,6 +212,19 @@ $(document).ready( function() {
 		// end handle visibility toggle buttons
 
 
+		////////////////////////////////////////////
+		//Handle the Cards (masonry)
+		$('.meetup-rsvp-publisher-cards').masonry({
+			itemSelector: '.meetup-rsvp-publisher-card-item',
+			columnWidth: 200,
+
+		});
+		//End handling the Cards
+		////////////////////////////////////////////
+
+
+
+
 		//Code to handle ShowAll HideAll radio buttons 
 		/////////////////////////////////////////////////////////////////////
 		$('#allStatusShow').click( function() {

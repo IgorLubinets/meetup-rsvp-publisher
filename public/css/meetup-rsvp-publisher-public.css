@@ -64,7 +64,17 @@
 }
 
 .meetup-rsvp-publisher-list li {
-	display: inline;
-	max-width: 150px;
+	max-width: 950px;
+}
+.meetup-rsvp-publisher-cards {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.meetup-rsvp-publisher-card-item {
+	width: 300px;
+	min-height: 450px;
+	border: solid 2px gray;	
+	padding: 15px;
 	float: left;
 }
