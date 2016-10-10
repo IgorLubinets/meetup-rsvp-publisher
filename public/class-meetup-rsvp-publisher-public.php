@@ -135,15 +135,19 @@ class Meetup_Rsvp_Publisher_Public {
 					include( $plugin_base_path . '/includes/list.php' );
 				}
 				if( $shortcode_Filters['display'] === 'slider' ) {
-				//	include( 'slider.php' );
 					include( $plugin_base_path . '/includes/slider.php' );
+				}
+				if( $shortcode_Filters['display'] === 'cards' ) {
+					include( $plugin_base_path . '/includes/cards.php' );
 				}
 			} else {
 				$defaultLayout = get_option( 'webilect_meetup_rsvp_publisher_options_rsvp_card_style_format' );
 				if( $defaultLayout === 'list' ) {
 					include( $plugin_base_path . '/includes/list.php' );
 				}
-				else {
+				else if( $defaultLayout === 'cards' ) {
+					include( $plugin_base_path . '/includes/cards.php' );
+				} else {
 					include( $plugin_base_path . '/includes/slider.php' );
 				}
 			}	

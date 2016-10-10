@@ -257,6 +257,11 @@ $(document).ready( function() {
 			shortCode['display'] = 'slider';
 			readyShortCode.set('display', 'slider');
 		});
+		//Cards radio button in the Shortcode section
+		$('#pickCards').click( function() {
+			shortCode['display'] = 'cards';
+			readyShortCode.set('display', 'cards');
+		});
 		//List radio button in the Shortcode section
 		$('#pickList').click( function() {
 			shortCode['display'] = 'list';

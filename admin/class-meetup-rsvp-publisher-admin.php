@@ -224,7 +224,7 @@ class Meetup_Rsvp_Publisher_Admin {
 //			echo '<h2>Generating error...</h2>';
 			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
 		}
-		if( $_GET['authorized'] === 'no' && get_option($this->options_name . '_api_key_value') ) {
+		if( $_GET['authorized'] === 'no' && get_option($this->options_name . '_api_key_value') && ! isset(Meetup_Rsvp_Publisher::$error) ) {
 			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
 		}
 
@@ -439,6 +439,7 @@ class Meetup_Rsvp_Publisher_Admin {
 				id="<?php echo $this->options_name . '_rsvp_card_style_format'; ?>"
 				style="width: 160px; height: 35px; font-size: 1.35em; padding: 5px">
 			<option value="slider" <?php echo ( 'slider'===$rsvp_style_format ) ? 'selected' : ''; ?> >Slider</option>
+			<option value="cards" <?php echo ( 'cards'===$rsvp_style_format ) ? 'selected' : ''; ?> >Cards</option>
 			<option value="list" <?php echo ( 'list'===$rsvp_style_format ) ? 'selected' : ''; ?> >List</option>
 		</select>	
 	<?php

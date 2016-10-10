@@ -119,6 +119,7 @@
 
 		<div style="margin: 0; padding-bottom: 15px; font-size: 1.4em; color: #f20017; width: 50%; float: left; max-width: 450px">
 			<label style="margin: 15px; margin-right: 30px"><input type="radio" id="pickSlider" name="pickLayout" value="slider">Slider</label>
+			<label style="margin: 15px; margin-right: 30px"><input type="radio" id="pickCards" name="pickLayout" value="cards">Cards</label>
 			<label style="margin: 15px; margin-right: 30px"><input type="radio" id="pickList" name="pickLayout" value="list">List</label>
 			<label style="margin: 15px"><input type="radio" id="useDefault" name="pickLayout" value="default" checked>Default</label>
 		</div>
