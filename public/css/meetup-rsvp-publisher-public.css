@@ -56,3 +56,15 @@
 	font-size: 1.75em;
 }
 
+.rsvp-fields-event-title {
+	font-weight: 700;
+}
+.rsvp-fields-hostedby {
+	color: green;
+}
+
+.meetup-rsvp-publisher-list li {
+	display: inline;
+	max-width: 150px;
+	float: left;
+}

@@ -219,11 +219,12 @@ class Meetup_Rsvp_Publisher_Admin {
 			array( 'label_for' => $this->options_name . '_api_key_value', 'class' => 'security-labels' )
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_checker_sanitation') );
-	
-		if( $_GET['authorized'] === 'no' && ( false === get_option('webilect_meetup_rsvp_publisher_options_api_key_value') ) ) {
+
+		if( ($_GET['authorized'] === 'no') && ! get_option($this->options_name . '_api_key_value') ) {
+//			echo '<h2>Generating error...</h2>';
 			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
 		}
-		if( $_GET['authorized'] === 'no' && get_option('webilect_meetup_rsvp_publisher_options_api_key_value') ) {
+		if( $_GET['authorized'] === 'no' && get_option($this->options_name . '_api_key_value') ) {
 			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
 		}
 

@@ -96,11 +96,12 @@ class Meetup_RSVPS {
 				$rsvps = ( new Meetup($this->credentials) )->getGroups( $parameters ); 	
 			} 
 			catch ( \Exception $exception ) {
-				echo 'Exception caught!!!';
-				echo $exception->getMessage();
+
+//				echo 'Exception caught!!!';
+//				echo $exception->getMessage();
 			
 				$this->error=true;
-			
+		/*	
 				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
 					echo '<script type="text/javascript">
 						console.log( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
@@ -110,10 +111,10 @@ class Meetup_RSVPS {
 					$redirect_script .= '</script>';
 					echo $redirect_script;	
 				}
-
-				return;
+*/
+				return $exception;
 			}
-			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 10 ); //hardcoded, store it for 60 seconds 
+			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 1 ); //hardcoded, store it for 60 seconds 
 		}
 		return $rsvps;
 	}
