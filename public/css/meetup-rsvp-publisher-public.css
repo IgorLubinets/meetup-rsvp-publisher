@@ -72,9 +72,19 @@
 	padding: 0;
 }
 .meetup-rsvp-publisher-card-item {
-	width: 300px;
+	width: 270px;
 	min-height: 450px;
-	border: solid 2px gray;	
+	border: solid 1px gray;	
 	padding: 15px;
-	float: left;
+
+	font-size: .8em; 
+	background-color: #f20017; 
+	padding: 0; 
+	box-shadow: 4px 4px 5px gray; 
+	float: left; 
+	border-radius: 20px; 
+	margin: 2px;
+   margin-bottom: 10px; 
+	max-height: 470px;
+
 }

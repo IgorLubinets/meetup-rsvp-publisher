@@ -15,9 +15,10 @@
 		$new_time = new DateTime("@$epoch"); ?>
 		
 		<div class="meetup-rsvp-publisher-card-item">
-
+			<div class="meetup-text">
 			<?php 
 			foreach( $rsvpFieldOrder as $currentField ) : ?> 
+				
 				<?php
 				if( 'rsvp-fields-event-title' === $currentField && (false !== $showHideRsvpFields[$currentField])  ) : ?>
 					<p class="<?php echo $currentField; ?>">
@@ -52,7 +53,7 @@
 		
 			<?php
 			endforeach; ?>
-
+			</div>
 		</div>
 	<?php
 	endforeach;
