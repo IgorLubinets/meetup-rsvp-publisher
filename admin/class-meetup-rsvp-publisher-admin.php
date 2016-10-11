@@ -223,10 +223,10 @@ class Meetup_Rsvp_Publisher_Admin {
 
 		if( ($_GET['authorized'] === 'no') && ! get_option($this->options_name . '_api_key_value') ) {
 //			echo '<h2>Generating error...</h2>';
-			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
+//			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
 		}
 		if( $_GET['authorized'] === 'no' && get_option($this->options_name . '_api_key_value') && ! isset(Meetup_Rsvp_Publisher::$error) ) {
-			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
+//			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
 		}
 
 
@@ -422,7 +422,18 @@ class Meetup_Rsvp_Publisher_Admin {
 	}
 
 	public function api_key_value_checker_sanitation( $input ) {
-		return $input; //does nothing right now, dummy function
+		if( empty($input) ) {
+			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
+		}
+		else {
+			$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
+			if( $groups instanceof Exception ) {
+				if( strpos( $groups->getMessage(), 'not_authorized' ) ) {
+					add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
+				}			
+			}
+		}	
+		return $input; 
 	}
 
 	public function api_key_value_sanitation( $input ) {

@@ -30,12 +30,12 @@
 
 		<?php
 		//Check the result of an API call to see if the key is valid.  
-		$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
+//		$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
 		?>	
 	
 		<?php
 		//If the result is an exception, display a notification to the user
-		if( $groups instanceof Exception ) : ?>
+/*		if( $groups instanceof Exception ) : ?>
 			<?php
 			if( strpos( $groups->getMessage(), 'not_authorized' ) ) : ?> 	
 				<div style="color: red; font-weight: 500; font-size: 1.2em; background-color: yellow; padding: 15px; margin: 15px; margin-left: 0">
@@ -44,7 +44,7 @@
 			<?php
 			endif; ?>
 		<?php
-		endif;  ?>
+		endif; */ ?>
 
 		<?php
 		submit_button();
