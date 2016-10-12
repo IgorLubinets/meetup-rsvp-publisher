@@ -16,10 +16,15 @@ class Meetup_RSVPS {
 	public $error = false; //error flag
 
 	function __construct() {
-		$options = get_option( 'webilect_meetup_stalker_options' );
-		
+	//	$options = get_option( 'webilect_meetup_stalker_options' );
+
+/*		if( !isset($key) ) {
+			$key = get_option('webilect_meetup_rsvp_publisher_options_api_key_value');
+		}
+*/	
 		$this->credentials = array(
 			'key'					=>	get_option('webilect_meetup_rsvp_publisher_options_api_key_value'),
+//			'key'					=> $key,
 			'rsvp'				=>	'yes',
 			'member_id'			=> 'self' );
 		$slidersCounter = 1;
@@ -87,36 +92,45 @@ class Meetup_RSVPS {
 			
 		return apply_filters('meetup_RSVP_filter', $rsvps);
 	}
-	
+
+	/**
+	 * Utility function to get a list of Groups
+	 * @return array list of groups, or if error, returns exception object
+	 */	
 	public function getGroups( array $parameters = array() ) {
+		
 		$rsvps = get_transient( 'webilect_meetup_rsvps_groups' );
+		
 		if( false === $rsvps ) {
-			//echo '<h2>No Transient, going live...</h2>';
 			try {
 				$rsvps = ( new Meetup($this->credentials) )->getGroups( $parameters ); 	
 			} 
 			catch ( \Exception $exception ) {
-
-//				echo 'Exception caught!!!';
-//				echo $exception->getMessage();
-			
 				$this->error=true;
-		/*	
-				if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
-					echo '<script type="text/javascript">
-						console.log( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
-					$redirect_script = '<script type="text/javascript">';
-					$redirect_script .= 'window.location = "' . admin_url() 
-						. 'options-general.php?page=meetup-rsvp-publisher-security&authorized=no"' ;
-					$redirect_script .= '</script>';
-					echo $redirect_script;	
-				}
-*/
 				return $exception;
 			}
 			set_transient( 'webilect_meetup_rsvps_groups', $rsvps, 1 ); //hardcoded, store it for 60 seconds 
 		}
 		return $rsvps;
+	}
+
+	/**
+	 * Utility function to check if the API Key is valid
+	 * @return boolean: true if valid, false for invalid 
+	 */
+	public function isKeyValid( $key ) {
+		try {
+			$rsvps = ( new Meetup( array( 
+				'key' 			=> $key,
+				'rsvp'			=>	'yes',
+				'member_id'		=> 'self' )	) )->getGroups(); 	
+		} 
+		catch ( \Exception $exception ) {
+			if( strpos( $exception->getMessage(), 'not_authorized' ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**

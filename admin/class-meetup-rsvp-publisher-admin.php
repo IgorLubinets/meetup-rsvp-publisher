@@ -221,12 +221,13 @@ class Meetup_Rsvp_Publisher_Admin {
 		);
 		register_setting( $this->plugin_name . '_security_key', $this->options_name . '_api_key_value', array( $this, 'api_key_value_checker_sanitation') );
 
+		//Handle wrong key in two places, this one and the sanitation function below
+		///////////////////////////////////////////////////////////////////////////////////////////////	
 		if( ($_GET['authorized'] === 'no') && ! get_option($this->options_name . '_api_key_value') ) {
-//			echo '<h2>Generating error...</h2>';
-//			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
+			add_settings_error( $this->options_name . '_api_key_value', esc_attr('settings_updated'), 'API Key cannot be blank' );
 		}
-		if( $_GET['authorized'] === 'no' && get_option($this->options_name . '_api_key_value') && ! isset(Meetup_Rsvp_Publisher::$error) ) {
-//			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
+		else if ( $_GET['authorized'] === 'no' && ( ! Meetup_Rsvp_Publisher::$rsvps->isKeyValid( get_option($this->options_name . '_api_key_value') ) ) ) {
+			add_settings_error( $this->options_name . '_api_key_value', esc_attr('settings_updated'), 'API Key is invalid' );
 		}
 
 
@@ -423,16 +424,14 @@ class Meetup_Rsvp_Publisher_Admin {
 
 	public function api_key_value_checker_sanitation( $input ) {
 		if( empty($input) ) {
-			add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key cannot be blank' );
-		}
+			add_settings_error( $this->options_name . '_api_key_value', esc_attr('settings_updated'), ($input . 'API Key cannot be blank') );
+		} 
 		else {
-			$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
-			if( $groups instanceof Exception ) {
-				if( strpos( $groups->getMessage(), 'not_authorized' ) ) {
-					add_settings_error( $this->plugin_name . '_security_key', esc_attr('settings_updated'), 'API Key is invalid' );
-				}			
+			if( ! Meetup_Rsvp_Publisher::$rsvps->isKeyValid( $input ) ) {
+				add_settings_error( $this->options_name . '_api_key_value', esc_attr('settings_updated'),( $input . 'API Key is invalid.  Get a new one <a href="https://secure.meetup.com/meetup_api/key/">here</a>') );
 			}
-		}	
+
+		}
 		return $input; 
 	}
 

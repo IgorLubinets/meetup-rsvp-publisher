@@ -25,14 +25,13 @@
 	</h2>
 
 	<?php
+	//Handle the wrong API key situation, if the key is invalid, redirect to the Security page to enter the new one
 	$groups = Meetup_Rsvp_Publisher::$rsvps->getGroups();
 	$return_value = '';
-
+	
 	if( $groups instanceof Exception ) {
 		if( strpos( $groups->getMessage(), 'not_authorized' ) ) {
-      	echo '<script type="text/javascript">
-         		console.log( "Meetup API Key Not Authorized! Please enter a correct API Key! Redirecting..." ); </script>';
-         $redirect_script = '<script type="text/javascript">';
+      	$redirect_script = '<script type="text/javascript">';
          $redirect_script .= 'window.location = "' . admin_url()
             . 'options-general.php?page=meetup-rsvp-publisher-security&authorized=no"' ;
          $redirect_script .= '</script>';
