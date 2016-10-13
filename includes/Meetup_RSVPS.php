@@ -183,6 +183,11 @@ class Meetup_RSVPS {
 						}
 					}
 				}
+				//if show or hide not specified, use show="all" as default
+				// was a problem in the case of [meetup-rsvp-publisher display="layout" /]
+				if( ! isset( $this->filters['show'] ) && ! isset( $this->filters['hide'] ) ) {
+					$temp[] = $rsvp;	
+				}
 
 			}
 		} else {
